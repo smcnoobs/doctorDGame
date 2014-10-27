@@ -9,31 +9,33 @@ public class Item implements Actable {
 	private Animation sprites;
 	private boolean isDead=false;
 	
+	//@Override
 	public void move(Vector2f delta) {
 		this.location.set(location.getX() + delta.getX(),location.getY() + delta.getY());
 	}
 	
+	//@Override
 	public void moveTo(Vector2f location) {
 		this.location = location;
 	}
 	
-	
+	//@Override
 	public void update() {
 		// Done
 	}
 	
-	
+	//@Override
 	public void render(Graphics g){
 		// g.draw(Animation) ?
 		// Figure out later
 	}
 	
-	
+	//@Override
 	public void die(int time) {
 		isDead = true;
 	}
 	
-	
+	//@Override
 	public boolean isDead() {
 		return this.isDead;
 	}
@@ -41,13 +43,14 @@ public class Item implements Actable {
 	/*
 	 * precondition: Actable a is already verified to be 'colliding' with this object
 	 * @see Actable#collide(Actable)
+	 * @Override
 	 */
 	public void collide(Actable a) {
 		if(a instanceof Player) 
 			die(0); // Figure out timing later
 	}
 	
-	
+	//@Override
 	public Vector2f getLocation() {
 		return this.location;
 	}
@@ -55,5 +58,10 @@ public class Item implements Actable {
 	public Item(Animation sprites, Vector2f location) {
 		this.sprites = sprites;
 		this.location = location;
+	}
+
+	//@Override
+	public Animation getAnimation() {
+		return sprites;
 	}
 }

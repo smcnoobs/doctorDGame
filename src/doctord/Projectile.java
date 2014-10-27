@@ -15,4 +15,4 @@ public class Projectile extends Item {
 		return this.damage;
 	}
 	
-	}
+}

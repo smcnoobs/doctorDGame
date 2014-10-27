@@ -15,5 +15,11 @@ public class PlayerRestorer extends Item {
 		this.fuel = f;
 	}
 	
-
+	public int getHealth() {
+		return health;
+	}
+	
+	public float getFuel() {
+		return fuel;
+	}
 }

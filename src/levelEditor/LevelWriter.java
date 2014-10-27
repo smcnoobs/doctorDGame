@@ -8,31 +8,56 @@ import org.newdawn.slick.Animation;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.geom.Vector2f;
 
-import doctord.Item;
-import doctord.Player;
-//import doctord.Pillar;
+import doctord.*;
 
 public class LevelWriter {
 	private PrintWriter pw;
+	private Item[] items;
+	private Pillar[] pillars;
+	private Player player;
+	private float gravity;
+	private int length;
+	
+	public static final String LEVEL = "LEVEL";
+	public static final String LEVEL_GRAVITY = "GRAVITY";
+	public static final String LEVEL_LENGTH = "LENGTH";
+	
 	public static final String URL = "URL";
 	public static final String IMAGECOUNT = "IMAGECOUNT";
-	public static final String HEALTH = "HEALTH";
-	public static final String FUEL = "FUEL";
+	public static final String PLAYER_HEALTH = "HEALTH";
+	public static final String PLAYER_FUEL = "FUEL";
 	
+	public static final String PLAYER_SHIELDER_DURATION = "DURATION";
+	public static final String PLAYER_WARPER_DURATION = "DURATION";
+	
+	public static final String PROJECTILE_DAMAGE = "DAMAGE";
 	
 	// General Level Writer Code
 	public LevelWriter(String filename) throws FileNotFoundException {
 		pw = new PrintWriter(new File(filename));
 	}
 	
+	public void loadAssets(Item[] items, Pillar[] pillars, Player player, float gravity, int length) {
+		this.items = items;
+		this.pillars = pillars;
+		this.player = player;
+		this.gravity = gravity;
+		this.length = length;
+	}
+	
 	public void writeLevel() {
-		/*
-		 * Pseudo Code: 
-		 * 	Write Generic Level Info
-		 * 	Write Player Info
-		 * 	Write Pillars
-		 * 	Write Items
-		 */
+		pw.println(basicOpenTag(LEVEL));
+		
+		pw.println(shortTag(LEVEL_GRAVITY, new String("") + gravity));
+		pw.println(shortTag(LEVEL_GRAVITY, new String("") + gravity));
+		
+		for(Item i : items) 
+			writeActable(i);
+		for(Pillar p : pillars)
+			writeActable(p);
+		writeActable(player);
+		
+		pw.println(basicCloseTag(LEVEL));
 	}
 	
 	public void finishWriting() {
@@ -69,26 +94,31 @@ public class LevelWriter {
 		pw.println(openTag(location));
 	}
 	
-	// Item Specific Code
-	private void writeItem(Item item) {
-		pw.println(openTag(item));
+	private void writeActable(Actable a) {
+		pw.println(openTag(a));
 		
-		writeAnimation(item.getAnimation());
-		writeLocation(item.getLocation());
+		if(a instanceof Player) {
+			pw.println(shortTag(PLAYER_HEALTH, new String("") + Player.getHealth()));
+			pw.println(shortTag(PLAYER_FUEL, new String("") + Player.getFuel()));
+		}
+		if(a instanceof PlayerShielder) {
+			pw.println(shortTag(PLAYER_SHIELDER_DURATION, new String("") + ((PlayerShielder)a).getDuration()));
+		}
+		if(a instanceof PlayerWarper) {
+			pw.println(shortTag(PLAYER_WARPER_DURATION, new String("") + ((PlayerWarper)a).getDuration()));
+		}
+		if(a instanceof PlayerRestorer) {
+			pw.println(shortTag(PLAYER_HEALTH, new String("") + ((PlayerRestorer)a).getHealth()));
+			pw.println(shortTag(PLAYER_FUEL, new String("") + ((PlayerRestorer)a).getFuel()));
+		}
+		if(a instanceof Projectile) {
+			pw.println(shortTag(PROJECTILE_DAMAGE, new String("") + ((Projectile)a).getDamage()));
+		}
 		
-		pw.println(closeTag(item));
-	}
-	
-	public void writePlayer(Player p) {
-		pw.println(openTag(p));
+		writeAnimation(a.getAnimation());
+		writeLocation(a.getLocation());
 		
-		pw.println(shortTag(HEALTH, new String("") + Player.getHealth()));
-		pw.println(shortTag(FUEL, new String("") + Player.getFuel()));
-		
-		writeAnimation(p.getAnimation());
-		writeLocation(p.getLocation());
-		
-		pw.println(closeTag(p));
+		pw.println(closeTag(a));
 	}
 	
 	// BASIC XML FUNCTIONS
