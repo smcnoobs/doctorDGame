@@ -1,6 +1,7 @@
 //Testing the GitHub uploading.
 
 package doctord;
+import org.newdawn.slick.Animation;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.geom.Vector2f;
 
@@ -51,4 +52,9 @@ public interface Actable {
 	 * Returns the current location of the Actable as a Vector2f
 	 */
 	public Vector2f getLocation();
+	
+	/*
+	 * Returns the Animation of the Actable
+	 */
+	public Animation getAnimation();
 }

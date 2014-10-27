@@ -32,10 +32,14 @@ public class Actor implements Actable {
 		return false;
 	}
 	public void collide(Actable a) {
-		// TODO Auto-generated method stub
+		/*
+		 * Collide Actables by comparing alpha masks of current images of the Actables
+		 */
 	}
 	public Vector2f getLocation() {
-		// TODO Auto-generated method stub
-		return null;
+		return location;
+	}
+	public Animation getAnimation() {
+		return sprites;
 	}
 }

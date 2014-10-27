@@ -41,6 +41,5 @@ public class Player extends Actor {
 		Vector2f loc = controls.getNewLocation();
 		super.location.set(loc.getX() + super.location.getX(),
 				loc.getY() + super.location.getY());
-//		super.location = controls.getDirection();
 	}
 }
