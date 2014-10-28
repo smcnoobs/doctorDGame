@@ -2,9 +2,9 @@
 <GRAVITY>
 0.0
 </GRAVITY>
-<GRAVITY>
-0.0
-</GRAVITY>
+<LENGTH>
+0
+</LENGTH>
 
 <Coin>
 <Animation>

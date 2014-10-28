@@ -49,7 +49,7 @@ public class LevelWriter {
 		pw.println(basicOpenTag(LEVEL));
 		
 		pw.println(shortTag(LEVEL_GRAVITY, new String("") + gravity));
-		pw.println(shortTag(LEVEL_GRAVITY, new String("") + gravity));
+		pw.println(shortTag(LEVEL_LENGTH, new String("") + length));
 		
 		pw.println("");
 		for(Item i : items) 
