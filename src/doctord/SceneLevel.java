@@ -42,9 +42,9 @@ public class SceneLevel extends doctord.Scene {
 		background = new Animation();
 		try {
 			
-			Image playerImage = new Image("/images/dehkhoda_jetpack.png");
+			Image playerImage = new Image("/res/images/dehkhoda_jetpack.png");
 			playerAnimation = new Animation(new Image[] {playerImage}, 1, false);
-			Image backgroundImage = new Image("/images/jupiterbg.jpg");
+			Image backgroundImage = new Image("/res/images/jupiterbg.jpg");
 			background = new Animation(new Image[] {backgroundImage}, 1, false);
 		} catch(SlickException sex) {
 			sex.printStackTrace();

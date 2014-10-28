@@ -34,7 +34,7 @@ public class LevelWriter {
 	
 	// General Level Writer Code
 	public LevelWriter(String filename) throws FileNotFoundException {
-		pw = new PrintWriter(new File(filename));
+		pw = new PrintWriter(filename);
 	}
 	
 	public void loadAssets(Item[] items, Pillar[] pillars, Player player, float gravity, int length) {
@@ -51,12 +51,18 @@ public class LevelWriter {
 		pw.println(shortTag(LEVEL_GRAVITY, new String("") + gravity));
 		pw.println(shortTag(LEVEL_GRAVITY, new String("") + gravity));
 		
+		pw.println("");
 		for(Item i : items) 
 			writeActable(i);
+		
+		pw.println("");
 		for(Pillar p : pillars)
 			writeActable(p);
+		
+		pw.println("");
 		writeActable(player);
 		
+		pw.println("");
 		pw.println(basicCloseTag(LEVEL));
 	}
 	
@@ -91,7 +97,7 @@ public class LevelWriter {
 		pw.println(shortTag("X",new String("" + location.getX())));
 		pw.println(shortTag("Y",new String("" + location.getY())));
 		
-		pw.println(openTag(location));
+		pw.println(closeTag(location));
 	}
 	
 	private void writeActable(Actable a) {
@@ -140,7 +146,7 @@ public class LevelWriter {
 	
 	private String shortTag(String tagName, String value) {
 		return basicOpenTag(tagName)
-				+ 	value + "\n" +
+				+ "\n" +	value 	+ "\n" +
 				basicCloseTag(tagName);
 	}
 }
