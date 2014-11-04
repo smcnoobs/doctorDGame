@@ -21,13 +21,14 @@ public class Item implements Actable {
 	
 	//@Override
 	public void update() {
-		// Done
+		location.set(location.getX() - PillarBlock.BLOCK_SPEED, location.getY());
 	}
 	
 	//@Override
 	public void render(Graphics g){
-		// g.draw(Animation) ?
-		// Figure out later
+		if(sprites != null && location != null) {
+			sprites.draw(location.getX(), location.getY());
+		}
 	}
 	
 	//@Override

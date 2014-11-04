@@ -36,7 +36,9 @@ public class doctorDTest extends BasicGame {
 		System.out.println("\n\n\nTESTING BEGIN:");
 		
 		boolean LW_WORKS = LevelWriterTest.LevelWriterWorks(false);
+		boolean SL_WORKS = SceneLevelTest.SceneLevelWorks(false);
 		System.out.println("LevelWriter works: " + (LW_WORKS ? LW_WORKS : LevelWriterTest.LevelWriterWorks(true)));
+		System.out.println("SceneLevel works: " + (SL_WORKS ? SL_WORKS : SceneLevelTest.SceneLevelWorks(true)));
 	}
 
 	@Override

@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LEVEL>
+	<GRAVITY>0.0</GRAVITY>
+	<LENGTH>0</LENGTH>
+	<Animation>
+			<IMAGECOUNT>1</IMAGECOUNT>
+			<Image>
+				<URL>./res/images/jupiterbg.jpg</URL>
+			</Image>
+	</Animation>
+
+	<Actable type="Coin">
+		<Animation>
+			<IMAGECOUNT>1</IMAGECOUNT>
+			<Image>
+				<URL>./res/images/dehkhoda_jetpack.png</URL>
+			</Image>
+		</Animation>
+		<Vector2f>
+			<X>500.0</X>
+			<Y>500.0</Y>
+		</Vector2f>
+	</Actable>
+	
+	<Actable type="Coin">
+		<Animation>
+			<IMAGECOUNT>1</IMAGECOUNT>
+			<Image>
+				<URL>./res/images/dehkhoda_jetpack.png</URL>
+			</Image>
+		</Animation>
+		<Vector2f>
+			<X>1500.0</X>
+			<Y>600.0</Y>
+		</Vector2f>
+	</Actable>
+	
+	<Actable type="Coin">
+		<Animation>
+			<IMAGECOUNT>1</IMAGECOUNT>
+			<Image>
+				<URL>./res/images/dehkhoda_jetpack.png</URL>
+			</Image>
+		</Animation>
+		<Vector2f>
+			<X>2000.0</X>
+			<Y>300.0</Y>
+		</Vector2f>
+	</Actable>
+
+	<Actable type="Pillar">
+		<Animation>
+			<IMAGECOUNT>1</IMAGECOUNT>
+			<Image>
+				<URL>./res/images/dehkhoda_jetpack.png</URL>
+			</Image>
+		</Animation>
+		<Vector2f>
+			<X>1920.0</X>
+			<Y>0.0</Y>
+		</Vector2f>
+	</Actable>
+	
+	<Actable type="Pillar">
+		<Animation>
+			<IMAGECOUNT>1</IMAGECOUNT>
+			<Image>
+				<URL>./res/images/dehkhoda_jetpack.png</URL>
+			</Image>
+		</Animation>
+		<Vector2f>
+			<X>2020.0</X>
+			<Y>0.0</Y>
+		</Vector2f>
+	</Actable>
+
+	<Actable type="Player">
+		<HEALTH>0</HEALTH>
+		<FUEL>0.0</FUEL>
+		<Animation>
+			<IMAGECOUNT>1</IMAGECOUNT>
+			<Image>
+				<URL>./res/images/dehkhoda_jetpack.png</URL>
+			</Image>
+		</Animation>
+		<Vector2f>
+			<X>100.0</X>
+			<Y>500.0</Y>
+		</Vector2f>
+	</Actable>
+
+</LEVEL>

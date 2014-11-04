@@ -42,4 +42,9 @@ public class Player extends Actor {
 		super.location.set(loc.getX() + super.location.getX(),
 				loc.getY() + super.location.getY());
 	}
+	
+	@Override
+	public void collide(Actable a) {
+		
+	}
 }

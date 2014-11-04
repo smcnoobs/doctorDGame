@@ -11,7 +11,7 @@ import levelEditor.*;
 import doctord.*;
 
 public class LevelWriterTest {
-	public static final String LEVEL_FILE_PATH = 	"./res/levels/level1.txt";
+	public static final String LEVEL_FILE_PATH = 	"./res/levels/level1.xml";
 	public static final String SPRITE_PATH = 		"./res/images/dehkhoda_jetpack.png";
 	
 	/*

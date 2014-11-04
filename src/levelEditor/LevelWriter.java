@@ -17,10 +17,13 @@ public class LevelWriter {
 	private Player player;
 	private float gravity;
 	private int length;
+	private int tab = 0;
 	
 	public static final String LEVEL = "LEVEL";
 	public static final String LEVEL_GRAVITY = "GRAVITY";
 	public static final String LEVEL_LENGTH = "LENGTH";
+	public static final String ACTABLE = "Actable";
+	public static final String TYPE = "type";
 	
 	public static final String URL = "URL";
 	public static final String IMAGECOUNT = "IMAGECOUNT";
@@ -46,6 +49,7 @@ public class LevelWriter {
 	}
 	
 	public void writeLevel() {
+		pw.println("<?xml version=\"1.0\" encoding=\"UTF-8\"?>");
 		pw.println(basicOpenTag(LEVEL));
 		
 		pw.println(shortTag(LEVEL_GRAVITY, new String("") + gravity));
@@ -101,7 +105,7 @@ public class LevelWriter {
 	}
 	
 	private void writeActable(Actable a) {
-		pw.println(openTag(a));
+		pw.println(openTagWithType(ACTABLE,TYPE,a));
 		
 		if(a instanceof Player) {
 			pw.println(shortTag(PLAYER_HEALTH, new String("") + Player.getHealth()));
@@ -124,16 +128,26 @@ public class LevelWriter {
 		writeAnimation(a.getAnimation());
 		writeLocation(a.getLocation());
 		
-		pw.println(closeTag(a));
+		pw.println(basicCloseTag(ACTABLE));
 	}
 	
 	// BASIC XML FUNCTIONS
 	private String basicOpenTag(String s) {
-		return "<" + s + ">";
+		String t = new String("");
+		for(int i =0; i < tab; i++) {
+			t += "\t";
+		}
+		tab++;
+		return t + "<" + s + ">";
 	}
 	
 	private String basicCloseTag(String s) {
-		return "</" + s + ">";
+		String t = new String("");
+		tab--;
+		for(int i =0; i < tab; i++) {
+			t += "\t";
+		}
+		return t + "</" + s + ">";
 	}
 	
 	private String openTag(Object obj) {
@@ -141,12 +155,22 @@ public class LevelWriter {
 	}
 	
 	private String closeTag(Object obj) {
-		return "</" + obj.getClass().getSimpleName() + ">";
+		return basicCloseTag(obj.getClass().getSimpleName());
 	}
 	
 	private String shortTag(String tagName, String value) {
-		return basicOpenTag(tagName)
-				+ "\n" +	value 	+ "\n" +
-				basicCloseTag(tagName);
+		String r = basicOpenTag(tagName) + value + "</" + tagName + ">";
+		tab--;
+		return r;
+	}
+	
+	private String openTagWithType(String tagName, String identifier, Object obj) {
+		String t = "";
+		for(int i =0; i < tab; i++) {
+			t += "\t";
+		}
+		tab++;
+		
+		return t + "<" + tagName + " " + identifier + "=\"" + obj.getClass().getSimpleName() + "\">";
 	}
 }

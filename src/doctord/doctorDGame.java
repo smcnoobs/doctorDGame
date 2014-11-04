@@ -23,13 +23,14 @@ public class doctorDGame extends BasicGame implements InputProviderListener {
 	private ControlHandler controls;
 	private Command debugCommand, exitCommand, fpsCommand;
 	private boolean endGame = false, displayFPS = false;
+	private int currentScene = 0;
 	
 	// Private Control Functions
 	
 	private void loadScenes() {
 		scenes = new Scene[1];
 		scenes[0] = new SceneLevel(controls);
-		((SceneLevel)scenes[0]).loadDebugLevel();
+		((SceneLevel)scenes[0]).loadLevel("./res/levels/level0.xml");
 	}
 	
 	private static DisplayMode getMaxDisplay(float width, float height) throws LWJGLException {
@@ -79,15 +80,12 @@ public class doctorDGame extends BasicGame implements InputProviderListener {
 		if(endGame)
 			gc.exit();
 		
-		for(Scene s : scenes) 
-			s.update();
+		scenes[currentScene].update();
 	}
 
 	@Override
 	public void render(GameContainer gc, Graphics g) throws SlickException {
-		g.drawString("Howdy!", 50, 50);
-		for(Scene s : scenes)
-			s.render(g);
+		scenes[currentScene].render(g);
 	}
 	
 	@Override
