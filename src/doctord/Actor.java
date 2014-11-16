@@ -12,10 +12,10 @@ public class Actor implements Actable {
 		this.location = location;
 	}
 	public void move(Vector2f delta) {
-		// TODO Auto-generated method stub
+		this.location.set(this.location.getX() + delta.getX(), this.location.getY() + delta.getY());
 	}
 	public void moveTo(Vector2f location) {
-		// TODO Auto-generated method stub
+		this.location.set(location.getX(), location.getY());
 	}
 	public void update() {
 		// TODO Auto-generated method stub
@@ -23,6 +23,11 @@ public class Actor implements Actable {
 	public void render(Graphics g) {
 		if(sprites != null && location != null) {
 			sprites.draw(location.getX(), location.getY());
+		}
+	}
+	public void render(Graphics g, float scale) {
+		if(sprites != null && location != null) {
+			sprites.getCurrentFrame().draw(location.getX(), location.getY(), scale);
 		}
 	}
 	public void die(int time) {

@@ -49,6 +49,7 @@
 	</Actable>
 
 	<Actable type="Pillar">
+	    <HIDDENBLOCKS>vvvvhhhhhhhhhhhhhvvv</HIDDENBLOCKS>
 		<Animation>
 			<IMAGECOUNT>1</IMAGECOUNT>
 			<Image>
@@ -62,6 +63,7 @@
 	</Actable>
 	
 	<Actable type="Pillar">
+	    <HIDDENBLOCKS>vvvvhhhhhhhhhhhvvvvv</HIDDENBLOCKS>
 		<Animation>
 			<IMAGECOUNT>1</IMAGECOUNT>
 			<Image>

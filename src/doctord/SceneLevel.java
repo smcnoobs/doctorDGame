@@ -139,7 +139,8 @@ public class SceneLevel extends doctord.Scene {
 	
 	private Pillar loadPillar(Element e) throws SlickException {
 		Actable a = loadActable(e);
-		return new Pillar(a.getAnimation(), a.getLocation());
+		String h = getValueByKey(e,"HIDDENBLOCKS");
+		return new Pillar(a.getAnimation(), a.getLocation(),h);
 	}
 
 	private Coin loadCoin(Element e) throws SlickException {
@@ -203,24 +204,6 @@ public class SceneLevel extends doctord.Scene {
 		return e.getElementsByTagName(key).item(0).getTextContent();
 	}
 	
-	/*
-	 * Only For Testing
-	 */
-//	public void loadDebugLevel() {
-//		Animation playerAnimation = new Animation();
-//		background = new Animation();
-//		try {
-//			
-//			Image playerImage = new Image("/res/images/dehkhoda_jetpack.png");
-//			playerAnimation = new Animation(new Image[] {playerImage}, 1, false);
-//			Image backgroundImage = new Image("/res/images/jupiterbg.jpg");
-//			background = new Animation(new Image[] {backgroundImage}, 1, false);
-//		} catch(SlickException sex) {
-//			sex.printStackTrace();
-//		}
-//		player = new Player(playerAnimation, new Vector2f(50,50), controls, 3, (float)50.0);
-//	}
-	
 	@Override
 	public void update() {
 		for(Pillar p : pillars)
@@ -237,12 +220,22 @@ public class SceneLevel extends doctord.Scene {
 		if(background != null)
 			background.draw(x--,-500);
 		
-		for(Pillar p : pillars) 
-			p.render(g);
+		for(Pillar p : pillars) {
+			if(isOnScreen(p.getLocation()))
+				p.render(g);
+		}
 
 		for(Item i : items) 
-			i.render(g);
+			if(isOnScreen(i.getLocation()))
+				i.render(g);
 
 		player.render(g);
+	}
+	
+	private boolean isOnScreen(Vector2f loc) {
+		return loc.getX() >= -200
+				&& loc.getX() <= 2120
+				&& loc.getY() >= 0
+				&& loc.getY() <= 1080;
 	}
 }

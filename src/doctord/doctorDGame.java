@@ -30,7 +30,7 @@ public class doctorDGame extends BasicGame implements InputProviderListener {
 	private void loadScenes() {
 		scenes = new Scene[1];
 		scenes[0] = new SceneLevel(controls);
-		((SceneLevel)scenes[0]).loadLevel("./res/levels/level0.xml");
+		((SceneLevel)scenes[0]).loadLevel("./res/levels/testMakerLevel.xml");
 	}
 	
 	private static DisplayMode getMaxDisplay(float width, float height) throws LWJGLException {

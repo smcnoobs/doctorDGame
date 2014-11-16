@@ -30,6 +30,8 @@ public class LevelWriter {
 	public static final String PLAYER_HEALTH = "HEALTH";
 	public static final String PLAYER_FUEL = "FUEL";
 	
+	public static final String PILLAR_BLOCKS_HIDDEN = "HIDDENBLOCKS";
+	
 	public static final String PLAYER_SHIELDER_DURATION = "DURATION";
 	public static final String PLAYER_WARPER_DURATION = "DURATION";
 	
@@ -55,16 +57,22 @@ public class LevelWriter {
 		pw.println(shortTag(LEVEL_GRAVITY, new String("") + gravity));
 		pw.println(shortTag(LEVEL_LENGTH, new String("") + length));
 		
-		pw.println("");
-		for(Item i : items) 
-			writeActable(i);
+		if(items != null) {
+			pw.println("");
+			for(Item i : items) 
+				writeActable(i);
+		}
 		
-		pw.println("");
-		for(Pillar p : pillars)
-			writeActable(p);
+		if(pillars != null) {
+			pw.println("");
+			for(Pillar p : pillars)
+				writeActable(p);
+		}
 		
-		pw.println("");
-		writeActable(player);
+		if(player != null) {
+			pw.println("");
+			writeActable(player);
+		}
 		
 		pw.println("");
 		pw.println(basicCloseTag(LEVEL));
@@ -110,6 +118,16 @@ public class LevelWriter {
 		if(a instanceof Player) {
 			pw.println(shortTag(PLAYER_HEALTH, new String("") + Player.getHealth()));
 			pw.println(shortTag(PLAYER_FUEL, new String("") + Player.getFuel()));
+		}
+		if(a instanceof Pillar) {
+			String s = "";
+			for(PillarBlock pb : ((Pillar)a).getBlocks()) {
+				if(pb.isHidden())
+					s += 'h';
+				else
+					s += 'v';
+			}
+			pw.println(shortTag(PILLAR_BLOCKS_HIDDEN, s));
 		}
 		if(a instanceof PlayerShielder) {
 			pw.println(shortTag(PLAYER_SHIELDER_DURATION, new String("") + ((PlayerShielder)a).getDuration()));
