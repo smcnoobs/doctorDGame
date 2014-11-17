@@ -451,7 +451,10 @@ public class GameLevelMaker extends BasicGame implements InputProviderListener {
                 null,
                 "./res/levels/");
 		LevelWriter writer = new LevelWriter(level_path);
-		writer.loadAssets(null,pillars,player,0,0);
+		
+		Item[] arrItems = new Item[items.size()];
+		arrItems = items.toArray(arrItems);
+		writer.loadAssets(arrItems,pillars,player,0,0);
 		writer.writeLevel();
 		writer.finishWriting();
 	}

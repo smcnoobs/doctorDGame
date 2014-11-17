@@ -10,7 +10,6 @@ public class PillarBlock extends Actor {
 	
 	public PillarBlock(Animation sprites, Vector2f location) {
 		super(sprites, location);
-//		System.out.println("New PillarBlock --- Animation Null? " + (sprites == null) + " Location null? " + (location == null));
 	}
 	
 	public boolean isHidden() {
@@ -27,12 +26,18 @@ public class PillarBlock extends Actor {
 	
 	@Override
 	public void render(Graphics g) {
-		super.render(g);
-		g.drawString("Block", location.getX(), location.getY());
+		if(!isHidden())
+			super.render(g);
+	}
+	
+	@Override
+	public void render(Graphics g, float f) {
+		if(!isHidden())
+			super.render(g,f);
 	}
 	
 	@Override
 	public void update() {
-		location.set(location.getX() - BLOCK_SPEED, location.getY());
+		move(new Vector2f(- BLOCK_SPEED, 0));
 	}
 }
