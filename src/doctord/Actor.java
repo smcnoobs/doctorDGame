@@ -4,7 +4,8 @@ import org.newdawn.slick.geom.Vector2f;
 import org.newdawn.slick.Animation;
 public class Actor implements Actable {
 	protected Animation sprites;
-	protected Vector2f location;	
+	protected Vector2f location;
+	protected boolean isdead = false;
 
 	public Actor ( Animation sprites, Vector2f location)
 	{
@@ -31,16 +32,32 @@ public class Actor implements Actable {
 		}
 	}
 	public void die(int time) {
-		// TODO Auto-generated method stub
+		isdead = true;
 	}
 	public boolean isDead() {
-		return false;
+		return isdead;
 	}
-	public void collide(Actable a) {
-		/*
-		 * Collide Actables by comparing alpha masks of current images of the Actables
-		 */
+	public boolean collide(Actable a) {
+		return isCollidingByRect(a);
 	}
+	
+	private boolean isCollidingByRect(Actable a) {
+		float rect1x = location.getX();
+        float rect1y = location.getY();
+        float rect1w = (float)sprites.getCurrentFrame().getWidth();
+        float rect1h = (float)sprites.getCurrentFrame().getHeight();
+ 
+        float rect2x = a.getLocation().getX();
+        float rect2y = a.getLocation().getY();
+        float rect2w = (float)a.getAnimation().getCurrentFrame().getWidth();
+        float rect2h = (float)a.getAnimation().getCurrentFrame().getHeight();
+ 
+        return (rect1x + rect1w >= rect2x &&
+                rect1y + rect1h >= rect2y &&
+                rect1x <= rect2x + rect2w &&
+                rect1y <= rect2y + rect2h);
+	}
+	
 	public Vector2f getLocation() {
 		return location;
 	}

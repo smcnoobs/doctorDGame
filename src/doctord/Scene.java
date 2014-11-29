@@ -4,10 +4,10 @@ import org.newdawn.slick.Graphics;
 
 public class Scene {
 	protected ControlHandler controls;
-	private boolean finished;
+	protected boolean finished;
 	
-	public Scene(ControlHandler controls) {
-		this.controls = controls;
+	public Scene() {
+		
 	}
 	
 	public void update() {

@@ -32,7 +32,11 @@ public class GameLevelMaker extends BasicGame implements InputProviderListener {
 	private ArrayList<Item> items;
 	private Player player;
 	private final int delta = 5;
+	private int length;
+	private float gravity;
+	private String levelName;
 	private boolean debounce = false;
+	private Animation background;
 	
 	/*
 	 * STATUS
@@ -46,6 +50,7 @@ public class GameLevelMaker extends BasicGame implements InputProviderListener {
 	 * 7	=>	Randomize Pillars
 	 */
 	private int status = 1;
+	private EditorButton eb = EditorButton.EDIT_PILLARS;
 	
 	private InputProvider provider;
 	private Input input;
@@ -79,9 +84,32 @@ public class GameLevelMaker extends BasicGame implements InputProviderListener {
 	@Override
 	public void init(GameContainer gc) throws SlickException {
 		gc.setShowFPS(false);
+		// Initialize Level
+		background = askForAnimation("Background");
+		
+		// Get the Level's Name
+		levelName = (String)JOptionPane.showInputDialog(
+                new Frame(),
+                "What is the name of this level?",
+                "Level Maker - Level Name",
+                JOptionPane.PLAIN_MESSAGE,
+                null,
+                null,
+                "");
+		
+		// Get the Gravity
+		String temp = (String)JOptionPane.showInputDialog(
+                new Frame(),
+                "How strong is the gravity on this Level? -> This must be a float value",
+                "Level Maker - Gravity Coefficient",
+                JOptionPane.PLAIN_MESSAGE,
+                null,
+                null,
+                "");
+		gravity = Float.parseFloat(temp);
 		
 		// Initialize Pillars
-		String temp = (String)JOptionPane.showInputDialog(
+		temp = (String)JOptionPane.showInputDialog(
                 new Frame(),
                 "How long will the level be? -> This translates to the amount of pillars",
                 "Level Maker - Number of Pillars",
@@ -89,12 +117,12 @@ public class GameLevelMaker extends BasicGame implements InputProviderListener {
                 null,
                 null,
                 "");
-		int npill = Integer.parseInt(temp);
+		length = Integer.parseInt(temp);
 		
 		Animation a = askForAnimation("Pillar");
 		
-		pillars = new Pillar[npill];
-		for(int i = 0; i < npill; i++) {
+		pillars = new Pillar[length];
+		for(int i = 0; i < length; i++) {
 			pillars[i] = new Pillar(a, new Vector2f(200 + i * Pillar.PILLAR_WIDTH, 0));
 		}
 		
@@ -126,9 +154,10 @@ public class GameLevelMaker extends BasicGame implements InputProviderListener {
 			
 			if(!debounce) {
 				
-				for(int i = 0; i < 8; i++) {
+				for(int i = 0; i < EditorButton.NUM_BUTTONS; i++) {
 					if(vectorIsInRect(mouseLoc,1920/2 + 50, (60 * i) + 10, 300, 50)) {
 						status = i;
+						eb = EditorButton.getByInt(i);
 						handleStatusChange();
 						debounce = true;
 					}
@@ -161,17 +190,17 @@ public class GameLevelMaker extends BasicGame implements InputProviderListener {
 	private void handleGameClick(Vector2f click) {
 		try {
 			String temp;
-			switch(status) {
-			case 1: // Edit Pillars
+			switch(eb) {
+			case EDIT_PILLARS: // Edit Pillars
 				hideBlock(click);
 				break;
-			case 2: // Position Player
+			case POSITION_PLAYER: // Position Player
 				positionPlayer(new Vector2f(click.getX() * 2, click.getY() * 2));
 				break;
-			case 3: // Add Coin
+			case ADD_COIN: // Add Coin
 				items.add(new Coin(askForAnimation("Coin"), new Vector2f(click.getX() * 2, click.getY() * 2)));
 				break;
-			case 4: // Add PlayerShielder
+			case PLAYER_SHIELDER: // Add PlayerShielder
 				temp = (String)JOptionPane.showInputDialog(
 		                new Frame(),
 		                "How long does the shield last? -> Must be an int value.",
@@ -183,7 +212,7 @@ public class GameLevelMaker extends BasicGame implements InputProviderListener {
 				int dur = Integer.parseInt(temp);
 				items.add(new PlayerShielder(dur,askForAnimation("PlayerShielder"), new Vector2f(click.getX() * 2, click.getY() * 2)));
 				break;
-			case 5: // Add PlayerRestorer
+			case PLAYER_RESTORER: // Add PlayerRestorer
 				temp = (String)JOptionPane.showInputDialog(
 		                new Frame(),
 		                "How much does the Restorer Heal? -> Must be an int value.",
@@ -204,7 +233,7 @@ public class GameLevelMaker extends BasicGame implements InputProviderListener {
 				int fuel = Integer.parseInt(temp);
 				items.add(new PlayerRestorer(health,fuel,askForAnimation("PlayerRestorer"), new Vector2f(click.getX() * 2, click.getY() * 2)));
 				break;
-			case 6: // Add Projectile
+			case PROJECTILE: // Add Projectile
 				temp = (String)JOptionPane.showInputDialog(
 		                new Frame(),
 		                "How much damage does the Projectile do? -> Must be an int value.",
@@ -224,12 +253,15 @@ public class GameLevelMaker extends BasicGame implements InputProviderListener {
 	
 	private void handleStatusChange() {
 		try {
-			switch(status) {
-			case 0:
+			switch(eb) {
+			case WRITE_LEVEL:
 				write();
 				break;
-			case 7:
+			case RANDOMIZE_PILLARS:
 				randomizePillars();
+				break;
+			case REMOVE_LAST_ITEM:
+				removeLastItem();
 			}
 		} catch(Exception e) {
 			e.printStackTrace();
@@ -281,22 +313,33 @@ public class GameLevelMaker extends BasicGame implements InputProviderListener {
 		g.drawString("Home.",(1920/4) -15,1080/2 + 20);
 		
 		// RIGHT SIDE BUTTONS
-		String[] s = new String[] {"Write Level.", 
-				"Edit Pillars.",
-				"Position Player.",
-				"Add Coin.",
-				"Add PlayerShielder.",
-				"Add PlayerRestorer.",
-				"Add Projectile.",
-				"Randomize Pillars."};
-		for(int i = 0; i < 8; i++) {
-			if(status == i) 
+//		String[] s = new String[] {"Write Level.", 
+//				"Edit Pillars.",
+//				"Position Player.",
+//				"Add Coin.",
+//				"Add PlayerShielder.",
+//				"Add PlayerRestorer.",
+//				"Add Projectile.",
+//				"Randomize Pillars."};
+//		for(int i = 0; i < 8; i++) {
+//			if(status == i) 
+//				g.setColor(new Color(243, 156, 18));
+//			else
+//				g.setColor(new Color(100,100,255));
+//			g.fillRect(1920/2 + 50, (60 * i) + 10, 300, 50);
+//			g.setColor(Color.white);
+//			g.drawString(s[i],1920/2 + 60,(60 * i) + 20);
+//		}
+		
+		for(int i = 0; i < EditorButton.NUM_BUTTONS; i++) {
+			EditorButton cb = EditorButton.getByInt(i);
+			if(eb == cb)
 				g.setColor(new Color(243, 156, 18));
 			else
 				g.setColor(new Color(100,100,255));
 			g.fillRect(1920/2 + 50, (60 * i) + 10, 300, 50);
 			g.setColor(Color.white);
-			g.drawString(s[i],1920/2 + 60,(60 * i) + 20);
+			g.drawString(cb.getTitle(),1920/2 + 60,(60 * i) + 20);
 		}
 	}
 	
@@ -383,7 +426,7 @@ public class GameLevelMaker extends BasicGame implements InputProviderListener {
 			float fuel = Float.parseFloat(temp);
 			
 			// Make Player at clicked location
-			player = new Player(a,clicked,new ControlHandler(),health,fuel);
+			player = new Player(a,clicked,health,fuel);
 		} else {
 			player.moveTo(clicked);
 		}
@@ -409,28 +452,29 @@ public class GameLevelMaker extends BasicGame implements InputProviderListener {
 
 	// Create Floors and ceilings, with a random chance of blocks in the middle
 	private void randomizePillars() {
-		int floor = 1;
-		int ceil = 1;
+		final int minSize = 2;
+		int floor = 2;
+		int ceil = 2;
 		Random rand = new Random();
 		for(Pillar p : pillars) {
 			// Random Chance of showing any block
 			for(PillarBlock pb : p.getBlocks()) {
 				int i = rand.nextInt(100);
-				if(i < 97)
+				if(i < 997)
 					pb.hide();
 				else
 					pb.show();
 			}
 			int i = rand.nextInt(100);
-			if(i < 10 && ceil > 1)
+			if(i < 10 && ceil > minSize)
 				ceil--;
-			else if(i > 90 && ceil < 10)
+			else if(i > 990 && ceil < 10)
 				ceil++;
 			
-			i = rand.nextInt(100);
-			if(i < 10 && floor > 1)
+			i = rand.nextInt(1000);
+			if(i < 10 && floor > minSize)
 				floor--;
-			else if(i > 90 && floor < 10)
+			else if(i > 990 && floor < 10)
 				floor++;
 			
 			for(int j = 0; j < floor; j++)
@@ -439,6 +483,11 @@ public class GameLevelMaker extends BasicGame implements InputProviderListener {
 			for(int j = 0; j < ceil; j++)
 				p.getBlocks()[j].show();
 		}
+	}
+	
+	private void removeLastItem() {
+		if(!items.isEmpty())
+			items.remove(items.size() - 1);
 	}
 	
 	private void write() throws FileNotFoundException {
@@ -454,7 +503,7 @@ public class GameLevelMaker extends BasicGame implements InputProviderListener {
 		
 		Item[] arrItems = new Item[items.size()];
 		arrItems = items.toArray(arrItems);
-		writer.loadAssets(arrItems,pillars,player,0,0);
+		writer.loadAssets(arrItems,pillars,player,background,gravity,length,levelName);
 		writer.writeLevel();
 		writer.finishWriting();
 	}

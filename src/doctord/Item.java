@@ -1,68 +1,37 @@
 package doctord;
 import org.newdawn.slick.Animation;
-import org.newdawn.slick.Graphics;
 import org.newdawn.slick.geom.Vector2f;
 
 
-public class Item implements Actable {
-	private Vector2f location;
-	private Animation sprites;
-	private boolean isDead=false;
-	
-	//@Override
-	public void move(Vector2f delta) {
-		this.location.set(location.getX() + delta.getX(),location.getY() + delta.getY());
-	}
-	
-	//@Override
-	public void moveTo(Vector2f location) {
-		this.location = location;
-	}
+@SuppressWarnings("rawtypes")
+public class Item extends Actor implements Comparable {
 	
 	//@Override
 	public void update() {
-		location.set(location.getX() - PillarBlock.BLOCK_SPEED, location.getY());
-	}
-	
-	//@Override
-	public void render(Graphics g){
-		if(sprites != null && location != null) {
-			sprites.draw(location.getX(), location.getY());
-		}
-	}
-	
-	//@Override
-	public void die(int time) {
-		isDead = true;
-	}
-	
-	//@Override
-	public boolean isDead() {
-		return this.isDead;
+//		location.set(location.getX() - PillarBlock.BLOCK_SPEED, location.getY());
+		super.move(new Vector2f(-PillarBlock.BLOCK_SPEED, 0));
 	}
 	
 	/*
-	 * precondition: Actable a is already verified to be 'colliding' with this object
 	 * @see Actable#collide(Actable)
 	 * @Override
 	 */
-	public void collide(Actable a) {
-		if(a instanceof Player) 
+	public boolean collide(Actable a) {
+		boolean c = super.collide(a);
+		if(c && a instanceof Player) 
 			die(0); // Figure out timing later
-	}
-	
-	//@Override
-	public Vector2f getLocation() {
-		return this.location;
+		return c;
 	}
 	
 	public Item(Animation sprites, Vector2f location) {
-		this.sprites = sprites;
-		this.location = location;
+		super(sprites,location);
 	}
-
-	//@Override
-	public Animation getAnimation() {
-		return sprites;
+	
+	public int compareTo(Object obj) {
+		if(obj instanceof Item) {
+			return (super.location.getX() < ((Item)obj).getLocation().getX()) ? -1 : 
+				(super.location.getX() > ((Item)obj).getLocation().getX()) ? 1 : 0; 
+		}
+		return -1;
 	}
 }

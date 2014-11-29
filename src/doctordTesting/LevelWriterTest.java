@@ -37,10 +37,10 @@ public class LevelWriterTest {
 			
 			Item[] items = new Item[] {new Coin(sprites,location)};
 			Pillar[] pillars = new Pillar[] {new Pillar(sprites, location)};
-			Player player = new Player(sprites, location, new ControlHandler(), 0, (float)0);
+			Player player = new Player(sprites, location, 0, (float)0);
 			
 			LevelWriter lw = new LevelWriter(LEVEL_FILE_PATH);
-			lw.loadAssets(items, pillars, player, (float)0, 0);
+			lw.loadAssets(items, pillars, player, sprites, (float)0, 0, "LEVEL NAME");
 			lw.finishWriting();
 			
 			return true;
@@ -59,10 +59,10 @@ public class LevelWriterTest {
 			
 			Item[] items = new Item[] {new Coin(sprites,location)};
 			Pillar[] pillars = new Pillar[] {new Pillar(sprites, location)};
-			Player player = new Player(sprites, location, new ControlHandler(), 0, (float)0);
+			Player player = new Player(sprites, location, 0, (float)0);
 			
 			LevelWriter lw = new LevelWriter(LEVEL_FILE_PATH);
-			lw.loadAssets(items, pillars, player, (float)0, 0);
+			lw.loadAssets(items, pillars, player, sprites, (float)0, 0, "LEVEL NAME");
 			lw.writeLevel();
 			lw.finishWriting();
 			

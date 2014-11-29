@@ -15,4 +15,11 @@ public class Projectile extends Item {
 		return this.damage;
 	}
 	
+	@Override
+	public void update() {
+		if(location.getX() > -200 && location.getX() < 1920)
+			super.move(new Vector2f(-(PillarBlock.BLOCK_SPEED * 3), 0));
+		else
+			super.update();
+	}
 }

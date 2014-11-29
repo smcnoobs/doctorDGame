@@ -46,7 +46,7 @@ public interface Actable {
 	 * Handle a potential collision with another Actable
 	 * @param a;
 	 */
-	public void collide(Actable a);
+	public boolean collide(Actable a);
 	
 	/*
 	 * Returns the current location of the Actable as a Vector2f

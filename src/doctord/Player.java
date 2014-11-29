@@ -1,25 +1,30 @@
 package doctord;
 
 import org.newdawn.slick.Animation;
+import org.newdawn.slick.Color;
+import org.newdawn.slick.Graphics;
 import org.newdawn.slick.geom.Vector2f;
 
 
 public class Player extends Actor {
+	private Vector2f inertia;
+	private final float weight = 20, maxSpeed = 20;
 	private static int health;
 	private static float fuel;
 	private int effectDuration;
-	private PlayerEffect currentEffect = PlayerEffect.NEUTRAL;
-	private ControlHandler controls;
+	private static PlayerEffect currentEffect = PlayerEffect.NEUTRAL;
+//	private ControlHandler controls;
 
-	public Player(Animation spirtes, Vector2f location, ControlHandler input, int health, float fuel) {
+	public Player(Animation spirtes, Vector2f location, int health, float fuel) {
 		super(spirtes, location);
 		Player.health = health;
 		Player.fuel = fuel;
-		this.controls = input;
+		
+		inertia = new Vector2f(0,0);
 	}
 	
 	public void setControls(ControlHandler input) {
-		this.controls = input;
+//		this.controls = input;
 	}
 
 	public void shield(int time) {
@@ -28,23 +33,79 @@ public class Player extends Actor {
 	}
 	
 	public static int getHealth() {
-		return Player.health;
+		return health;
 	}
 	
 	public static float getFuel() {
-		return Player.fuel;
+		return fuel;
 	}
 	
 	@Override
 	public void update() {
-		// Logic for player's motion!
-		Vector2f loc = controls.getNewLocation();
-		super.location.set(loc.getX() + super.location.getX(),
-				loc.getY() + super.location.getY());
+		inertia.set( // Fall down for the current level's gravity
+				inertia.getX(),
+				inertia.getY() + 
+				(((LevelScene)doctorDGame.getCurrentScene()).getGravity() * weight / 120)
+				);
+		
+		if(fuel > 0 && doctorDGame.spaceBarIsDown()) {
+				fuel = fuel - 0.1f;
+			inertia.set(
+					inertia.getX(),
+					inertia.getY() - 5
+					);
+		}
+		
+		if(inertia.getY() > maxSpeed)
+			inertia.set(inertia.getX(), maxSpeed);
+		if(inertia.getY() < -maxSpeed / 2)
+			inertia.set(inertia.getX(), -maxSpeed / 2);
+		
+		if(currentEffect != PlayerEffect.NEUTRAL) {
+			if (effectDuration > 0)
+				effectDuration--;
+			else
+				currentEffect = PlayerEffect.NEUTRAL;
+		}
+		
+		if(location.getY() + inertia.getY() > 0 && location.getY() + inertia.getY() < 1000)
+			move(inertia);
 	}
 	
 	@Override
-	public void collide(Actable a) {
-		
+	public void render(Graphics g) {
+		if(currentEffect != PlayerEffect.SHIELDED)
+			super.render(g);
+		else {
+			if(sprites != null && location != null) {
+				sprites.draw(location.getX(), location.getY(), new Color(150,40,27,200));
+			}
+		}
+	}
+	
+	@Override
+	public boolean collide(Actable a) {
+		if(a instanceof Item && super.collide(a)) {
+			a.die(0);
+			return true;
+		}
+		if(currentEffect != PlayerEffect.SHIELDED) {
+			// For a Pillar, check against all of the blocks!
+			if(a instanceof Pillar) {
+				for(PillarBlock pb : ((Pillar)a).getBlocks()) {
+					if(super.collide(pb) && !pb.isHidden()) {
+						health--;
+						currentEffect = PlayerEffect.SHIELDED;
+						effectDuration = Pillar.WAIT_TIME;
+						return true;
+					}
+				}
+			}
+		}
+		return false;
+	}
+	
+	public static PlayerEffect getCurrentEffect() {
+		return currentEffect;
 	}
 }

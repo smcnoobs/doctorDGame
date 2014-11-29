@@ -1,8 +1,8 @@
 package levelEditor;
 
-import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
+import java.util.Arrays;
 
 import org.newdawn.slick.Animation;
 import org.newdawn.slick.Image;
@@ -18,8 +18,11 @@ public class LevelWriter {
 	private float gravity;
 	private int length;
 	private int tab = 0;
+	private Animation bg;
+	private String levelName;
 	
 	public static final String LEVEL = "LEVEL";
+	public static final String LEVEL_NAME = "NAME";
 	public static final String LEVEL_GRAVITY = "GRAVITY";
 	public static final String LEVEL_LENGTH = "LENGTH";
 	public static final String ACTABLE = "Actable";
@@ -42,20 +45,25 @@ public class LevelWriter {
 		pw = new PrintWriter(filename);
 	}
 	
-	public void loadAssets(Item[] items, Pillar[] pillars, Player player, float gravity, int length) {
+	public void loadAssets(Item[] items, Pillar[] pillars, Player player, Animation bg, float gravity, int length, String levelName) {
 		this.items = items;
+		Arrays.sort(this.items);
 		this.pillars = pillars;
 		this.player = player;
 		this.gravity = gravity;
 		this.length = length;
+		this.bg = bg;
+		this.levelName = levelName;
 	}
 	
 	public void writeLevel() {
 		pw.println("<?xml version=\"1.0\" encoding=\"UTF-8\"?>");
 		pw.println(basicOpenTag(LEVEL));
 		
+		pw.println(shortTag(LEVEL_NAME, levelName));
 		pw.println(shortTag(LEVEL_GRAVITY, new String("") + gravity));
 		pw.println(shortTag(LEVEL_LENGTH, new String("") + length));
+		writeAnimation(bg);
 		
 		if(items != null) {
 			pw.println("");

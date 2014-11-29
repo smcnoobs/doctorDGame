@@ -4,10 +4,12 @@ import org.newdawn.slick.Animation;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.geom.Vector2f;
 
-public class Pillar extends Actor {
-	public static final int 	PILLAR_COUNT = 20;
-	public static final float 	PILLAR_HEIGHT = (float)50.0;
-	public static final float 	PILLAR_WIDTH = (float)50.0;
+@SuppressWarnings("rawtypes")
+public class Pillar extends Actor implements Comparable {
+	public static final int 	PILLAR_COUNT 	= 20;
+	public static final float 	PILLAR_HEIGHT 	= (float)50.0;
+	public static final float 	PILLAR_WIDTH 	= (float)50.0;
+	public static final int		WAIT_TIME		= 50;
 	
 	private PillarBlock[] blocks = new PillarBlock[PILLAR_COUNT];
 	
@@ -62,5 +64,13 @@ public class Pillar extends Actor {
 		super.move(delta);
 		for(PillarBlock pb : blocks)
 			pb.move(delta);
+	}
+	
+	public int compareTo(Object obj) {
+		if(obj instanceof Pillar) {
+			return (super.location.getX() < ((Pillar)obj).getLocation().getX()) ? -1 : 
+				(super.location.getX() > ((Pillar)obj).getLocation().getX()) ? 1 : 0; 
+		}
+		return -1;
 	}
 }

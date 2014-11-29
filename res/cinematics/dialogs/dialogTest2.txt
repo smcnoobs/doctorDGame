@@ -1,0 +1,3 @@
+IMAGE:./res/images/jupiterbg.jpg
+TEXT:This is a line of text in the second file no.1
+TEXT:This is a line of text in the second file no.2

@@ -7,6 +7,7 @@ import org.lwjgl.opengl.Display;
 import org.lwjgl.opengl.DisplayMode;
 import org.newdawn.slick.AppGameContainer;
 import org.newdawn.slick.BasicGame;
+import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Input;
@@ -18,36 +19,43 @@ import org.newdawn.slick.command.InputProviderListener;
 import org.newdawn.slick.command.KeyControl;
 
 public class doctorDGame extends BasicGame implements InputProviderListener {
-	private Scene[] scenes;
+	private static Scene[] scenes;
 	private InputProvider provider;
-	private ControlHandler controls;
 	private Command debugCommand, exitCommand, fpsCommand;
 	private boolean endGame = false, displayFPS = false;
-	private int currentScene = 0;
+	private static boolean spaceDown = false, shooting = false;
+	private boolean transitioning = false;
+	private int shadowTimer = 0;
+	private static int currentScene = 0;
 	
 	// Private Control Functions
 	
 	private void loadScenes() {
-		scenes = new Scene[1];
-		scenes[0] = new SceneLevel(controls);
-		((SceneLevel)scenes[0]).loadLevel("./res/levels/testMakerLevel.xml");
+		scenes = new Scene[4];
+		scenes[0] = new CinematicScene();
+		((CinematicScene)scenes[0]).loadCinematic("./res/cinematics/cinematicTest.txt");
+		scenes[1] = new LevelScene();
+		((LevelScene)scenes[1]).loadLevel("./res/levels/testMakerLevel.xml");
+		scenes[2] = new CinematicScene();
+		((CinematicScene)scenes[2]).loadCinematic("./res/cinematics/cinematicTest.txt");
+		scenes[3] = new LevelScene();
+		((LevelScene)scenes[3]).loadLevel("./res/levels/testMakerLevel.xml");
 	}
 	
-	private static DisplayMode getMaxDisplay(float width, float height) throws LWJGLException {
-		DisplayMode[] modes = Display.getAvailableDisplayModes();
-		DisplayMode maxDisplay = new DisplayMode(0,0);
-		for (int i=0;i<modes.length;i++) {
-			DisplayMode current = modes[i];
-			if(current.getBitsPerPixel() == 32 && Math.abs(((float)current.getWidth()/(float)current.getHeight()-(width/height))) <= 0.1) {
-				if(maxDisplay.getWidth() < current.getWidth()) 
-					maxDisplay = current;
-			}
-		}
-		return maxDisplay;
-	}
+//	private static DisplayMode getMaxDisplay(float width, float height) throws LWJGLException {
+//		DisplayMode[] modes = Display.getAvailableDisplayModes();
+//		DisplayMode maxDisplay = new DisplayMode(0,0);
+//		for (int i=0;i<modes.length;i++) {
+//			DisplayMode current = modes[i];
+//			if(current.getBitsPerPixel() == 32 && Math.abs(((float)current.getWidth()/(float)current.getHeight()-(width/height))) <= 0.1) {
+//				if(maxDisplay.getWidth() < current.getWidth()) 
+//					maxDisplay = current;
+//			}
+//		}
+//		return maxDisplay;
+//	}
 	
 	// Necessary Slick2D Functions
-
 	public doctorDGame(String gamename) {
 		super(gamename);
 	}
@@ -58,7 +66,6 @@ public class doctorDGame extends BasicGame implements InputProviderListener {
 		gc.setShowFPS(false);
 		gc.setMouseGrabbed(true);
 		
-		controls = new ControlHandler();
 		loadScenes();
 		
 		provider = new InputProvider(gc.getInput());
@@ -80,18 +87,34 @@ public class doctorDGame extends BasicGame implements InputProviderListener {
 		if(endGame)
 			gc.exit();
 		
+		if(scenes[currentScene].isFinished()) {
+			if(!transitioning) {
+				shadowTimer = 0;
+				transitioning = true;
+			} else {
+				shadowTimer= shadowTimer + 5;
+				if(shadowTimer >= 255) {
+					transitioning = false;
+					currentScene++;
+				}
+			}
+		}
 		scenes[currentScene].update();
 	}
 
 	@Override
 	public void render(GameContainer gc, Graphics g) throws SlickException {
 		scenes[currentScene].render(g);
+		if(transitioning) {
+			g.setColor(new Color(0,0,0,shadowTimer));
+			g.fillRect(0,0,1920,1080);
+		}
 	}
 	
 	@Override
 	public void controlPressed(Command com) {
 		if(com == debugCommand)
-			controls.respondPressed(com);
+			spaceDown = true;
 		if(com == exitCommand)
 			endGame = true;
 		if(com == fpsCommand)
@@ -101,7 +124,7 @@ public class doctorDGame extends BasicGame implements InputProviderListener {
 	@Override
 	public void controlReleased(Command com) {
 		if(com == debugCommand)
-			controls.respondReleased(com);
+			spaceDown = false;
 	}
 	
 	// Main Loop
@@ -110,14 +133,25 @@ public class doctorDGame extends BasicGame implements InputProviderListener {
 		try {
 			AppGameContainer appgc;
 			appgc = new AppGameContainer(new doctorDGame("Doctor D"));
-			DisplayMode maxDisplay = getMaxDisplay(16,9);
-			appgc.setDisplayMode(maxDisplay.getWidth(), maxDisplay.getHeight(), true);
+//			DisplayMode maxDisplay = getMaxDisplay(16,9);
+			appgc.setDisplayMode(1920, 1080, true);
 			appgc.start();
 		} catch (SlickException ex) {
 			Logger.getLogger(doctorDGame.class.getName()).log(Level.SEVERE, null, ex);
-		} catch (LWJGLException ex) {
-			Logger.getLogger(doctorDGame.class.getName()).log(Level.SEVERE, null, ex);
 		}
-		
+	}
+	
+	// Accessors
+	
+	public static boolean spaceBarIsDown() {
+		return spaceDown;
+	}
+	
+	public static boolean shooting() {
+		return shooting;
+	}
+	
+	public static Scene getCurrentScene() {
+		return scenes[currentScene];
 	}
 }

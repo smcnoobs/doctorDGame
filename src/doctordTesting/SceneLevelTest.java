@@ -7,12 +7,12 @@ public class SceneLevelTest {
 	public static final String SPRITE_PATH = 		"./res/images/dehkhoda_jetpack.png";
 	
 	public static boolean constructorWorks() {
-		SceneLevel sl = new SceneLevel(null);
+		LevelScene sl = new LevelScene();
 		return sl != null;
 	}
 	
 	public static boolean loadLevelWorks() {
-		SceneLevel sl = new SceneLevel(null);
+		LevelScene sl = new LevelScene();
 		return sl.loadLevel(LEVEL_FILE_PATH);
 //		return true;
 	}
