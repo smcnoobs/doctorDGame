@@ -10,6 +10,7 @@ import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 
 import org.newdawn.slick.Animation;
+import org.newdawn.slick.Color;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
@@ -28,11 +29,12 @@ public class LevelScene extends doctord.Scene {
 	
 	// Level Constants
 	private float gravity = (float)9.8;
-	private int length;
+//	private int length;
 	private Animation background;
 	private boolean level_did_load;
+	private static boolean paused = false;
 	private StatDisplay HUD;
-	private String levelName;
+	private String levelName, filename;
 	private static String lname;
 	
 	// For Testing
@@ -61,6 +63,15 @@ public class LevelScene extends doctord.Scene {
 		}
 	}
 	
+	public void reloadLevel() {
+		// Clean Level
+		player = null;
+		pillars.clear();
+		items.clear();
+		// load level
+		loadLevel(this.filename);
+	}
+	
 	public LevelScene() {		
 		pillars = new ArrayList<Pillar>();
 		items = new ArrayList<Item>();
@@ -72,6 +83,7 @@ public class LevelScene extends doctord.Scene {
 	 * returns true if the level loads properly, false otherwise
 	 */
 	public boolean loadLevel(String filename) {
+		this.filename = filename;
 		level_did_load = false;
 		try {
 			DocumentBuilderFactory fact = DocumentBuilderFactory.newInstance();
@@ -84,7 +96,7 @@ public class LevelScene extends doctord.Scene {
 			levelName = getValueByKey(doc.getDocumentElement(),"NAME");
 			lname = levelName;
 			gravity = Float.parseFloat(getValueByKey(doc.getDocumentElement(),"GRAVITY"));
-			length = Integer.parseInt(getValueByKey(doc.getDocumentElement(),"LENGTH"));
+//			length = Integer.parseInt(getValueByKey(doc.getDocumentElement(),"LENGTH"));
 			background = loadAnimation((Element)doc.getDocumentElement().getElementsByTagName("Animation").item(0));
 			
 			NodeList actables = doc.getElementsByTagName("Actable");
@@ -224,6 +236,13 @@ public class LevelScene extends doctord.Scene {
 	
 	@Override
 	public void update() {
+		if(!paused)
+			updateNormally();
+		else 
+			updatePaused();
+	}
+	
+	private void updateNormally() {
 		distancePassed = distancePassed - PillarBlock.BLOCK_SPEED / Pillar.PILLAR_WIDTH;
 		if(!levelName.equals(lname))
 			lname = levelName;
@@ -237,8 +256,12 @@ public class LevelScene extends doctord.Scene {
 		
 		collideActables();
 		
-		if(pillars.isEmpty())
+		if(pillars.isEmpty() && !paused)
 			finished = true;
+	}
+	
+	private void updatePaused() {
+		
 	}
 	
 	@Override
@@ -249,6 +272,12 @@ public class LevelScene extends doctord.Scene {
 		renderPillars(g);
 		renderItems(g);
 		player.render(g);
+		
+		if(paused) {
+			g.setColor(new Color(0,0,0,200));
+			g.fillRect(0,0,1920,1080);
+			HUD.renderPauseScreen(g);
+		}
 		HUD.render(g);
 	}
 	
@@ -293,5 +322,16 @@ public class LevelScene extends doctord.Scene {
 	
 	public static String getLevelName() {
 		return lname;
+	}
+	
+	public void pause() {
+		if(!paused)
+			paused = true;
+		else
+			paused = false;
+	}
+	
+	public static boolean isPaused() {
+		return paused;
 	}
 }

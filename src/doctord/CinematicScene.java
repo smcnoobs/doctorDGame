@@ -53,6 +53,7 @@ public class CinematicScene extends Scene {
 			while(sc.hasNextLine()) {
 				dialogs.add(new Dialog(sc.nextLine()));
 			}
+			sc.close();
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}

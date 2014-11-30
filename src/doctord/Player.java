@@ -86,6 +86,12 @@ public class Player extends Actor {
 	@Override
 	public boolean collide(Actable a) {
 		if(a instanceof Item && super.collide(a)) {
+			if(a instanceof PlayerRestorer) {
+				health += ((PlayerRestorer)a).getHealth();
+				fuel += ((PlayerRestorer)a).getFuel();
+			}
+			if(a instanceof Projectile)
+				health -= ((Projectile)a).getDamage();
 			a.die(0);
 			return true;
 		}
@@ -94,7 +100,8 @@ public class Player extends Actor {
 			if(a instanceof Pillar) {
 				for(PillarBlock pb : ((Pillar)a).getBlocks()) {
 					if(super.collide(pb) && !pb.isHidden()) {
-						health--;
+						if(health > 0)
+							health--;
 						currentEffect = PlayerEffect.SHIELDED;
 						effectDuration = Pillar.WAIT_TIME;
 						return true;

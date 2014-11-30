@@ -15,6 +15,7 @@ public class StatDisplay {
 	private float fuel=0;
 	private int health = 0;
 	private final boolean debug = false;
+	private final String pauseMsg = "GAME PAUSED";
 	java.awt.Font UIFont1;
     UnicodeFont uniFont;
 	
@@ -24,7 +25,8 @@ public class StatDisplay {
 			darkGreen = new Color(30,130,63),
 			healthRed = new Color(239,72,54),
 			darkRed   = new Color(150,40,27),
-			dullYellow = new Color(244,208,63);
+			dullYellow = new Color(244,208,63),
+			transparentBlack = new Color(0,0,0,200);
 			
 	private Shape[] shapes = new Shape[] {
 			new Rectangle(0,0,1920,54),			// Top Bar 				darkGrey		0
@@ -53,6 +55,14 @@ public class StatDisplay {
 			darkerGrey,		// Collected Coins
 	};
 	
+	private Shape[] pausedShapes = new Shape[] {
+			new RoundedRectangle(960 - 100,540 - 30 ,200,40,10),		// Pause Screen		transparentBlack	0
+	};
+	
+	private Color[] pausedColors = new Color[] {
+			transparentBlack,		// Rounded Background
+	};
+	
 	@SuppressWarnings("unchecked")
 	public StatDisplay() {
 		try {
@@ -63,34 +73,20 @@ public class StatDisplay {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		 	UIFont1 = UIFont1.deriveFont(java.awt.Font.PLAIN, 24.f);
-	        uniFont = new org.newdawn.slick.UnicodeFont(UIFont1);
-	        uniFont.addAsciiGlyphs();
-	        ColorEffect a = new ColorEffect();
-	        a.setColor(new java.awt.Color(255,255,255));
+		
+	 	UIFont1 = UIFont1.deriveFont(java.awt.Font.PLAIN, 24.f);
+        uniFont = new org.newdawn.slick.UnicodeFont(UIFont1);
+        uniFont.addAsciiGlyphs();
+        ColorEffect a = new ColorEffect();
+        a.setColor(new java.awt.Color(255,255,255));
 
-	        uniFont.getEffects().add(a);
-	        try {
-				uniFont.loadGlyphs();
-			} catch (SlickException e) {
-				e.printStackTrace();
-			}
+        uniFont.getEffects().add(a);
+        try {
+			uniFont.loadGlyphs();
+		} catch (SlickException e) {
+			e.printStackTrace();
+		}
 	}
-	
-//	private void setFontSize(float fontSize) {
-//	 	UIFont1 = UIFont1.deriveFont(java.awt.Font.PLAIN, fontSize);
-//        uniFont = new org.newdawn.slick.UnicodeFont(UIFont1);
-//        uniFont.addAsciiGlyphs();
-//        ColorEffect a = new ColorEffect();
-//        a.setColor(new java.awt.Color(255,255,255));
-//
-//        uniFont.getEffects().add(a);
-//        try {
-//			uniFont.loadGlyphs();
-//		} catch (SlickException e) {
-//			e.printStackTrace();
-//		}
-//	}
 	
 	public void update() {
 		fuel = Player.getFuel();
@@ -137,6 +133,24 @@ public class StatDisplay {
 				g.drawString("CURRENTLY AUTOPILOT", 1600,880);
 			g.drawString("Coins Collected: " + Coin.getCollected(),1600,910);
 		}
+	}
+	
+	public void renderPauseScreen(Graphics g) {
+		g.setFont(uniFont);
+		for(int i = 0; i < pausedShapes.length; i++) {
+			g.setColor(pausedColors[i]);
+			if(pausedShapes[i] instanceof RoundedRectangle) {
+				RoundedRectangle r = (RoundedRectangle)pausedShapes[i];
+				g.fillRoundRect(r.getMinX(),r.getMinY(),r.getWidth(),r.getHeight(),(int) r.getCornerRadius());
+			} else if(pausedShapes[i] instanceof Rectangle) {	
+				Rectangle r = (Rectangle)shapes[i];
+				g.fillRect(r.getMinX(),r.getMinY(),r.getWidth(),r.getHeight());
+			} else {
+				fillShape(g,shapes[i]);
+			}
+		}
+		g.setColor(Color.white);
+		g.drawString(pauseMsg, 960 - (uniFont.getWidth(pauseMsg) / 2), 540 - uniFont.getHeight(pauseMsg));
 	}
 	
 	private void fillShape(Graphics g, Shape s) {

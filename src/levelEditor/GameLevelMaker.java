@@ -245,6 +245,14 @@ public class GameLevelMaker extends BasicGame implements InputProviderListener {
 				int dmg = Integer.parseInt(temp);
 				items.add(new Projectile(dmg,askForAnimation("PlayerShielder"), new Vector2f(click.getX() * 2, click.getY() * 2)));
 				break;
+			case RANDOMIZE_PILLARS:
+				break;
+			case REMOVE_LAST_ITEM:
+				break;
+			case WRITE_LEVEL:
+				break;
+			default:
+				break;
 			}
 		} catch(Exception e) {
 			e.printStackTrace();

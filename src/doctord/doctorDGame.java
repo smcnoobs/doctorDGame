@@ -1,10 +1,11 @@
 package doctord;
 import java.util.logging.Level;
+
 import java.util.logging.Logger;
 
-import org.lwjgl.LWJGLException;
-import org.lwjgl.opengl.Display;
-import org.lwjgl.opengl.DisplayMode;
+//import org.lwjgl.LWJGLException;
+//import org.lwjgl.opengl.Display;
+//import org.lwjgl.opengl.DisplayMode;
 import org.newdawn.slick.AppGameContainer;
 import org.newdawn.slick.BasicGame;
 import org.newdawn.slick.Color;
@@ -21,7 +22,7 @@ import org.newdawn.slick.command.KeyControl;
 public class doctorDGame extends BasicGame implements InputProviderListener {
 	private static Scene[] scenes;
 	private InputProvider provider;
-	private Command debugCommand, exitCommand, fpsCommand;
+	private Command debugCommand, exitCommand, fpsCommand, pauseCommand;
 	private boolean endGame = false, displayFPS = false;
 	private static boolean spaceDown = false, shooting = false;
 	private boolean transitioning = false;
@@ -42,19 +43,6 @@ public class doctorDGame extends BasicGame implements InputProviderListener {
 		((LevelScene)scenes[3]).loadLevel("./res/levels/testMakerLevel.xml");
 	}
 	
-//	private static DisplayMode getMaxDisplay(float width, float height) throws LWJGLException {
-//		DisplayMode[] modes = Display.getAvailableDisplayModes();
-//		DisplayMode maxDisplay = new DisplayMode(0,0);
-//		for (int i=0;i<modes.length;i++) {
-//			DisplayMode current = modes[i];
-//			if(current.getBitsPerPixel() == 32 && Math.abs(((float)current.getWidth()/(float)current.getHeight()-(width/height))) <= 0.1) {
-//				if(maxDisplay.getWidth() < current.getWidth()) 
-//					maxDisplay = current;
-//			}
-//		}
-//		return maxDisplay;
-//	}
-	
 	// Necessary Slick2D Functions
 	public doctorDGame(String gamename) {
 		super(gamename);
@@ -74,11 +62,12 @@ public class doctorDGame extends BasicGame implements InputProviderListener {
 		debugCommand = new BasicCommand("Debug Command");
 		exitCommand = new BasicCommand("Close the Game.");
 		fpsCommand = new BasicCommand("Display FPS.");
-		
+		pauseCommand = new BasicCommand("Puase the Level");
 		
 		provider.bindCommand(new KeyControl(Input.KEY_SPACE), debugCommand);
 		provider.bindCommand(new KeyControl(Input.KEY_ESCAPE), exitCommand);
 		provider.bindCommand(new KeyControl(Input.KEY_F1), fpsCommand);
+		provider.bindCommand(new KeyControl(Input.KEY_P),pauseCommand);
 	}
 
 	@Override
@@ -119,6 +108,8 @@ public class doctorDGame extends BasicGame implements InputProviderListener {
 			endGame = true;
 		if(com == fpsCommand)
 			displayFPS = (displayFPS) ? false : true;
+		if(com == pauseCommand && scenes[currentScene] instanceof LevelScene)
+			((LevelScene)scenes[currentScene]).pause();
 	}
 
 	@Override
@@ -133,7 +124,6 @@ public class doctorDGame extends BasicGame implements InputProviderListener {
 		try {
 			AppGameContainer appgc;
 			appgc = new AppGameContainer(new doctorDGame("Doctor D"));
-//			DisplayMode maxDisplay = getMaxDisplay(16,9);
 			appgc.setDisplayMode(1920, 1080, true);
 			appgc.start();
 		} catch (SlickException ex) {
