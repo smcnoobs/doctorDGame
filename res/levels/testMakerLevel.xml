@@ -3,6 +3,7 @@
     <NAME>Level 1: IO</NAME>
 	<GRAVITY>9.8</GRAVITY>
 	<LENGTH>500</LENGTH>
+	<MUSIC>./res/music/jazz.ogg</MUSIC>
 	<Animation>
 		<IMAGECOUNT>1</IMAGECOUNT>
 		<Image>

@@ -1,2 +1,3 @@
 ./res/cinematics/dialogs/dialogTest.txt
 ./res/cinematics/dialogs/dialogTest2.txt
+MUSIC:./res/music/jazz.ogg

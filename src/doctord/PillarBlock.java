@@ -6,7 +6,7 @@ import org.newdawn.slick.geom.Vector2f;
 
 public class PillarBlock extends Actor {
 	private boolean hidden = false;
-	public static final float BLOCK_SPEED = (float)50;
+	public static final float BLOCK_SPEED = (float)10;
 	
 	public PillarBlock(Animation sprites, Vector2f location) {
 		super(sprites, location);

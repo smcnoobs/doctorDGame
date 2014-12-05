@@ -13,6 +13,7 @@ import org.newdawn.slick.Animation;
 import org.newdawn.slick.Color;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
+import org.newdawn.slick.Music;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.geom.*;
 import org.w3c.dom.Document;
@@ -29,13 +30,14 @@ public class LevelScene extends doctord.Scene {
 	
 	// Level Constants
 	private float gravity = (float)9.8;
-//	private int length;
+	private Music music;
 	private Animation background;
 	private boolean level_did_load;
 	private static boolean paused = false;
 	private StatDisplay HUD;
 	private String levelName, filename;
 	private static String lname;
+	
 	
 	// For Testing
 	float distancePassed = 0;
@@ -98,6 +100,7 @@ public class LevelScene extends doctord.Scene {
 			gravity = Float.parseFloat(getValueByKey(doc.getDocumentElement(),"GRAVITY"));
 //			length = Integer.parseInt(getValueByKey(doc.getDocumentElement(),"LENGTH"));
 			background = loadAnimation((Element)doc.getDocumentElement().getElementsByTagName("Animation").item(0));
+			music = new Music(getValueByKey(doc.getDocumentElement(),"MUSIC"));
 			
 			NodeList actables = doc.getElementsByTagName("Actable");
 			
@@ -243,6 +246,9 @@ public class LevelScene extends doctord.Scene {
 	}
 	
 	private void updateNormally() {
+		if(music != null && !music.playing())
+			music.play();
+		
 		distancePassed = distancePassed - PillarBlock.BLOCK_SPEED / Pillar.PILLAR_WIDTH;
 		if(!levelName.equals(lname))
 			lname = levelName;
@@ -256,8 +262,9 @@ public class LevelScene extends doctord.Scene {
 		
 		collideActables();
 		
-		if(pillars.isEmpty() && !paused)
+		if(pillars.isEmpty() && !paused) {
 			finished = true;
+		}
 	}
 	
 	private void updatePaused() {
@@ -265,9 +272,21 @@ public class LevelScene extends doctord.Scene {
 	}
 	
 	@Override
+	public void silenceMusic() {
+		if(music != null)
+			music.setVolume(music.getVolume() - 0.1f);
+	}
+	
+	@Override
+	public void stopMusic() {
+		if(music != null)
+			music.stop();
+	}
+	
+	@Override
 	public void render(Graphics g) {
 		if(background != null)
-			background.draw(distancePassed,-500);
+			background.draw(distancePassed,0);
 
 		renderPillars(g);
 		renderItems(g);
@@ -277,7 +296,10 @@ public class LevelScene extends doctord.Scene {
 			g.setColor(new Color(0,0,0,200));
 			g.fillRect(0,0,1920,1080);
 			HUD.renderPauseScreen(g);
-		}
+			if(music != null)
+				music.setVolume(0.5f);
+		} else if(music != null)
+			music.setVolume(1.0f);
 		HUD.render(g);
 	}
 	

@@ -81,9 +81,11 @@ public class doctorDGame extends BasicGame implements InputProviderListener {
 				shadowTimer = 0;
 				transitioning = true;
 			} else {
+				scenes[currentScene].silenceMusic();
 				shadowTimer= shadowTimer + 5;
 				if(shadowTimer >= 255) {
 					transitioning = false;
+					scenes[currentScene].stopMusic();
 					currentScene++;
 				}
 			}
@@ -124,7 +126,7 @@ public class doctorDGame extends BasicGame implements InputProviderListener {
 		try {
 			AppGameContainer appgc;
 			appgc = new AppGameContainer(new doctorDGame("Doctor D"));
-			appgc.setDisplayMode(1920, 1080, true);
+			appgc.setDisplayMode(1920, 1080, false);
 			appgc.start();
 		} catch (SlickException ex) {
 			Logger.getLogger(doctorDGame.class.getName()).log(Level.SEVERE, null, ex);

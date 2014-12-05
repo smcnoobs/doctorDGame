@@ -21,4 +21,12 @@ public class Scene {
 	public boolean isFinished() {
 		return finished;
 	}
+	
+	public void silenceMusic() {
+		
+	}
+	
+	public void stopMusic() {
+		
+	}
 }

@@ -10,6 +10,7 @@ import java.util.Scanner;
 import org.newdawn.slick.Animation;
 import org.newdawn.slick.Color;
 import org.newdawn.slick.Graphics;
+import org.newdawn.slick.Music;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.UnicodeFont;
 import org.newdawn.slick.font.effects.ColorEffect;
@@ -17,8 +18,9 @@ import org.newdawn.slick.font.effects.ColorEffect;
 public class CinematicScene extends Scene {
 	private ArrayList<Dialog> dialogs;
 	private int currentDialog = 0, debounce = 0;
-	java.awt.Font UIFont1;
-    UnicodeFont uniFont;
+	private java.awt.Font UIFont1;
+    private UnicodeFont uniFont;
+    private Music music;
 	
 	@SuppressWarnings("unchecked")
 	public CinematicScene() {
@@ -51,16 +53,25 @@ public class CinematicScene extends Scene {
 		try {
 			Scanner sc = new Scanner(new File(filename));
 			while(sc.hasNextLine()) {
-				dialogs.add(new Dialog(sc.nextLine()));
+				String temp = sc.nextLine();
+				if(temp.indexOf("MUSIC:") == 0)
+					music = new Music(temp.substring(6));
+				else
+					dialogs.add(new Dialog(temp));
 			}
 			sc.close();
 		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (SlickException e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
 	
 	@Override
 	public void update() {
+		if(music != null && !music.playing())
+			music.play();
 		if(debounce == 0 && doctorDGame.spaceBarIsDown()) {
 			if(dialogs.get(currentDialog).finishedWriting()) {
 				if(currentDialog < dialogs.size() - 1) {
@@ -88,5 +99,17 @@ public class CinematicScene extends Scene {
 		
 		g.setColor(Color.white);
 		g.drawString(dialogs.get(currentDialog).getText(),15,735);
+	}
+	
+	@Override
+	public void silenceMusic() {
+		if(music != null)
+			music.setVolume(music.getVolume() - 0.05f);
+	}
+	
+	@Override
+	public void stopMusic() {
+		if(music != null)
+			music.stop();
 	}
 }
