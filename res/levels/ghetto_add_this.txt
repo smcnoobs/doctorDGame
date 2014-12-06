@@ -1,0 +1,1 @@
+<MUSIC>./res/music/jazz.ogg</MUSIC>

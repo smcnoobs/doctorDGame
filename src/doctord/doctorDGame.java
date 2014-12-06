@@ -21,10 +21,11 @@ import org.newdawn.slick.command.KeyControl;
 
 public class doctorDGame extends BasicGame implements InputProviderListener {
 	private static Scene[] scenes;
+	private static String[] scenePaths;
 	private InputProvider provider;
-	private Command debugCommand, exitCommand, fpsCommand, pauseCommand;
+	private Command debugCommand, exitCommand, fpsCommand, pauseCommand, muteCommand, restartCommand;
 	private boolean endGame = false, displayFPS = false;
-	private static boolean spaceDown = false, shooting = false;
+	private static boolean spaceDown = false, shooting = false, muted = false;
 	private boolean transitioning = false;
 	private int shadowTimer = 0;
 	private static int currentScene = 0;
@@ -32,15 +33,26 @@ public class doctorDGame extends BasicGame implements InputProviderListener {
 	// Private Control Functions
 	
 	private void loadScenes() {
-		scenes = new Scene[4];
-		scenes[0] = new CinematicScene();
-		((CinematicScene)scenes[0]).loadCinematic("./res/cinematics/cinematicTest.txt");
-		scenes[1] = new LevelScene();
-		((LevelScene)scenes[1]).loadLevel("./res/levels/testMakerLevel.xml");
-		scenes[2] = new CinematicScene();
-		((CinematicScene)scenes[2]).loadCinematic("./res/cinematics/cinematicTest.txt");
-		scenes[3] = new LevelScene();
-		((LevelScene)scenes[3]).loadLevel("./res/levels/testMakerLevel.xml");
+		scenes = new Scene[10];
+		scenes = new Scene[] {
+				new CinematicScene(),		//	Intro
+				new CinematicScene(),		//	Opening
+				new CinematicScene(),		//	Title
+				new LevelScene(),			// 	Volcano
+		};
+		scenePaths = new String[] {
+				"./res/cinematics/intro.txt",
+				"./res/cinematics/opening.txt",
+				"./res/cinematics/title.txt",
+				"./res/levels/testMakerLevel.xml",
+		};
+		
+		for(int i = 0; i < scenes.length; i++) {
+			if(scenes[i] instanceof CinematicScene)
+				((CinematicScene)scenes[i]).loadCinematic(scenePaths[i]);
+			else
+				((LevelScene)scenes[i]).loadLevel(scenePaths[i]);
+		}
 	}
 	
 	// Necessary Slick2D Functions
@@ -62,17 +74,25 @@ public class doctorDGame extends BasicGame implements InputProviderListener {
 		debugCommand = new BasicCommand("Debug Command");
 		exitCommand = new BasicCommand("Close the Game.");
 		fpsCommand = new BasicCommand("Display FPS.");
-		pauseCommand = new BasicCommand("Puase the Level");
+		pauseCommand = new BasicCommand("Pause the Level");
+		muteCommand = new BasicCommand("Mute All Sounds");
+		restartCommand = new BasicCommand("Restart The Level");
 		
 		provider.bindCommand(new KeyControl(Input.KEY_SPACE), debugCommand);
 		provider.bindCommand(new KeyControl(Input.KEY_ESCAPE), exitCommand);
 		provider.bindCommand(new KeyControl(Input.KEY_F1), fpsCommand);
 		provider.bindCommand(new KeyControl(Input.KEY_P),pauseCommand);
+		provider.bindCommand(new KeyControl(Input.KEY_M), muteCommand);
+		provider.bindCommand(new KeyControl(Input.KEY_R), restartCommand);
 	}
 
 	@Override
 	public void update(GameContainer gc, int i) throws SlickException {
 		gc.setShowFPS(displayFPS);
+		if(muted)
+			scenes[currentScene].silenceMusic();
+		else
+			scenes[currentScene].unSilenceMusic();
 		if(endGame)
 			gc.exit();
 		
@@ -110,8 +130,18 @@ public class doctorDGame extends BasicGame implements InputProviderListener {
 			endGame = true;
 		if(com == fpsCommand)
 			displayFPS = (displayFPS) ? false : true;
-		if(com == pauseCommand && scenes[currentScene] instanceof LevelScene)
+		if(com == pauseCommand && scenes[currentScene] instanceof LevelScene && Player.getHealth() > 0)
 			((LevelScene)scenes[currentScene]).pause();
+		if(com == muteCommand)
+			muted = (muted) ? false: true;
+		if(com == restartCommand && scenes[currentScene] instanceof LevelScene) {
+			if(Player.getHealth() <= 0) {
+//				((LevelScene)scenes[currentScene]).reloadLevel();
+				scenes[currentScene] = new LevelScene();
+				((LevelScene)scenes[currentScene]).loadLevel(scenePaths[currentScene]);
+				((LevelScene)scenes[currentScene]).pause();
+			}
+		}
 	}
 
 	@Override
@@ -141,6 +171,10 @@ public class doctorDGame extends BasicGame implements InputProviderListener {
 	
 	public static boolean shooting() {
 		return shooting;
+	}
+	
+	public static boolean isMuted() {
+		return muted;
 	}
 	
 	public static Scene getCurrentScene() {

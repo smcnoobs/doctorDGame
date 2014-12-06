@@ -1,0 +1,1 @@
+IMAGE:./res/images/scenes/opening/s09.png

@@ -1,0 +1,7 @@
+IMAGE:./res/images/scenes/title/s15.png
+IMAGE:./res/images/scenes/title/s16.png
+IMAGE:./res/images/scenes/title/s17.png
+IMAGE:./res/images/scenes/title/s18.png
+IMAGE:./res/images/scenes/title/s19.png
+IMAGE:./res/images/scenes/title/s20.png
+IMAGE:./res/images/scenes/title/s21.png

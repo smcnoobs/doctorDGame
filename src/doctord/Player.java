@@ -8,7 +8,7 @@ import org.newdawn.slick.geom.Vector2f;
 
 public class Player extends Actor {
 	private Vector2f inertia;
-	private final float weight = 20, maxSpeed = 20;
+	private final float weight = 20, maxSpeed = 15;
 	private static int health;
 	private static float fuel;
 	private int effectDuration;

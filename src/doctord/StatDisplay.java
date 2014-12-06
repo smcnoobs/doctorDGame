@@ -11,11 +11,12 @@ import org.newdawn.slick.font.effects.ColorEffect;
 import org.newdawn.slick.geom.*;
 
 public class StatDisplay {
-//	private Vector2f location;
 	private float fuel=0;
 	private int health = 0;
 	private final boolean debug = false;
 	private final String pauseMsg = "GAME PAUSED";
+	private final String playerMsg = "YOU DIED - PRESS R TO RESTART";
+	private Vector2f debugLocation = new Vector2f(500,500);
 	java.awt.Font UIFont1;
     UnicodeFont uniFont;
 	
@@ -56,11 +57,13 @@ public class StatDisplay {
 	};
 	
 	private Shape[] pausedShapes = new Shape[] {
-			new RoundedRectangle(960 - 100,540 - 30 ,200,40,10),		// Pause Screen		transparentBlack	0
+			new RoundedRectangle(960 - 100,540 - 30 ,300,40,10),		// Pause Screen		transparentBlack	0
+			new RoundedRectangle(960 - 100,540 + 30 ,300,40,10),		// Player Dead		transparentBlack	1
 	};
 	
 	private Color[] pausedColors = new Color[] {
 			transparentBlack,		// Rounded Background
+			transparentBlack,		// Player Dead
 	};
 	
 	@SuppressWarnings("unchecked")
@@ -121,17 +124,18 @@ public class StatDisplay {
 		
 		if(debug) {
 			g.setColor(darkGrey);
-			g.fillRect(1580,800,330,175);
+			g.fillRect(debugLocation.getX() - 20,debugLocation.getY() - 20,330,175);
 			g.setColor(Color.white);
-			g.drawString("Fuel: " + Player.getFuel(), 1600,820);
-			g.drawString("Health: " + Player.getHealth(), 1600,850);
+			g.drawString("Fuel: " + Player.getFuel(), debugLocation.getX(),debugLocation.getY());
+			g.drawString("Health: " + Player.getHealth(), debugLocation.getX(),debugLocation.getY() + 30);
 			if(Player.getCurrentEffect() == PlayerEffect.NEUTRAL)
-				g.drawString("CURRENTLY NEUTRAL", 1600,880);
+				g.drawString("CURRENTLY NEUTRAL", debugLocation.getX(),debugLocation.getY() + 60);
 			if(Player.getCurrentEffect() == PlayerEffect.SHIELDED)
-				g.drawString("CURRENTLY SHIELDED", 1600,880);
+				g.drawString("CURRENTLY SHIELDED", debugLocation.getX(),debugLocation.getY() + 60);
 			if(Player.getCurrentEffect() == PlayerEffect.AUTOPILOT)
-				g.drawString("CURRENTLY AUTOPILOT", 1600,880);
-			g.drawString("Coins Collected: " + Coin.getCollected(),1600,910);
+				g.drawString("CURRENTLY AUTOPILOT", debugLocation.getX(),debugLocation.getY() + 60);
+			g.drawString("Coins Collected: " + Coin.getCollected(),debugLocation.getX(),debugLocation.getY() + 90);
+			g.drawString("MUTED: " + doctorDGame.isMuted(), debugLocation.getX(),debugLocation.getY() + 120);
 		}
 	}
 	
@@ -149,8 +153,14 @@ public class StatDisplay {
 				fillShape(g,shapes[i]);
 			}
 		}
-		g.setColor(Color.white);
-		g.drawString(pauseMsg, 960 - (uniFont.getWidth(pauseMsg) / 2), 540 - uniFont.getHeight(pauseMsg));
+		
+		if(Player.getHealth() > 0) {
+			g.setColor(Color.white);
+			g.drawString(pauseMsg, 960 - (uniFont.getWidth(pauseMsg) / 2), 540 - uniFont.getHeight(pauseMsg));
+		} else {
+			g.setColor(Color.red);
+			g.drawString(playerMsg, 960 - (uniFont.getWidth(playerMsg) / 2), 540 - uniFont.getHeight(playerMsg));
+		}
 	}
 	
 	private void fillShape(Graphics g, Shape s) {

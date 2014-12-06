@@ -1,0 +1,2 @@
+IMAGE:./res/images/bb.png
+TEXT:A perfect government, a perfect society, a perfect planet.

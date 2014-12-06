@@ -70,7 +70,7 @@ public class CinematicScene extends Scene {
 	
 	@Override
 	public void update() {
-		if(music != null && !music.playing())
+		if(music != null && !doctorDGame.isMuted() && !music.playing())
 			music.play();
 		if(debounce == 0 && doctorDGame.spaceBarIsDown()) {
 			if(dialogs.get(currentDialog).finishedWriting()) {
@@ -94,17 +94,31 @@ public class CinematicScene extends Scene {
 		Animation a = dialogs.get(currentDialog).getAnimation();
 		a.draw(0,0);
 		
-		g.setColor(Color.black);
-		g.fillRect(0,720,1920,360);
-		
-		g.setColor(Color.white);
-		g.drawString(dialogs.get(currentDialog).getText(),15,735);
+		if(dialogs.get(currentDialog).hasText()) {
+			g.setColor(Color.black);
+			g.fillRect(0,720,1920,360);
+			
+			g.setColor(Color.white);
+			g.drawString(dialogs.get(currentDialog).getText(),15,735);
+		}
+	}
+	
+	@Override
+	public void playMusic() {
+		if(music != null && music.playing())
+			music.play();
 	}
 	
 	@Override
 	public void silenceMusic() {
 		if(music != null)
 			music.setVolume(music.getVolume() - 0.05f);
+	}
+	
+	@Override
+	public void unSilenceMusic() {
+		if(music != null)
+			music.setVolume(1.0f);
 	}
 	
 	@Override

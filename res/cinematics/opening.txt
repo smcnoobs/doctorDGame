@@ -1,0 +1,13 @@
+./res/cinematics/dialogs/opening/00.txt
+./res/cinematics/dialogs/opening/01.txt
+./res/cinematics/dialogs/opening/02.txt
+./res/cinematics/dialogs/opening/03.txt
+./res/cinematics/dialogs/opening/04.txt
+./res/cinematics/dialogs/opening/05.txt
+./res/cinematics/dialogs/opening/06.txt
+./res/cinematics/dialogs/opening/07.txt
+./res/cinematics/dialogs/opening/08.txt
+./res/cinematics/dialogs/opening/09.txt
+./res/cinematics/dialogs/opening/10.txt
+./res/cinematics/dialogs/opening/11.txt
+MUSIC:./res/music/openingSceneMusic.ogg

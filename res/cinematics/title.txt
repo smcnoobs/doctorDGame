@@ -1,0 +1,2 @@
+./res/cinematics/dialogs/title.txt
+MUSIC:./res/music/titleThemeMusic.ogg

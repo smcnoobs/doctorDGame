@@ -43,14 +43,6 @@ public class LevelScene extends doctord.Scene {
 	float distancePassed = 0;
 	
 	private void collideActables() {
-		// Let dead objects be gc'd
-//		for(Pillar p : pillars) {
-//			if(p.isDead())
-//				p = null;
-//			else
-//				player.collide(p);
-//		}
-		
 		for(int i = 0; i < pillars.size(); i++) {
 			if(pillars.get(i).isDead())
 				pillars.remove(i);
@@ -239,14 +231,14 @@ public class LevelScene extends doctord.Scene {
 	
 	@Override
 	public void update() {
-		if(!paused)
+		if(!paused && Player.getHealth() > 0)
 			updateNormally();
 		else 
 			updatePaused();
 	}
 	
 	private void updateNormally() {
-		if(music != null && !music.playing())
+		if(music != null && !doctorDGame.isMuted() && !music.playing())
 			music.play();
 		
 		distancePassed = distancePassed - PillarBlock.BLOCK_SPEED / Pillar.PILLAR_WIDTH;
@@ -268,13 +260,27 @@ public class LevelScene extends doctord.Scene {
 	}
 	
 	private void updatePaused() {
-		
+		if(!paused)
+			paused = true;
+	}
+	
+	@Override
+	public void playMusic() {
+		if(music != null && !music.playing()) 
+			music.play();
 	}
 	
 	@Override
 	public void silenceMusic() {
-		if(music != null)
+		if(music != null) {
 			music.setVolume(music.getVolume() - 0.1f);
+		}
+	}
+	
+	@Override
+	public void unSilenceMusic() {
+		if(music != null)
+			music.setVolume(1.0f);
 	}
 	
 	@Override

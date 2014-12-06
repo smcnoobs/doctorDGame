@@ -2,7 +2,7 @@ package doctord;
 
 import org.newdawn.slick.Graphics;
 
-public class Scene {
+public abstract class Scene {
 	protected ControlHandler controls;
 	protected boolean finished;
 	
@@ -27,6 +27,14 @@ public class Scene {
 	}
 	
 	public void stopMusic() {
+		
+	}
+
+	public void playMusic() {
+		
+	}
+
+	public void unSilenceMusic() {
 		
 	}
 }

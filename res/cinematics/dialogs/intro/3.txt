@@ -1,0 +1,3 @@
+IMAGE:./res/images/bb.png
+TEXT:Now, their mission is to spread the system and ideology
+TEXT:they created throughout the galaxy...

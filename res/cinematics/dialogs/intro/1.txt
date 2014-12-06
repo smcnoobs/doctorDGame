@@ -1,0 +1,2 @@
+IMAGE:./res/images/bb.png
+TEXT:5,000 years ago, Jupiter established a perfect world.

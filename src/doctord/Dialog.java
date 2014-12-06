@@ -33,7 +33,9 @@ public class Dialog {
 				text += s + "\n";
 			exposedText = "";
 			Image[] arrImages =  images.toArray(new Image[images.size()]);
-			sprite = new Animation(arrImages,5,true);
+			sprite = new Animation(arrImages,100,true);
+			sprite.setPingPong(false);
+			sprite.setLooping(false);
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		} catch (SlickException e) {
@@ -65,5 +67,9 @@ public class Dialog {
 		} else  {
 			finishedWriting = true;
 		}
+	}
+	
+	public boolean hasText() {
+		return text.length() != 0;
 	}
 }
