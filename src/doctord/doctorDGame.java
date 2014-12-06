@@ -132,7 +132,7 @@ public class doctorDGame extends BasicGame implements InputProviderListener {
 			displayFPS = (displayFPS) ? false : true;
 		if(com == pauseCommand && scenes[currentScene] instanceof LevelScene && Player.getHealth() > 0)
 			((LevelScene)scenes[currentScene]).pause();
-		if(com == muteCommand)
+		if(com == muteCommand   )
 			muted = (muted) ? false: true;
 		if(com == restartCommand && scenes[currentScene] instanceof LevelScene) {
 			if(Player.getHealth() <= 0) {
