@@ -25,7 +25,7 @@ public class Dialog {
 			while(sc.hasNextLine()) {
 				String temp = sc.nextLine();
 				if(temp.indexOf("IMAGE:") == 0)
-					images.add(new Image(temp.substring(6)));	// Load Image
+					images.add(ImagePool.getImage(temp.substring(6)));	// Load Image
 				if(temp.indexOf("TEXT:") == 0)
 					texts.add(temp.substring(5));				// Load Text
 			}
@@ -37,8 +37,6 @@ public class Dialog {
 			sprite.setPingPong(false);
 			sprite.setLooping(false);
 		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		} catch (SlickException e) {
 			e.printStackTrace();
 		}
 	}

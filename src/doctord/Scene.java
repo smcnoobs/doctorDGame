@@ -6,35 +6,23 @@ public abstract class Scene {
 	protected ControlHandler controls;
 	protected boolean finished;
 	
-	public Scene() {
-		
-	}
+	public Scene() { }
 	
-	public void update() {
-		
-	}
+	public abstract void update();
 	
-	public void render(Graphics g) {
-		
-	}
+	public abstract void render(Graphics g);
 	
 	public boolean isFinished() {
 		return finished;
 	}
 	
-	public void silenceMusic() {
-		
-	}
+	public abstract void silenceMusic();
 	
-	public void stopMusic() {
-		
-	}
+	public abstract void stopMusic();
 
-	public void playMusic() {
-		
-	}
+	public abstract void playMusic();
 
-	public void unSilenceMusic() {
-		
-	}
+	public abstract void unSilenceMusic();
+	
+	public abstract void load(String s);
 }

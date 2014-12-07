@@ -13,6 +13,20 @@
 
 	<Actable type="PlayerRestorer">
 		<HEALTH>1</HEALTH>
+		<FUEL>100.0</FUEL>
+		<Animation>
+			<IMAGECOUNT>1</IMAGECOUNT>
+			<Image>
+				<URL>./res/images/particle.png</URL>
+			</Image>
+		</Animation>
+		<Vector2f>
+			<X>4879.0</X>
+			<Y>508.0</Y>
+		</Vector2f>
+	</Actable>
+	<Actable type="PlayerRestorer">
+		<HEALTH>1</HEALTH>
 		<FUEL>10.0</FUEL>
 		<Animation>
 			<IMAGECOUNT>1</IMAGECOUNT>
@@ -37,6 +51,62 @@
 		<Vector2f>
 			<X>18658.0</X>
 			<Y>632.0</Y>
+		</Vector2f>
+	</Actable>
+	<Actable type="PlayerRestorer">
+		<HEALTH>1</HEALTH>
+		<FUEL>100.0</FUEL>
+		<Animation>
+			<IMAGECOUNT>1</IMAGECOUNT>
+			<Image>
+				<URL>./res/images/particle.png</URL>
+			</Image>
+		</Animation>
+		<Vector2f>
+			<X>20627.0</X>
+			<Y>190.0</Y>
+		</Vector2f>
+	</Actable>
+	<Actable type="PlayerRestorer">
+		<HEALTH>1</HEALTH>
+		<FUEL>100.0</FUEL>
+		<Animation>
+			<IMAGECOUNT>1</IMAGECOUNT>
+			<Image>
+				<URL>./res/images/particle.png</URL>
+			</Image>
+		</Animation>
+		<Vector2f>
+			<X>20877.0</X>
+			<Y>200.0</Y>
+		</Vector2f>
+	</Actable>
+	<Actable type="PlayerRestorer">
+		<HEALTH>1</HEALTH>
+		<FUEL>100.0</FUEL>
+		<Animation>
+			<IMAGECOUNT>1</IMAGECOUNT>
+			<Image>
+				<URL>./res/images/particle.png</URL>
+			</Image>
+		</Animation>
+		<Vector2f>
+			<X>21129.0</X>
+			<Y>194.0</Y>
+		</Vector2f>
+	</Actable>
+	<Actable type="PlayerRestorer">
+		<HEALTH>1</HEALTH>
+		<FUEL>50.0</FUEL>
+		<Animation>
+			<IMAGECOUNT>1</IMAGECOUNT>
+			<Image>
+				<URL>./res/images/particle.png</URL>
+			</Image>
+		</Animation>
+		<Vector2f>
+			<X>21811.0</X>
+			<Y>402.0</Y>
 		</Vector2f>
 	</Actable>
 	<Actable type="PlayerRestorer">
@@ -1083,7 +1153,7 @@
 		</Vector2f>
 	</Actable>
 	<Actable type="Pillar">
-		<HIDDENBLOCKS>vvvvvhhhhhhhhhhhhvvv</HIDDENBLOCKS>
+		<HIDDENBLOCKS>vvvvvhvhhhhhhhhhhvvv</HIDDENBLOCKS>
 		<Animation>
 			<IMAGECOUNT>1</IMAGECOUNT>
 			<Image>
@@ -1096,7 +1166,7 @@
 		</Vector2f>
 	</Actable>
 	<Actable type="Pillar">
-		<HIDDENBLOCKS>vvvhhhhhhhhhhhhhvvvv</HIDDENBLOCKS>
+		<HIDDENBLOCKS>vvvhhhhvhhhhhhhhvvvv</HIDDENBLOCKS>
 		<Animation>
 			<IMAGECOUNT>1</IMAGECOUNT>
 			<Image>
@@ -1109,7 +1179,7 @@
 		</Vector2f>
 	</Actable>
 	<Actable type="Pillar">
-		<HIDDENBLOCKS>vvvhhhhhhhhhhhhhvvvv</HIDDENBLOCKS>
+		<HIDDENBLOCKS>vvvhhhhvhhhhhhhhvvvv</HIDDENBLOCKS>
 		<Animation>
 			<IMAGECOUNT>1</IMAGECOUNT>
 			<Image>
@@ -1122,7 +1192,7 @@
 		</Vector2f>
 	</Actable>
 	<Actable type="Pillar">
-		<HIDDENBLOCKS>vvhhhhhhhhhhhhhhvvvv</HIDDENBLOCKS>
+		<HIDDENBLOCKS>vvhhhhhvhhhhhhhhvvvv</HIDDENBLOCKS>
 		<Animation>
 			<IMAGECOUNT>1</IMAGECOUNT>
 			<Image>
@@ -1135,7 +1205,7 @@
 		</Vector2f>
 	</Actable>
 	<Actable type="Pillar">
-		<HIDDENBLOCKS>vvhhhhhhhhhhhhhhvvvv</HIDDENBLOCKS>
+		<HIDDENBLOCKS>vvhhhhvhhhhhhhhhvvvv</HIDDENBLOCKS>
 		<Animation>
 			<IMAGECOUNT>1</IMAGECOUNT>
 			<Image>
@@ -1148,7 +1218,7 @@
 		</Vector2f>
 	</Actable>
 	<Actable type="Pillar">
-		<HIDDENBLOCKS>vvhhhhhhhhhhhhhvvvvv</HIDDENBLOCKS>
+		<HIDDENBLOCKS>vvhhhhvhhhhhhhhvvvvv</HIDDENBLOCKS>
 		<Animation>
 			<IMAGECOUNT>1</IMAGECOUNT>
 			<Image>
@@ -1161,7 +1231,7 @@
 		</Vector2f>
 	</Actable>
 	<Actable type="Pillar">
-		<HIDDENBLOCKS>vvhhhhhhhhhhhhhvvvvv</HIDDENBLOCKS>
+		<HIDDENBLOCKS>vvhhvvhhhhhhhhhvvvvv</HIDDENBLOCKS>
 		<Animation>
 			<IMAGECOUNT>1</IMAGECOUNT>
 			<Image>
@@ -1174,7 +1244,7 @@
 		</Vector2f>
 	</Actable>
 	<Actable type="Pillar">
-		<HIDDENBLOCKS>vvhhhhhhhhhhhhvvvvvv</HIDDENBLOCKS>
+		<HIDDENBLOCKS>vvvvhhhhhhhhhhvvvvvv</HIDDENBLOCKS>
 		<Animation>
 			<IMAGECOUNT>1</IMAGECOUNT>
 			<Image>
@@ -1187,7 +1257,7 @@
 		</Vector2f>
 	</Actable>
 	<Actable type="Pillar">
-		<HIDDENBLOCKS>vvhhhhhhhhhhhvvvvvvv</HIDDENBLOCKS>
+		<HIDDENBLOCKS>vvvhhhhhhhhhhvvvvvvv</HIDDENBLOCKS>
 		<Animation>
 			<IMAGECOUNT>1</IMAGECOUNT>
 			<Image>
@@ -1200,7 +1270,7 @@
 		</Vector2f>
 	</Actable>
 	<Actable type="Pillar">
-		<HIDDENBLOCKS>vvhhhhhhhhhhvvvhhvvv</HIDDENBLOCKS>
+		<HIDDENBLOCKS>vvvhhhhhhhhhvvvhhvvv</HIDDENBLOCKS>
 		<Animation>
 			<IMAGECOUNT>1</IMAGECOUNT>
 			<Image>
@@ -1213,7 +1283,7 @@
 		</Vector2f>
 	</Actable>
 	<Actable type="Pillar">
-		<HIDDENBLOCKS>vvhhhhhhhhhvvhhhhvvv</HIDDENBLOCKS>
+		<HIDDENBLOCKS>vvvhhhhhhhhvvhhhhvvv</HIDDENBLOCKS>
 		<Animation>
 			<IMAGECOUNT>1</IMAGECOUNT>
 			<Image>
@@ -1226,7 +1296,7 @@
 		</Vector2f>
 	</Actable>
 	<Actable type="Pillar">
-		<HIDDENBLOCKS>vvhhhhhhhhhvhhhhhvvv</HIDDENBLOCKS>
+		<HIDDENBLOCKS>vvvhhhhhhhhvhhhhhvvv</HIDDENBLOCKS>
 		<Animation>
 			<IMAGECOUNT>1</IMAGECOUNT>
 			<Image>
@@ -1239,7 +1309,7 @@
 		</Vector2f>
 	</Actable>
 	<Actable type="Pillar">
-		<HIDDENBLOCKS>vvhhhhhhhhvhhhhhhvvv</HIDDENBLOCKS>
+		<HIDDENBLOCKS>vvvhhhhhhhvhhhhhhvvv</HIDDENBLOCKS>
 		<Animation>
 			<IMAGECOUNT>1</IMAGECOUNT>
 			<Image>
@@ -1252,7 +1322,7 @@
 		</Vector2f>
 	</Actable>
 	<Actable type="Pillar">
-		<HIDDENBLOCKS>vvhhhhhhhhvhhhhhhvvv</HIDDENBLOCKS>
+		<HIDDENBLOCKS>vvhvhhhhhhvhhhhhhvvv</HIDDENBLOCKS>
 		<Animation>
 			<IMAGECOUNT>1</IMAGECOUNT>
 			<Image>
@@ -1265,7 +1335,7 @@
 		</Vector2f>
 	</Actable>
 	<Actable type="Pillar">
-		<HIDDENBLOCKS>vvhhhhhhhvhhhhhhhvvv</HIDDENBLOCKS>
+		<HIDDENBLOCKS>vvhvhhhhhvhhhhhhhvvv</HIDDENBLOCKS>
 		<Animation>
 			<IMAGECOUNT>1</IMAGECOUNT>
 			<Image>
@@ -1278,7 +1348,7 @@
 		</Vector2f>
 	</Actable>
 	<Actable type="Pillar">
-		<HIDDENBLOCKS>vvhhhhhhvvvhhhhhhvvv</HIDDENBLOCKS>
+		<HIDDENBLOCKS>vvhvhhhhhvvhhhhhhvvv</HIDDENBLOCKS>
 		<Animation>
 			<IMAGECOUNT>1</IMAGECOUNT>
 			<Image>
@@ -1291,7 +1361,7 @@
 		</Vector2f>
 	</Actable>
 	<Actable type="Pillar">
-		<HIDDENBLOCKS>vvhhhhhhvvvhhhhhhvvv</HIDDENBLOCKS>
+		<HIDDENBLOCKS>vvhvhhhhhvvhhhhhhvvv</HIDDENBLOCKS>
 		<Animation>
 			<IMAGECOUNT>1</IMAGECOUNT>
 			<Image>
@@ -1304,7 +1374,7 @@
 		</Vector2f>
 	</Actable>
 	<Actable type="Pillar">
-		<HIDDENBLOCKS>vvhhhhhhhvhhhhhhvvvv</HIDDENBLOCKS>
+		<HIDDENBLOCKS>vvhvhhhhhvhhhhhhvvvv</HIDDENBLOCKS>
 		<Animation>
 			<IMAGECOUNT>1</IMAGECOUNT>
 			<Image>
@@ -1317,7 +1387,7 @@
 		</Vector2f>
 	</Actable>
 	<Actable type="Pillar">
-		<HIDDENBLOCKS>vvhhhhhhhvvhhhhhvvvv</HIDDENBLOCKS>
+		<HIDDENBLOCKS>vvhvhhhhhhvhhhhhvvvv</HIDDENBLOCKS>
 		<Animation>
 			<IMAGECOUNT>1</IMAGECOUNT>
 			<Image>
@@ -1330,7 +1400,7 @@
 		</Vector2f>
 	</Actable>
 	<Actable type="Pillar">
-		<HIDDENBLOCKS>vvhhhhhhhhvhhhhhvvvv</HIDDENBLOCKS>
+		<HIDDENBLOCKS>vvhvhhhhhhvhhhhhvvvv</HIDDENBLOCKS>
 		<Animation>
 			<IMAGECOUNT>1</IMAGECOUNT>
 			<Image>
@@ -1343,7 +1413,7 @@
 		</Vector2f>
 	</Actable>
 	<Actable type="Pillar">
-		<HIDDENBLOCKS>vvhhhhhhhhvhhhhhvvvv</HIDDENBLOCKS>
+		<HIDDENBLOCKS>vvhhvhhhhhvhhhhhvvvv</HIDDENBLOCKS>
 		<Animation>
 			<IMAGECOUNT>1</IMAGECOUNT>
 			<Image>
@@ -1356,7 +1426,7 @@
 		</Vector2f>
 	</Actable>
 	<Actable type="Pillar">
-		<HIDDENBLOCKS>vvhhhhhhhhhvhhhhvvvv</HIDDENBLOCKS>
+		<HIDDENBLOCKS>vvhhvhhhhhhvhhhhvvvv</HIDDENBLOCKS>
 		<Animation>
 			<IMAGECOUNT>1</IMAGECOUNT>
 			<Image>
@@ -1369,7 +1439,7 @@
 		</Vector2f>
 	</Actable>
 	<Actable type="Pillar">
-		<HIDDENBLOCKS>vvhhhhhhhhhvhhhhvvvv</HIDDENBLOCKS>
+		<HIDDENBLOCKS>vvhhvhhhhhhvhhhhvvvv</HIDDENBLOCKS>
 		<Animation>
 			<IMAGECOUNT>1</IMAGECOUNT>
 			<Image>
@@ -1382,7 +1452,7 @@
 		</Vector2f>
 	</Actable>
 	<Actable type="Pillar">
-		<HIDDENBLOCKS>vvhhhhhhhhhhvhhhvvvv</HIDDENBLOCKS>
+		<HIDDENBLOCKS>vvhhvhhhhhhhvhhhvvvv</HIDDENBLOCKS>
 		<Animation>
 			<IMAGECOUNT>1</IMAGECOUNT>
 			<Image>
@@ -1395,7 +1465,7 @@
 		</Vector2f>
 	</Actable>
 	<Actable type="Pillar">
-		<HIDDENBLOCKS>vvhhhhhhhhhhhvhhvvvv</HIDDENBLOCKS>
+		<HIDDENBLOCKS>vvhhvhhhhhhhhvhhvvvv</HIDDENBLOCKS>
 		<Animation>
 			<IMAGECOUNT>1</IMAGECOUNT>
 			<Image>
@@ -1408,7 +1478,7 @@
 		</Vector2f>
 	</Actable>
 	<Actable type="Pillar">
-		<HIDDENBLOCKS>vvhhhhhhhhhhhhvhvvvv</HIDDENBLOCKS>
+		<HIDDENBLOCKS>vvhhhvhhhhhhhhvhvvvv</HIDDENBLOCKS>
 		<Animation>
 			<IMAGECOUNT>1</IMAGECOUNT>
 			<Image>
@@ -1421,7 +1491,7 @@
 		</Vector2f>
 	</Actable>
 	<Actable type="Pillar">
-		<HIDDENBLOCKS>vvvvvhhhhhhhhhhvvvvv</HIDDENBLOCKS>
+		<HIDDENBLOCKS>vvhhhvhhhhhhhhhvvvvv</HIDDENBLOCKS>
 		<Animation>
 			<IMAGECOUNT>1</IMAGECOUNT>
 			<Image>
@@ -1434,7 +1504,7 @@
 		</Vector2f>
 	</Actable>
 	<Actable type="Pillar">
-		<HIDDENBLOCKS>vvhhvvvhhhhhhhhhvvvv</HIDDENBLOCKS>
+		<HIDDENBLOCKS>vvhhhvhhhhhhhhhhvvvv</HIDDENBLOCKS>
 		<Animation>
 			<IMAGECOUNT>1</IMAGECOUNT>
 			<Image>
@@ -1447,7 +1517,7 @@
 		</Vector2f>
 	</Actable>
 	<Actable type="Pillar">
-		<HIDDENBLOCKS>vvhhhhvvhhhhhhhhvvvv</HIDDENBLOCKS>
+		<HIDDENBLOCKS>vvhhhvhhhhhhhhhhvvvv</HIDDENBLOCKS>
 		<Animation>
 			<IMAGECOUNT>1</IMAGECOUNT>
 			<Image>
@@ -1460,7 +1530,7 @@
 		</Vector2f>
 	</Actable>
 	<Actable type="Pillar">
-		<HIDDENBLOCKS>vvhhhhhhvhhhhhhhvvvv</HIDDENBLOCKS>
+		<HIDDENBLOCKS>vvhhhvhhhhhhhhhhvvvv</HIDDENBLOCKS>
 		<Animation>
 			<IMAGECOUNT>1</IMAGECOUNT>
 			<Image>
@@ -1473,7 +1543,7 @@
 		</Vector2f>
 	</Actable>
 	<Actable type="Pillar">
-		<HIDDENBLOCKS>vvhhhhhhvhhhhhhhvvvv</HIDDENBLOCKS>
+		<HIDDENBLOCKS>vvhhhvhhhhhhhhhhvvvv</HIDDENBLOCKS>
 		<Animation>
 			<IMAGECOUNT>1</IMAGECOUNT>
 			<Image>
@@ -1486,7 +1556,7 @@
 		</Vector2f>
 	</Actable>
 	<Actable type="Pillar">
-		<HIDDENBLOCKS>vvhhhhhvhhhhhhhhvvvv</HIDDENBLOCKS>
+		<HIDDENBLOCKS>vvhhhhvhhhhhhhhhvvvv</HIDDENBLOCKS>
 		<Animation>
 			<IMAGECOUNT>1</IMAGECOUNT>
 			<Image>
@@ -1499,7 +1569,7 @@
 		</Vector2f>
 	</Actable>
 	<Actable type="Pillar">
-		<HIDDENBLOCKS>vvvvvvvvhhhhhhhhhvvv</HIDDENBLOCKS>
+		<HIDDENBLOCKS>vvhhhhvhhhhhhhhhhvvv</HIDDENBLOCKS>
 		<Animation>
 			<IMAGECOUNT>1</IMAGECOUNT>
 			<Image>
@@ -1512,7 +1582,7 @@
 		</Vector2f>
 	</Actable>
 	<Actable type="Pillar">
-		<HIDDENBLOCKS>vvhhhhhhvhhhhhhhhvvv</HIDDENBLOCKS>
+		<HIDDENBLOCKS>vvhhhhvhhhhhhhhhhvvv</HIDDENBLOCKS>
 		<Animation>
 			<IMAGECOUNT>1</IMAGECOUNT>
 			<Image>
@@ -1525,7 +1595,7 @@
 		</Vector2f>
 	</Actable>
 	<Actable type="Pillar">
-		<HIDDENBLOCKS>vvhhhhhhvhhhhhhhhvvv</HIDDENBLOCKS>
+		<HIDDENBLOCKS>vvhhhhvhhhhhhhhhhvvv</HIDDENBLOCKS>
 		<Animation>
 			<IMAGECOUNT>1</IMAGECOUNT>
 			<Image>
@@ -1538,7 +1608,7 @@
 		</Vector2f>
 	</Actable>
 	<Actable type="Pillar">
-		<HIDDENBLOCKS>vvhhhhhvhhhhhhhhhvvv</HIDDENBLOCKS>
+		<HIDDENBLOCKS>vvhhhhvhhhhhhhhhhvvv</HIDDENBLOCKS>
 		<Animation>
 			<IMAGECOUNT>1</IMAGECOUNT>
 			<Image>
@@ -1551,7 +1621,7 @@
 		</Vector2f>
 	</Actable>
 	<Actable type="Pillar">
-		<HIDDENBLOCKS>vvvvvvvhhhhhhhhhhvvv</HIDDENBLOCKS>
+		<HIDDENBLOCKS>vvhhhhvhhhhhhhhhhvvv</HIDDENBLOCKS>
 		<Animation>
 			<IMAGECOUNT>1</IMAGECOUNT>
 			<Image>
@@ -1564,7 +1634,7 @@
 		</Vector2f>
 	</Actable>
 	<Actable type="Pillar">
-		<HIDDENBLOCKS>vvvhhhhhhhhhhhhhhvvv</HIDDENBLOCKS>
+		<HIDDENBLOCKS>vvhhhhhvhhhhhhhhhvvv</HIDDENBLOCKS>
 		<Animation>
 			<IMAGECOUNT>1</IMAGECOUNT>
 			<Image>
@@ -1577,7 +1647,7 @@
 		</Vector2f>
 	</Actable>
 	<Actable type="Pillar">
-		<HIDDENBLOCKS>vvvhhhhhhhhhhhhhhvvv</HIDDENBLOCKS>
+		<HIDDENBLOCKS>vvhhhhhvhhhhhhhhhvvv</HIDDENBLOCKS>
 		<Animation>
 			<IMAGECOUNT>1</IMAGECOUNT>
 			<Image>
@@ -1590,7 +1660,7 @@
 		</Vector2f>
 	</Actable>
 	<Actable type="Pillar">
-		<HIDDENBLOCKS>vvhvhhhhhhhhhhhhhvvv</HIDDENBLOCKS>
+		<HIDDENBLOCKS>vvhhhhhvhhhhhhhhhvvv</HIDDENBLOCKS>
 		<Animation>
 			<IMAGECOUNT>1</IMAGECOUNT>
 			<Image>
@@ -1603,7 +1673,7 @@
 		</Vector2f>
 	</Actable>
 	<Actable type="Pillar">
-		<HIDDENBLOCKS>vvhvhhhhhhhhhhhhhvvv</HIDDENBLOCKS>
+		<HIDDENBLOCKS>vvhhhhhvhhhhhhhhhvvv</HIDDENBLOCKS>
 		<Animation>
 			<IMAGECOUNT>1</IMAGECOUNT>
 			<Image>
@@ -1616,7 +1686,7 @@
 		</Vector2f>
 	</Actable>
 	<Actable type="Pillar">
-		<HIDDENBLOCKS>vvhhvhhhhhhhhhhhhvvv</HIDDENBLOCKS>
+		<HIDDENBLOCKS>vvhhhhhvhhhhhhhhhvvv</HIDDENBLOCKS>
 		<Animation>
 			<IMAGECOUNT>1</IMAGECOUNT>
 			<Image>
@@ -1629,7 +1699,7 @@
 		</Vector2f>
 	</Actable>
 	<Actable type="Pillar">
-		<HIDDENBLOCKS>vvhhvvhhhhhhhhhhhvvv</HIDDENBLOCKS>
+		<HIDDENBLOCKS>vvvhhhhhvhhhhhhhhvvv</HIDDENBLOCKS>
 		<Animation>
 			<IMAGECOUNT>1</IMAGECOUNT>
 			<Image>
@@ -1642,7 +1712,7 @@
 		</Vector2f>
 	</Actable>
 	<Actable type="Pillar">
-		<HIDDENBLOCKS>vvhhhvhhhhhhhhhhhvvv</HIDDENBLOCKS>
+		<HIDDENBLOCKS>vvvhhhhhvhhhhhhhhvvv</HIDDENBLOCKS>
 		<Animation>
 			<IMAGECOUNT>1</IMAGECOUNT>
 			<Image>
@@ -1655,7 +1725,7 @@
 		</Vector2f>
 	</Actable>
 	<Actable type="Pillar">
-		<HIDDENBLOCKS>vvhhhhvhhhhhhhhhhvvv</HIDDENBLOCKS>
+		<HIDDENBLOCKS>vvvhhhhhvhhhhhhhhvvv</HIDDENBLOCKS>
 		<Animation>
 			<IMAGECOUNT>1</IMAGECOUNT>
 			<Image>
@@ -1668,7 +1738,7 @@
 		</Vector2f>
 	</Actable>
 	<Actable type="Pillar">
-		<HIDDENBLOCKS>vvhhhhvhhhhhhhhhhvvv</HIDDENBLOCKS>
+		<HIDDENBLOCKS>vvvhhhhhvhhhhhhhhvvv</HIDDENBLOCKS>
 		<Animation>
 			<IMAGECOUNT>1</IMAGECOUNT>
 			<Image>
@@ -1681,7 +1751,7 @@
 		</Vector2f>
 	</Actable>
 	<Actable type="Pillar">
-		<HIDDENBLOCKS>vvhhhhhvhhhhhhhhhvvv</HIDDENBLOCKS>
+		<HIDDENBLOCKS>vvvvhhhhhvhhhhhhhvvv</HIDDENBLOCKS>
 		<Animation>
 			<IMAGECOUNT>1</IMAGECOUNT>
 			<Image>
@@ -1694,7 +1764,7 @@
 		</Vector2f>
 	</Actable>
 	<Actable type="Pillar">
-		<HIDDENBLOCKS>vvhhhhhvhhhhhhhhhhvv</HIDDENBLOCKS>
+		<HIDDENBLOCKS>vvvvhhhhhvhhhhhhhhvv</HIDDENBLOCKS>
 		<Animation>
 			<IMAGECOUNT>1</IMAGECOUNT>
 			<Image>
@@ -1707,7 +1777,7 @@
 		</Vector2f>
 	</Actable>
 	<Actable type="Pillar">
-		<HIDDENBLOCKS>vvvhhhhhvhhhhhhhhhvv</HIDDENBLOCKS>
+		<HIDDENBLOCKS>vvvvhhhhhvhhhhhhhhvv</HIDDENBLOCKS>
 		<Animation>
 			<IMAGECOUNT>1</IMAGECOUNT>
 			<Image>
@@ -1720,7 +1790,7 @@
 		</Vector2f>
 	</Actable>
 	<Actable type="Pillar">
-		<HIDDENBLOCKS>vvhvhhhhvvhhhhhhhhvv</HIDDENBLOCKS>
+		<HIDDENBLOCKS>vvvvvhhhhhvhhhhhhhvv</HIDDENBLOCKS>
 		<Animation>
 			<IMAGECOUNT>1</IMAGECOUNT>
 			<Image>
@@ -1733,7 +1803,7 @@
 		</Vector2f>
 	</Actable>
 	<Actable type="Pillar">
-		<HIDDENBLOCKS>vvhvhhhhhvhhhhhhhhhv</HIDDENBLOCKS>
+		<HIDDENBLOCKS>vvvvvhhhhhvhhhhhhhhv</HIDDENBLOCKS>
 		<Animation>
 			<IMAGECOUNT>1</IMAGECOUNT>
 			<Image>
@@ -1746,7 +1816,7 @@
 		</Vector2f>
 	</Actable>
 	<Actable type="Pillar">
-		<HIDDENBLOCKS>vvhhvvvvvvvvhhhhhhhv</HIDDENBLOCKS>
+		<HIDDENBLOCKS>vvvvvhhhhhvvhhhhhhhv</HIDDENBLOCKS>
 		<Animation>
 			<IMAGECOUNT>1</IMAGECOUNT>
 			<Image>
@@ -1759,7 +1829,7 @@
 		</Vector2f>
 	</Actable>
 	<Actable type="Pillar">
-		<HIDDENBLOCKS>vvhvvhhhhhhhvhhhhhhv</HIDDENBLOCKS>
+		<HIDDENBLOCKS>vvvvhhhhhhhhvhhhhhhv</HIDDENBLOCKS>
 		<Animation>
 			<IMAGECOUNT>1</IMAGECOUNT>
 			<Image>
@@ -1772,7 +1842,7 @@
 		</Vector2f>
 	</Actable>
 	<Actable type="Pillar">
-		<HIDDENBLOCKS>vvhvvhhhhhhhvhhhhhhv</HIDDENBLOCKS>
+		<HIDDENBLOCKS>vvvvhhhhhhhhvhhhhhhv</HIDDENBLOCKS>
 		<Animation>
 			<IMAGECOUNT>1</IMAGECOUNT>
 			<Image>
@@ -1785,7 +1855,7 @@
 		</Vector2f>
 	</Actable>
 	<Actable type="Pillar">
-		<HIDDENBLOCKS>vvhhvhhhhhhhhvhhhhhv</HIDDENBLOCKS>
+		<HIDDENBLOCKS>vvvvvhhhhhhhvhhhhhhv</HIDDENBLOCKS>
 		<Animation>
 			<IMAGECOUNT>1</IMAGECOUNT>
 			<Image>
@@ -1798,7 +1868,7 @@
 		</Vector2f>
 	</Actable>
 	<Actable type="Pillar">
-		<HIDDENBLOCKS>vvhhhvhhhhhhhvhhhhhh</HIDDENBLOCKS>
+		<HIDDENBLOCKS>vvvvvvhhhhhhvhhhhhhh</HIDDENBLOCKS>
 		<Animation>
 			<IMAGECOUNT>1</IMAGECOUNT>
 			<Image>
@@ -1811,7 +1881,7 @@
 		</Vector2f>
 	</Actable>
 	<Actable type="Pillar">
-		<HIDDENBLOCKS>vvhhhhvhhhhhvhhhhhhv</HIDDENBLOCKS>
+		<HIDDENBLOCKS>vvvvvvvhhhhvhhhhhhhv</HIDDENBLOCKS>
 		<Animation>
 			<IMAGECOUNT>1</IMAGECOUNT>
 			<Image>
@@ -1824,7 +1894,7 @@
 		</Vector2f>
 	</Actable>
 	<Actable type="Pillar">
-		<HIDDENBLOCKS>vvhhhhhvvvvvhhhhhhhv</HIDDENBLOCKS>
+		<HIDDENBLOCKS>vvvvvvvvvvvhhhhhhhhv</HIDDENBLOCKS>
 		<Animation>
 			<IMAGECOUNT>1</IMAGECOUNT>
 			<Image>
@@ -1837,7 +1907,7 @@
 		</Vector2f>
 	</Actable>
 	<Actable type="Pillar">
-		<HIDDENBLOCKS>vvhhhhhhhhhhhhhhhhhv</HIDDENBLOCKS>
+		<HIDDENBLOCKS>vvvvvvvhhhhhhhhhhhhv</HIDDENBLOCKS>
 		<Animation>
 			<IMAGECOUNT>1</IMAGECOUNT>
 			<Image>
@@ -1850,7 +1920,7 @@
 		</Vector2f>
 	</Actable>
 	<Actable type="Pillar">
-		<HIDDENBLOCKS>vvhhhhhhhhhhhhhhhhhv</HIDDENBLOCKS>
+		<HIDDENBLOCKS>vvvvvvhhhhhhhhhhhhhv</HIDDENBLOCKS>
 		<Animation>
 			<IMAGECOUNT>1</IMAGECOUNT>
 			<Image>
@@ -1863,7 +1933,7 @@
 		</Vector2f>
 	</Actable>
 	<Actable type="Pillar">
-		<HIDDENBLOCKS>vvhhhhhhhhhhhhhhhhvv</HIDDENBLOCKS>
+		<HIDDENBLOCKS>vvvvhhhhhhhhhhhhhhvv</HIDDENBLOCKS>
 		<Animation>
 			<IMAGECOUNT>1</IMAGECOUNT>
 			<Image>
@@ -1876,7 +1946,7 @@
 		</Vector2f>
 	</Actable>
 	<Actable type="Pillar">
-		<HIDDENBLOCKS>vvhhhhhhhhhhhhhhhhvv</HIDDENBLOCKS>
+		<HIDDENBLOCKS>vvvhhhhhhhhhhhhhhhvv</HIDDENBLOCKS>
 		<Animation>
 			<IMAGECOUNT>1</IMAGECOUNT>
 			<Image>
@@ -3007,7 +3077,7 @@
 		</Vector2f>
 	</Actable>
 	<Actable type="Pillar">
-		<HIDDENBLOCKS>vvvhhhhhhhhhhhhhhvvv</HIDDENBLOCKS>
+		<HIDDENBLOCKS>vvvhhhhhhhhhhhhhvvvv</HIDDENBLOCKS>
 		<Animation>
 			<IMAGECOUNT>1</IMAGECOUNT>
 			<Image>
@@ -3020,7 +3090,7 @@
 		</Vector2f>
 	</Actable>
 	<Actable type="Pillar">
-		<HIDDENBLOCKS>vvvhhhhhhhhhhhhvhvvv</HIDDENBLOCKS>
+		<HIDDENBLOCKS>vvvhhhhhhhhhhhhvvvvv</HIDDENBLOCKS>
 		<Animation>
 			<IMAGECOUNT>1</IMAGECOUNT>
 			<Image>
@@ -3085,7 +3155,7 @@
 		</Vector2f>
 	</Actable>
 	<Actable type="Pillar">
-		<HIDDENBLOCKS>vvvvvvhhhhhvvvvvvvvv</HIDDENBLOCKS>
+		<HIDDENBLOCKS>vvvvvvhhhhhhvvvvvvvv</HIDDENBLOCKS>
 		<Animation>
 			<IMAGECOUNT>1</IMAGECOUNT>
 			<Image>
@@ -3098,7 +3168,7 @@
 		</Vector2f>
 	</Actable>
 	<Actable type="Pillar">
-		<HIDDENBLOCKS>vvvvvvhhhhhhvvvvvvvv</HIDDENBLOCKS>
+		<HIDDENBLOCKS>vvvvvvhhhhhhhvvvvvvv</HIDDENBLOCKS>
 		<Animation>
 			<IMAGECOUNT>1</IMAGECOUNT>
 			<Image>
@@ -3527,7 +3597,7 @@
 		</Vector2f>
 	</Actable>
 	<Actable type="Pillar">
-		<HIDDENBLOCKS>vvhhhhhhhhhhhvvvvvvv</HIDDENBLOCKS>
+		<HIDDENBLOCKS>vvhhhhhhhhhhvvvvvvvv</HIDDENBLOCKS>
 		<Animation>
 			<IMAGECOUNT>1</IMAGECOUNT>
 			<Image>
@@ -3839,7 +3909,7 @@
 		</Vector2f>
 	</Actable>
 	<Actable type="Pillar">
-		<HIDDENBLOCKS>vvvvvvvvhhhhhhhhvvvv</HIDDENBLOCKS>
+		<HIDDENBLOCKS>vvvvvvvvvhhhhhhhvvvv</HIDDENBLOCKS>
 		<Animation>
 			<IMAGECOUNT>1</IMAGECOUNT>
 			<Image>
@@ -3891,7 +3961,7 @@
 		</Vector2f>
 	</Actable>
 	<Actable type="Pillar">
-		<HIDDENBLOCKS>vvhhhhhhhhhhhhhvvvvv</HIDDENBLOCKS>
+		<HIDDENBLOCKS>vvvhhhhhhhhhhhhvvvvv</HIDDENBLOCKS>
 		<Animation>
 			<IMAGECOUNT>1</IMAGECOUNT>
 			<Image>
@@ -4515,7 +4585,7 @@
 		</Vector2f>
 	</Actable>
 	<Actable type="Pillar">
-		<HIDDENBLOCKS>vvhhvvvvhhhhhhhvvvvv</HIDDENBLOCKS>
+		<HIDDENBLOCKS>vvvvvvvvhhhhhhhvvvvv</HIDDENBLOCKS>
 		<Animation>
 			<IMAGECOUNT>1</IMAGECOUNT>
 			<Image>
@@ -4528,7 +4598,7 @@
 		</Vector2f>
 	</Actable>
 	<Actable type="Pillar">
-		<HIDDENBLOCKS>vvhhhvvvhhhhhhhvvvvv</HIDDENBLOCKS>
+		<HIDDENBLOCKS>vvvvvvvvhhhhhhhvvvvv</HIDDENBLOCKS>
 		<Animation>
 			<IMAGECOUNT>1</IMAGECOUNT>
 			<Image>
@@ -4541,7 +4611,7 @@
 		</Vector2f>
 	</Actable>
 	<Actable type="Pillar">
-		<HIDDENBLOCKS>vvhhhhhvvhhhhhhvvvvv</HIDDENBLOCKS>
+		<HIDDENBLOCKS>vvvvvvvvvhhhhhhvvvvv</HIDDENBLOCKS>
 		<Animation>
 			<IMAGECOUNT>1</IMAGECOUNT>
 			<Image>
@@ -4554,7 +4624,7 @@
 		</Vector2f>
 	</Actable>
 	<Actable type="Pillar">
-		<HIDDENBLOCKS>vvhhhhhhhhhhhhhvvvvv</HIDDENBLOCKS>
+		<HIDDENBLOCKS>vvvvvvhhhhhhhhhvvvvv</HIDDENBLOCKS>
 		<Animation>
 			<IMAGECOUNT>1</IMAGECOUNT>
 			<Image>
@@ -4567,7 +4637,7 @@
 		</Vector2f>
 	</Actable>
 	<Actable type="Pillar">
-		<HIDDENBLOCKS>vvhhhhhhhhhhhhhvvvvv</HIDDENBLOCKS>
+		<HIDDENBLOCKS>vvvvhhhhhhhhhhhvvvvv</HIDDENBLOCKS>
 		<Animation>
 			<IMAGECOUNT>1</IMAGECOUNT>
 			<Image>
@@ -4736,7 +4806,7 @@
 		</Vector2f>
 	</Actable>
 	<Actable type="Pillar">
-		<HIDDENBLOCKS>vvhhhhhhhvvvvhhvvvvv</HIDDENBLOCKS>
+		<HIDDENBLOCKS>vvhhhhhhhvvvvvvvvvvv</HIDDENBLOCKS>
 		<Animation>
 			<IMAGECOUNT>1</IMAGECOUNT>
 			<Image>
@@ -4749,7 +4819,7 @@
 		</Vector2f>
 	</Actable>
 	<Actable type="Pillar">
-		<HIDDENBLOCKS>vvhhhhhvvvvhhhhvvvvv</HIDDENBLOCKS>
+		<HIDDENBLOCKS>vvhhhhhvvvvvvvvvvvvv</HIDDENBLOCKS>
 		<Animation>
 			<IMAGECOUNT>1</IMAGECOUNT>
 			<Image>
@@ -4762,7 +4832,7 @@
 		</Vector2f>
 	</Actable>
 	<Actable type="Pillar">
-		<HIDDENBLOCKS>vvhhhhhhhhhhhhhvvvvv</HIDDENBLOCKS>
+		<HIDDENBLOCKS>vvhhhhhhhhhhvvvvvvvv</HIDDENBLOCKS>
 		<Animation>
 			<IMAGECOUNT>1</IMAGECOUNT>
 			<Image>
@@ -4775,7 +4845,7 @@
 		</Vector2f>
 	</Actable>
 	<Actable type="Pillar">
-		<HIDDENBLOCKS>vvhhhhhhhhhhhhhvvvvv</HIDDENBLOCKS>
+		<HIDDENBLOCKS>vvhhhhhhhhhhhhvvvvvv</HIDDENBLOCKS>
 		<Animation>
 			<IMAGECOUNT>1</IMAGECOUNT>
 			<Image>
@@ -5217,7 +5287,7 @@
 		</Vector2f>
 	</Actable>
 	<Actable type="Pillar">
-		<HIDDENBLOCKS>vvhhhhhhhhhhhhvvvvvv</HIDDENBLOCKS>
+		<HIDDENBLOCKS>vvvhhhhhhhhhhhvvvvvv</HIDDENBLOCKS>
 		<Animation>
 			<IMAGECOUNT>1</IMAGECOUNT>
 			<Image>
@@ -5230,7 +5300,7 @@
 		</Vector2f>
 	</Actable>
 	<Actable type="Pillar">
-		<HIDDENBLOCKS>vvvhhhhhhhhhhhvvvvvv</HIDDENBLOCKS>
+		<HIDDENBLOCKS>vvhhhhhhhhhhhhvvvvvv</HIDDENBLOCKS>
 		<Animation>
 			<IMAGECOUNT>1</IMAGECOUNT>
 			<Image>
@@ -7427,7 +7497,7 @@
 		</Vector2f>
 	</Actable>
 	<Actable type="Pillar">
-		<HIDDENBLOCKS>vhhhhhhhhhhvvvvhhvvv</HIDDENBLOCKS>
+		<HIDDENBLOCKS>vhhhhhhhhhhvvvvvvvvv</HIDDENBLOCKS>
 		<Animation>
 			<IMAGECOUNT>1</IMAGECOUNT>
 			<Image>
@@ -7440,7 +7510,7 @@
 		</Vector2f>
 	</Actable>
 	<Actable type="Pillar">
-		<HIDDENBLOCKS>vvhhhhhhhhvvvhhhhvvv</HIDDENBLOCKS>
+		<HIDDENBLOCKS>vvhhhhhhhhvvvvvvvvvv</HIDDENBLOCKS>
 		<Animation>
 			<IMAGECOUNT>1</IMAGECOUNT>
 			<Image>
@@ -7453,7 +7523,7 @@
 		</Vector2f>
 	</Actable>
 	<Actable type="Pillar">
-		<HIDDENBLOCKS>vvhhhhhhhhhhhhhhhvvv</HIDDENBLOCKS>
+		<HIDDENBLOCKS>vvhhhhhhhhhhhvvvvvvv</HIDDENBLOCKS>
 		<Animation>
 			<IMAGECOUNT>1</IMAGECOUNT>
 			<Image>
@@ -7466,7 +7536,7 @@
 		</Vector2f>
 	</Actable>
 	<Actable type="Pillar">
-		<HIDDENBLOCKS>vvvhhhhhhhhhhhhhhvvv</HIDDENBLOCKS>
+		<HIDDENBLOCKS>vvvhhhhhhhhhhhhvvvvv</HIDDENBLOCKS>
 		<Animation>
 			<IMAGECOUNT>1</IMAGECOUNT>
 			<Image>
@@ -7479,7 +7549,7 @@
 		</Vector2f>
 	</Actable>
 	<Actable type="Pillar">
-		<HIDDENBLOCKS>vvvhhhhhhhhhhhhhhvvv</HIDDENBLOCKS>
+		<HIDDENBLOCKS>vvvhhhhhhhhhhhhhvvvv</HIDDENBLOCKS>
 		<Animation>
 			<IMAGECOUNT>1</IMAGECOUNT>
 			<Image>
@@ -8519,7 +8589,7 @@
 		</Vector2f>
 	</Actable>
 	<Actable type="Pillar">
-		<HIDDENBLOCKS>vvhhhhhhhhhvvvvvvvvv</HIDDENBLOCKS>
+		<HIDDENBLOCKS>vvhhhhhhhhvvvvvvvvvv</HIDDENBLOCKS>
 		<Animation>
 			<IMAGECOUNT>1</IMAGECOUNT>
 			<Image>
@@ -8597,7 +8667,7 @@
 		</Vector2f>
 	</Actable>
 	<Actable type="Pillar">
-		<HIDDENBLOCKS>vvvvvvvhhhhhhhvvvvvv</HIDDENBLOCKS>
+		<HIDDENBLOCKS>vvvvvvhhhhhhhhvvvvvv</HIDDENBLOCKS>
 		<Animation>
 			<IMAGECOUNT>1</IMAGECOUNT>
 			<Image>
@@ -8610,7 +8680,7 @@
 		</Vector2f>
 	</Actable>
 	<Actable type="Pillar">
-		<HIDDENBLOCKS>vvvvvvvvhhhhhhhvvvvv</HIDDENBLOCKS>
+		<HIDDENBLOCKS>vvvvvvvhhhhhhhhvvvvv</HIDDENBLOCKS>
 		<Animation>
 			<IMAGECOUNT>1</IMAGECOUNT>
 			<Image>
@@ -8636,7 +8706,7 @@
 		</Vector2f>
 	</Actable>
 	<Actable type="Pillar">
-		<HIDDENBLOCKS>vvvvvvvvhhhhhhhhvvvv</HIDDENBLOCKS>
+		<HIDDENBLOCKS>vvvvvvvvvhhhhhhhvvvv</HIDDENBLOCKS>
 		<Animation>
 			<IMAGECOUNT>1</IMAGECOUNT>
 			<Image>
@@ -8649,7 +8719,7 @@
 		</Vector2f>
 	</Actable>
 	<Actable type="Pillar">
-		<HIDDENBLOCKS>vvvvvvvvvvhhhhhhvvvv</HIDDENBLOCKS>
+		<HIDDENBLOCKS>vvvvvvvvvhhhhhhhvvvv</HIDDENBLOCKS>
 		<Animation>
 			<IMAGECOUNT>1</IMAGECOUNT>
 			<Image>
@@ -8675,7 +8745,7 @@
 		</Vector2f>
 	</Actable>
 	<Actable type="Pillar">
-		<HIDDENBLOCKS>vvvvvvvvvvhhhhhhhvvv</HIDDENBLOCKS>
+		<HIDDENBLOCKS>vvvvvvvvvvvhhhhhhvvv</HIDDENBLOCKS>
 		<Animation>
 			<IMAGECOUNT>1</IMAGECOUNT>
 			<Image>
@@ -8714,7 +8784,7 @@
 		</Vector2f>
 	</Actable>
 	<Actable type="Pillar">
-		<HIDDENBLOCKS>vvvvvvvvvvvhhhhhhhhv</HIDDENBLOCKS>
+		<HIDDENBLOCKS>vvvvvvvvvvvvhhhhhhhv</HIDDENBLOCKS>
 		<Animation>
 			<IMAGECOUNT>1</IMAGECOUNT>
 			<Image>
@@ -9793,7 +9863,7 @@
 		</Vector2f>
 	</Actable>
 	<Actable type="Pillar">
-		<HIDDENBLOCKS>hhhhhhhhhhvvvvvhhhvv</HIDDENBLOCKS>
+		<HIDDENBLOCKS>hhhhhhhhhhhvvvvhhhvv</HIDDENBLOCKS>
 		<Animation>
 			<IMAGECOUNT>1</IMAGECOUNT>
 			<Image>
@@ -9806,7 +9876,7 @@
 		</Vector2f>
 	</Actable>
 	<Actable type="Pillar">
-		<HIDDENBLOCKS>hhhhhhhhvvvvvvvvhhvv</HIDDENBLOCKS>
+		<HIDDENBLOCKS>hhhhhhhhhvvvvvvvhhvv</HIDDENBLOCKS>
 		<Animation>
 			<IMAGECOUNT>1</IMAGECOUNT>
 			<Image>
@@ -9975,7 +10045,7 @@
 		</Vector2f>
 	</Actable>
 	<Actable type="Pillar">
-		<HIDDENBLOCKS>hhhhhhhhvvvvvvvvhhvv</HIDDENBLOCKS>
+		<HIDDENBLOCKS>hhhhhhhhhvvvvvvvhhvv</HIDDENBLOCKS>
 		<Animation>
 			<IMAGECOUNT>1</IMAGECOUNT>
 			<Image>
@@ -9988,7 +10058,7 @@
 		</Vector2f>
 	</Actable>
 	<Actable type="Pillar">
-		<HIDDENBLOCKS>hhhhhhhhhhvvvvhhhhvv</HIDDENBLOCKS>
+		<HIDDENBLOCKS>hhhhhhhhhhhvvvvhhhvv</HIDDENBLOCKS>
 		<Animation>
 			<IMAGECOUNT>1</IMAGECOUNT>
 			<Image>

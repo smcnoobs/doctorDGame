@@ -57,13 +57,11 @@ public class StatDisplay {
 	};
 	
 	private Shape[] pausedShapes = new Shape[] {
-			new RoundedRectangle(960 - 100,540 - 30 ,300,40,10),		// Pause Screen		transparentBlack	0
-			new RoundedRectangle(960 - 100,540 + 30 ,300,40,10),		// Player Dead		transparentBlack	1
+			new RoundedRectangle(960 - 100,540 - 250 ,500,40,10),		// Pause Screen		transparentBlack	0
 	};
 	
 	private Color[] pausedColors = new Color[] {
 			transparentBlack,		// Rounded Background
-			transparentBlack,		// Player Dead
 	};
 	
 	@SuppressWarnings("unchecked")

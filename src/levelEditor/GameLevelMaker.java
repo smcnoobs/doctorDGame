@@ -7,6 +7,7 @@ import java.util.Random;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 
 import org.lwjgl.LWJGLException;
@@ -34,9 +35,10 @@ public class GameLevelMaker extends BasicGame implements InputProviderListener {
 	private final int delta = 5;
 	private int length;
 	private float gravity;
-	private String levelName;
+	private String levelName, music;
 	private boolean debounce = false;
 	private Animation background;
+	private static final int ANIMATION_SPEED = 20;
 	
 	/*
 	 * STATUS
@@ -92,6 +94,16 @@ public class GameLevelMaker extends BasicGame implements InputProviderListener {
                 new Frame(),
                 "What is the name of this level?",
                 "Level Maker - Level Name",
+                JOptionPane.PLAIN_MESSAGE,
+                null,
+                null,
+                "");
+		
+		// Get the Music Path
+		music = (String)JOptionPane.showInputDialog(
+                new Frame(),
+                "Where is the music for this level located?",
+                "Level Maker - Level Music",
                 JOptionPane.PLAIN_MESSAGE,
                 null,
                 null,
@@ -176,15 +188,27 @@ public class GameLevelMaker extends BasicGame implements InputProviderListener {
 	}
 	
 	private Animation askForAnimation(String type) throws SlickException {
-		String temp = (String)JOptionPane.showInputDialog(
+		String path = (String)JOptionPane.showInputDialog(
                 new Frame(),
-                "What is the qualified name of the Image for the " + type + "?",
+                "What is the qualified name of the Image for the " + type + "?" +
+                "\nFor multiple images, separate file locations by a comma.",
                 "Level Maker - " + type + " Image",
                 JOptionPane.PLAIN_MESSAGE,
                 null,
                 null,
                 "./res/images/dehkhoda_jetpack.png");
-		return new Animation(new Image[] {new Image(temp)}, 1, false);
+		if(path.indexOf(",") != -1) {
+			String[] paths = path.split(",");
+			Image[] images = new Image[paths.length];
+			for(int i = 0; i < paths.length; i++) {
+				images[i] = new Image(paths[i]);
+				return new Animation(images, ANIMATION_SPEED, false);
+			}
+				
+		}
+			
+		
+		return new Animation(new Image[] {new Image(path)}, ANIMATION_SPEED, false);
 	}
 	
 	private void handleGameClick(Vector2f click) {
@@ -270,6 +294,9 @@ public class GameLevelMaker extends BasicGame implements InputProviderListener {
 				break;
 			case REMOVE_LAST_ITEM:
 				removeLastItem();
+			case LOAD_LEVEL:
+				loadLevel();
+				break;
 			}
 		} catch(Exception e) {
 			e.printStackTrace();
@@ -319,25 +346,6 @@ public class GameLevelMaker extends BasicGame implements InputProviderListener {
 		g.drawString("<<",40,1080/2 + 15);
 		g.drawString(">>",1920/2 - 60,1080/2 + 15);
 		g.drawString("Home.",(1920/4) -15,1080/2 + 20);
-		
-		// RIGHT SIDE BUTTONS
-//		String[] s = new String[] {"Write Level.", 
-//				"Edit Pillars.",
-//				"Position Player.",
-//				"Add Coin.",
-//				"Add PlayerShielder.",
-//				"Add PlayerRestorer.",
-//				"Add Projectile.",
-//				"Randomize Pillars."};
-//		for(int i = 0; i < 8; i++) {
-//			if(status == i) 
-//				g.setColor(new Color(243, 156, 18));
-//			else
-//				g.setColor(new Color(100,100,255));
-//			g.fillRect(1920/2 + 50, (60 * i) + 10, 300, 50);
-//			g.setColor(Color.white);
-//			g.drawString(s[i],1920/2 + 60,(60 * i) + 20);
-//		}
 		
 		for(int i = 0; i < EditorButton.NUM_BUTTONS; i++) {
 			EditorButton cb = EditorButton.getByInt(i);
@@ -511,8 +519,28 @@ public class GameLevelMaker extends BasicGame implements InputProviderListener {
 		
 		Item[] arrItems = new Item[items.size()];
 		arrItems = items.toArray(arrItems);
-		writer.loadAssets(arrItems,pillars,player,background,gravity,length,levelName);
+		writer.loadAssets(arrItems,pillars,player,background,gravity,length,levelName,music);
 		writer.writeLevel();
 		writer.finishWriting();
+	}
+	
+	private void loadLevel() {
+		JFileChooser chooser = new JFileChooser();
+		int returnVal = chooser.showOpenDialog(new Frame());
+	    if(returnVal == JFileChooser.APPROVE_OPTION) 
+	    	loadLevel(chooser.getSelectedFile().getAbsolutePath());
+	}
+	
+	private void loadLevel(String filename) {
+		LevelLoader l = new LevelLoader(filename);
+		l.load();
+		player = l.getPlayer();
+		pillars = new Pillar[l.getPillars().size()];
+		pillars = l.getPillars().toArray(pillars);
+		items = l.getItems();
+		gravity = l.getGravity();
+		background = l.getBackground();
+		music = l.getMusicPath();
+		levelName = l.getLevelName();
 	}
 }

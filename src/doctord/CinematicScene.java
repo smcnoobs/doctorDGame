@@ -49,6 +49,10 @@ public class CinematicScene extends Scene {
 			}
 	}
 	
+	public void load(String s) {
+		loadCinematic(s);
+	}
+	
 	public void loadCinematic(String filename) {
 		try {
 			Scanner sc = new Scanner(new File(filename));
@@ -63,7 +67,6 @@ public class CinematicScene extends Scene {
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		} catch (SlickException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
@@ -92,7 +95,7 @@ public class CinematicScene extends Scene {
 	public void render(Graphics g) {
 		g.setFont(uniFont);
 		Animation a = dialogs.get(currentDialog).getAnimation();
-		a.draw(0,0);
+		a.draw(960 - (a.getCurrentFrame().getWidth() / 2),0);
 		
 		if(dialogs.get(currentDialog).hasText()) {
 			g.setColor(Color.black);

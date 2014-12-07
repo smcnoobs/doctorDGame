@@ -19,10 +19,11 @@ public class LevelWriter {
 	private int length;
 	private int tab = 0;
 	private Animation bg;
-	private String levelName;
+	private String levelName, music;
 	
 	public static final String LEVEL = "LEVEL";
 	public static final String LEVEL_NAME = "NAME";
+	public static final String LEVEL_MUSIC = "MUSIC";
 	public static final String LEVEL_GRAVITY = "GRAVITY";
 	public static final String LEVEL_LENGTH = "LENGTH";
 	public static final String ACTABLE = "Actable";
@@ -45,7 +46,7 @@ public class LevelWriter {
 		pw = new PrintWriter(filename);
 	}
 	
-	public void loadAssets(Item[] items, Pillar[] pillars, Player player, Animation bg, float gravity, int length, String levelName) {
+	public void loadAssets(Item[] items, Pillar[] pillars, Player player, Animation bg, float gravity, int length, String levelName, String music) {
 		this.items = items;
 		Arrays.sort(this.items);
 		this.pillars = pillars;
@@ -54,6 +55,7 @@ public class LevelWriter {
 		this.length = length;
 		this.bg = bg;
 		this.levelName = levelName;
+		this.music = music;
 	}
 	
 	public void writeLevel() {
@@ -61,6 +63,7 @@ public class LevelWriter {
 		pw.println(basicOpenTag(LEVEL));
 		
 		pw.println(shortTag(LEVEL_NAME, levelName));
+		pw.println(shortTag(LEVEL_MUSIC, music));
 		pw.println(shortTag(LEVEL_GRAVITY, new String("") + gravity));
 		pw.println(shortTag(LEVEL_LENGTH, new String("") + length));
 		writeAnimation(bg);

@@ -33,7 +33,7 @@ public class doctorDGame extends BasicGame implements InputProviderListener {
 	// Private Control Functions
 	
 	private void loadScenes() {
-		scenes = new Scene[10];
+		scenes = new Scene[10];  
 		scenes = new Scene[] {
 				new CinematicScene(),		//	Intro
 				new CinematicScene(),		//	Opening
@@ -47,12 +47,8 @@ public class doctorDGame extends BasicGame implements InputProviderListener {
 				"./res/levels/testMakerLevel.xml",
 		};
 		
-		for(int i = 0; i < scenes.length; i++) {
-			if(scenes[i] instanceof CinematicScene)
-				((CinematicScene)scenes[i]).loadCinematic(scenePaths[i]);
-			else
-				((LevelScene)scenes[i]).loadLevel(scenePaths[i]);
-		}
+		// Load the first Scene
+		scenes[0].load(scenePaths[0]);
 	}
 	
 	// Necessary Slick2D Functions
@@ -62,6 +58,7 @@ public class doctorDGame extends BasicGame implements InputProviderListener {
 
 	@Override
 	public void init(GameContainer gc) throws SlickException {
+		gc.setVSync(true);
 		gc.setTargetFrameRate(60);
 		gc.setShowFPS(false);
 		gc.setMouseGrabbed(true);
@@ -107,6 +104,7 @@ public class doctorDGame extends BasicGame implements InputProviderListener {
 					transitioning = false;
 					scenes[currentScene].stopMusic();
 					currentScene++;
+					scenes[currentScene].load(scenePaths[currentScene]);
 				}
 			}
 		}
@@ -156,7 +154,7 @@ public class doctorDGame extends BasicGame implements InputProviderListener {
 		try {
 			AppGameContainer appgc;
 			appgc = new AppGameContainer(new doctorDGame("Doctor D"));
-			appgc.setDisplayMode(1920, 1080, false);
+			appgc.setDisplayMode(1920, 1080, true);
 			appgc.start();
 		} catch (SlickException ex) {
 			Logger.getLogger(doctorDGame.class.getName()).log(Level.SEVERE, null, ex);

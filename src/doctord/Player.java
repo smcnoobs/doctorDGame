@@ -9,6 +9,7 @@ import org.newdawn.slick.geom.Vector2f;
 public class Player extends Actor {
 	private Vector2f inertia;
 	private final float weight = 20, maxSpeed = 15;
+	private static final int MAX_HEALTH = 5;
 	private static int health;
 	private static float fuel;
 	private int effectDuration;
@@ -42,6 +43,8 @@ public class Player extends Actor {
 	
 	@Override
 	public void update() {
+		if(health > MAX_HEALTH)
+			health = MAX_HEALTH;
 		inertia.set( // Fall down for the current level's gravity
 				inertia.getX(),
 				inertia.getY() + 
@@ -49,7 +52,7 @@ public class Player extends Actor {
 				);
 		
 		if(fuel > 0 && doctorDGame.spaceBarIsDown()) {
-				fuel = fuel - 0.1f;
+				fuel = fuel - 0.01f * ((LevelScene)doctorDGame.getCurrentScene()).getGravity();
 			inertia.set(
 					inertia.getX(),
 					inertia.getY() - 5

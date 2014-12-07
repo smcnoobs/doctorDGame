@@ -17,11 +17,12 @@ public enum EditorButton {
 	PLAYER_RESTORER ("Add PlayerRestorer."),
 	PROJECTILE ("Add Projectile."),
 	REMOVE_LAST_ITEM ("Remove Last Item."),
-	WRITE_LEVEL ("Write Level."),;
+	WRITE_LEVEL ("Write Level."),
+	LOAD_LEVEL ("Load Level.");
 	
 	
 	public final String title;
-	public static final int NUM_BUTTONS = 9;
+	public static final int NUM_BUTTONS = 10;
 	
 	EditorButton(String title) {
 		this.title = title;
@@ -51,6 +52,8 @@ public enum EditorButton {
 			return REMOVE_LAST_ITEM;
 		case 8:
 			return WRITE_LEVEL;
+		case 9:
+			return LOAD_LEVEL;
 		default:
 			return null;
 		}
