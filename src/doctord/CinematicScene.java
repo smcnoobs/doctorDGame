@@ -35,7 +35,7 @@ public class CinematicScene extends Scene {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		 	UIFont1 = UIFont1.deriveFont(java.awt.Font.PLAIN, 24.f);
+		 	UIFont1 = UIFont1.deriveFont(java.awt.Font.PLAIN, 24.f * doctorDGame.getScale());
 	        uniFont = new org.newdawn.slick.UnicodeFont(UIFont1);
 	        uniFont.addAsciiGlyphs();
 	        ColorEffect a = new ColorEffect();
@@ -95,14 +95,14 @@ public class CinematicScene extends Scene {
 	public void render(Graphics g) {
 		g.setFont(uniFont);
 		Animation a = dialogs.get(currentDialog).getAnimation();
-		a.draw(960 - (a.getCurrentFrame().getWidth() / 2),0);
+		a.getCurrentFrame().draw((960 - (a.getCurrentFrame().getWidth() / 2)) * doctorDGame.getScale(),0,doctorDGame.getScale());
 		
 		if(dialogs.get(currentDialog).hasText()) {
-			g.setColor(Color.black);
-			g.fillRect(0,720,1920,360);
+			g.setColor(new Color(0,0,0,200));
+			g.fillRect(0,720 * doctorDGame.getScale(),1920 * doctorDGame.getScale(),360 * doctorDGame.getScale());
 			
 			g.setColor(Color.white);
-			g.drawString(dialogs.get(currentDialog).getText(),15,735);
+			g.drawString(dialogs.get(currentDialog).getText(),15 * doctorDGame.getScale(),735 * doctorDGame.getScale());
 		}
 	}
 	

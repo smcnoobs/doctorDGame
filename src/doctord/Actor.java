@@ -23,12 +23,15 @@ public class Actor implements Actable {
 	}
 	public void render(Graphics g) {
 		if(sprites != null && location != null) {
-			sprites.draw(location.getX(), location.getY());
+			sprites.draw(location.getX() * doctorDGame.getScale(), 
+					location.getY() * doctorDGame.getScale(), 
+					sprites.getCurrentFrame().getWidth() * doctorDGame.getScale(), 
+					sprites.getCurrentFrame().getHeight() * doctorDGame.getScale());
 		}
 	}
 	public void render(Graphics g, float scale) {
 		if(sprites != null && location != null) {
-			sprites.getCurrentFrame().draw(location.getX(), location.getY(), scale);
+			sprites.getCurrentFrame().draw(location.getX() * doctorDGame.getScale(), location.getY() * doctorDGame.getScale(), scale * doctorDGame.getScale());
 		}
 	}
 	public void die(int time) {

@@ -75,7 +75,7 @@ public class StatDisplay {
 			e.printStackTrace();
 		}
 		
-	 	UIFont1 = UIFont1.deriveFont(java.awt.Font.PLAIN, 24.f);
+	 	UIFont1 = UIFont1.deriveFont(java.awt.Font.PLAIN, 24.f * doctorDGame.getScale());
         uniFont = new org.newdawn.slick.UnicodeFont(UIFont1);
         uniFont.addAsciiGlyphs();
         ColorEffect a = new ColorEffect();
@@ -98,27 +98,31 @@ public class StatDisplay {
 	}
 	
 	public void render(Graphics g) {
+		float scale = doctorDGame.getScale();
 		g.setFont(uniFont);
 		for(int i = 0; i < shapes.length; i++) {
 			g.setColor(colors[i]);
 			if(shapes[i] instanceof Rectangle) {
 				Rectangle r = (Rectangle)shapes[i];
-				g.fillRect(r.getMinX(),r.getMinY(),r.getWidth(),r.getHeight());
+				g.fillRect(r.getMinX() * scale,
+						r.getMinY() * scale,
+						r.getWidth() * scale,
+						r.getHeight() * scale);
 			} else {
 				fillShape(g,shapes[i]);
 			}
 		}
 		
 		g.setColor(darkGrey);
-		g.drawString("FUEL",15,15);
-		g.drawString("HEALTH",1715,15);
+		g.drawString("FUEL",15 * scale,15 * scale);
+		g.drawString("HEALTH",(1920 - 205)* scale,15 * scale);
 		
 		g.setColor(dullYellow);
-		g.drawString("COINS: " + Coin.getCollected(), 1510, 15);
+		g.drawString("COINS: " + Coin.getCollected(), (1920 - 410) * scale, 15 * scale);
 		
 		
 		g.setColor(Color.white);
-		g.drawString(LevelScene.getLevelName(),960 - (uniFont.getWidth(LevelScene.getLevelName())/2),1080-54+15);
+		g.drawString(LevelScene.getLevelName(),(960 - (uniFont.getWidth(LevelScene.getLevelName())/2)) * scale,(1080-54+15) * scale);
 		
 		if(debug) {
 			g.setColor(darkGrey);
@@ -139,14 +143,21 @@ public class StatDisplay {
 	
 	public void renderPauseScreen(Graphics g) {
 		g.setFont(uniFont);
+		float scale = doctorDGame.getScale();
 		for(int i = 0; i < pausedShapes.length; i++) {
 			g.setColor(pausedColors[i]);
 			if(pausedShapes[i] instanceof RoundedRectangle) {
 				RoundedRectangle r = (RoundedRectangle)pausedShapes[i];
-				g.fillRoundRect(r.getMinX(),r.getMinY(),r.getWidth(),r.getHeight(),(int) r.getCornerRadius());
+				g.fillRoundRect(r.getMinX() * scale,
+						r.getMinY() * scale,
+						r.getWidth() * scale,
+						r.getHeight() * scale,(int) r.getCornerRadius());
 			} else if(pausedShapes[i] instanceof Rectangle) {	
 				Rectangle r = (Rectangle)shapes[i];
-				g.fillRect(r.getMinX(),r.getMinY(),r.getWidth(),r.getHeight());
+				g.fillRect(r.getMinX() * scale,
+						r.getMinY() * scale,
+						r.getWidth() * scale,
+						r.getHeight() * scale);
 			} else {
 				fillShape(g,shapes[i]);
 			}
@@ -154,16 +165,16 @@ public class StatDisplay {
 		
 		if(Player.getHealth() > 0) {
 			g.setColor(Color.white);
-			g.drawString(pauseMsg, 960 - (uniFont.getWidth(pauseMsg) / 2), 540 - uniFont.getHeight(pauseMsg));
+			g.drawString(pauseMsg, (960 * scale) - (uniFont.getWidth(pauseMsg) / 2), (540 * scale) - uniFont.getHeight(pauseMsg));
 		} else {
 			g.setColor(Color.red);
-			g.drawString(playerMsg, 960 - (uniFont.getWidth(playerMsg) / 2), 540 - uniFont.getHeight(playerMsg));
+			g.drawString(playerMsg, (960 * scale) - (uniFont.getWidth(playerMsg) / 2), (540 * scale) - uniFont.getHeight(playerMsg));
 		}
 	}
 	
 	private void fillShape(Graphics g, Shape s) {
-		g.translate(s.getLocation().getX(),s.getLocation().getY());
+		g.translate(s.getLocation().getX() * doctorDGame.getScale(),s.getLocation().getY() * doctorDGame.getScale());
 		g.fill(s);
-		g.translate(-(s.getLocation().getX()),-(s.getLocation().getY()));
+		g.translate(-(s.getLocation().getX() * doctorDGame.getScale()),-(s.getLocation().getY() * doctorDGame.getScale()));
 	}
 }

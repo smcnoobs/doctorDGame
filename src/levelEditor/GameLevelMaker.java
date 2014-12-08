@@ -200,11 +200,10 @@ public class GameLevelMaker extends BasicGame implements InputProviderListener {
 		if(path.indexOf(",") != -1) {
 			String[] paths = path.split(",");
 			Image[] images = new Image[paths.length];
-			for(int i = 0; i < paths.length; i++) {
+			for(int i = 0; i < paths.length; i++)
 				images[i] = new Image(paths[i]);
-				return new Animation(images, ANIMATION_SPEED, false);
-			}
-				
+
+			return new Animation(images, ANIMATION_SPEED, false);
 		}
 			
 		

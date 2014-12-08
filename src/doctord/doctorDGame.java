@@ -3,6 +3,9 @@ import java.util.logging.Level;
 
 import java.util.logging.Logger;
 
+import org.lwjgl.LWJGLException;
+import org.lwjgl.opengl.Display;
+import org.lwjgl.opengl.DisplayMode;
 //import org.lwjgl.LWJGLException;
 //import org.lwjgl.opengl.Display;
 //import org.lwjgl.opengl.DisplayMode;
@@ -29,18 +32,34 @@ public class doctorDGame extends BasicGame implements InputProviderListener {
 	private boolean transitioning = false;
 	private int shadowTimer = 0;
 	private static int currentScene = 0;
+	private static float scale = 1.0f;
 	
 	// Private Control Functions
+	
+	private static DisplayMode getMaxDisplay(float width, float height) throws LWJGLException {
+		DisplayMode[] modes = Display.getAvailableDisplayModes();
+		DisplayMode maxDisplay = new DisplayMode(0,0);
+		for (int i=0;i<modes.length;i++) {
+			DisplayMode current = modes[i];
+			if(current.getBitsPerPixel() == 32 && Math.abs(((float)current.getWidth()/(float)current.getHeight()-(width/height))) <= 0.1) {
+				if(maxDisplay.getWidth() < current.getWidth())
+					maxDisplay = current;
+			}
+		}
+		return maxDisplay;
+	}
 	
 	private void loadScenes() {
 		scenes = new Scene[10];  
 		scenes = new Scene[] {
+				new LevelScene(),			//	Easy
 				new CinematicScene(),		//	Intro
 				new CinematicScene(),		//	Opening
 				new CinematicScene(),		//	Title
 				new LevelScene(),			// 	Volcano
 		};
 		scenePaths = new String[] {
+				"./res/levels/easy.xml",
 				"./res/cinematics/intro.txt",
 				"./res/cinematics/opening.txt",
 				"./res/cinematics/title.txt",
@@ -116,7 +135,7 @@ public class doctorDGame extends BasicGame implements InputProviderListener {
 		scenes[currentScene].render(g);
 		if(transitioning) {
 			g.setColor(new Color(0,0,0,shadowTimer));
-			g.fillRect(0,0,1920,1080);
+			g.fillRect(0,0,1920 * scale,1080 * scale);
 		}
 	}
 	
@@ -154,10 +173,22 @@ public class doctorDGame extends BasicGame implements InputProviderListener {
 		try {
 			AppGameContainer appgc;
 			appgc = new AppGameContainer(new doctorDGame("Doctor D"));
-			appgc.setDisplayMode(1920, 1080, true);
+//			appgc.setDisplayMode(1920, 1080, true);
+			DisplayMode maxDisplay = getMaxDisplay(16,9);
+			if(maxDisplay.getWidth() == 0 && maxDisplay.getHeight() == 0)
+				maxDisplay = getMaxDisplay(16,10);
+			if(maxDisplay.getWidth() == 0 && maxDisplay.getHeight() == 0)
+				maxDisplay = getMaxDisplay(4,3);
+			
+//			maxDisplay = new DisplayMode(1366,768);
+			
+			scale = ((float)maxDisplay.getHeight())/1080;
+			appgc.setDisplayMode(maxDisplay.getWidth(), maxDisplay.getHeight(), true);
 			appgc.start();
 		} catch (SlickException ex) {
 			Logger.getLogger(doctorDGame.class.getName()).log(Level.SEVERE, null, ex);
+		} catch (LWJGLException e) {
+			e.printStackTrace();
 		}
 	}
 	
@@ -177,5 +208,9 @@ public class doctorDGame extends BasicGame implements InputProviderListener {
 	
 	public static Scene getCurrentScene() {
 		return scenes[currentScene];
+	}
+	
+	public static float getScale() {
+		return scale;
 	}
 }
