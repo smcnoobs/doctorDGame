@@ -6517,7 +6517,10 @@
 		<HEALTH>5</HEALTH>
 		<FUEL>200.0</FUEL>
 		<Animation>
-			<IMAGECOUNT>3</IMAGECOUNT>
+			<IMAGECOUNT>4</IMAGECOUNT>
+			<Image>
+				<URL>./res/images/drD0.png</URL>
+			</Image>
 			<Image>
 				<URL>./res/images/drD1.png</URL>
 			</Image>

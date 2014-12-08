@@ -3,6 +3,7 @@ package doctord;
 import org.newdawn.slick.Animation;
 import org.newdawn.slick.Color;
 import org.newdawn.slick.Graphics;
+import org.newdawn.slick.Image;
 import org.newdawn.slick.geom.Vector2f;
 
 
@@ -15,10 +16,19 @@ public class Player extends Actor {
 	private static float fuel;
 	private int effectDuration;
 	private static PlayerEffect currentEffect = PlayerEffect.NEUTRAL;
+	private Animation fall, jump;
 //	private ControlHandler controls;
 
-	public Player(Animation spirtes, Vector2f location, int health, float fuel) {
-		super(spirtes, location);
+	public Player(Animation sprites, Vector2f location, int health, float fuel) {
+		super(sprites, location);
+		fall = new Animation(new Image[] {sprites.getImage(0)}, 50, true);
+		if(sprites.getFrameCount() > 1) {
+			Image[] images = new Image[sprites.getFrameCount() - 1];
+			for(int i = 1; i < sprites.getFrameCount(); i++) 
+				images[i - 1] = sprites.getImage(i);
+			jump = new Animation(images,50,true);
+			jump.setPingPong(true);
+		}
 		Player.health = health;
 		Player.fuel = fuel;
 		
@@ -55,11 +65,14 @@ public class Player extends Actor {
 				);
 		
 		if(fuel > 0 && doctorDGame.spaceBarIsDown()) {
-				fuel = fuel - 0.01f * ((LevelScene)doctorDGame.getCurrentScene()).getGravity();
+			fuel = fuel - 0.01f * ((LevelScene)doctorDGame.getCurrentScene()).getGravity();
 			inertia.set(
 					inertia.getX(),
 					inertia.getY() - 5
 					);
+			sprites = jump;
+		} else {
+			sprites = fall;
 		}
 		
 		if(inertia.getY() > maxSpeed)
@@ -80,8 +93,9 @@ public class Player extends Actor {
 	
 	@Override
 	public void render(Graphics g) {
-		if(currentEffect != PlayerEffect.SHIELDED)
+		if(currentEffect != PlayerEffect.SHIELDED) {
 			super.render(g);
+		}
 		else {
 			if(sprites != null && location != null) {
 				sprites.draw(location.getX() * doctorDGame.getScale(), location.getY() * doctorDGame.getScale(),

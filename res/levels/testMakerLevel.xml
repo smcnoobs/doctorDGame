@@ -10543,9 +10543,18 @@
 		<HEALTH>5</HEALTH>
 		<FUEL>200.0</FUEL>
 		<Animation>
-			<IMAGECOUNT>1</IMAGECOUNT>
+			<IMAGECOUNT>4</IMAGECOUNT>
 			<Image>
-				<URL>./res/images/dehkhoda_jetpack.png</URL>
+				<URL>./res/images/drD0.png</URL>
+			</Image>
+			<Image>
+				<URL>./res/images/drD1.png</URL>
+			</Image>
+			<Image>
+				<URL>./res/images/drD2.png</URL>
+			</Image>
+			<Image>
+				<URL>./res/images/drD3.png</URL>
 			</Image>
 		</Animation>
 		<Vector2f>

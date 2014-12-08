@@ -157,7 +157,7 @@ public class LevelScene extends doctord.Scene {
 	@Override
 	public void render(Graphics g) {
 		if(background != null)
-			background.draw(distancePassed,0,background.getCurrentFrame().getWidth() * doctorDGame.getScale(),background.getCurrentFrame().getHeight() * doctorDGame.getScale(), new Color(200,200,200,200));
+			background.draw(distancePassed,0,background.getCurrentFrame().getWidth() * doctorDGame.getScale(),background.getCurrentFrame().getHeight() * doctorDGame.getScale(), new Color(255,255,255,200));
 
 		renderPillars(g);
 		renderItems(g);

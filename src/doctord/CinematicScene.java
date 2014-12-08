@@ -95,6 +95,7 @@ public class CinematicScene extends Scene {
 	public void render(Graphics g) {
 		g.setFont(uniFont);
 		Animation a = dialogs.get(currentDialog).getAnimation();
+		a.draw(-a.getCurrentFrame().getWidth(),0);
 		a.getCurrentFrame().draw((960 - (a.getCurrentFrame().getWidth() / 2)) * doctorDGame.getScale(),0,doctorDGame.getScale());
 		
 		if(dialogs.get(currentDialog).hasText()) {

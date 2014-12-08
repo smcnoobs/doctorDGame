@@ -173,17 +173,18 @@ public class doctorDGame extends BasicGame implements InputProviderListener {
 		try {
 			AppGameContainer appgc;
 			appgc = new AppGameContainer(new doctorDGame("Doctor D"));
-//			appgc.setDisplayMode(1920, 1080, true);
 			DisplayMode maxDisplay = getMaxDisplay(16,9);
 			if(maxDisplay.getWidth() == 0 && maxDisplay.getHeight() == 0)
 				maxDisplay = getMaxDisplay(16,10);
 			if(maxDisplay.getWidth() == 0 && maxDisplay.getHeight() == 0)
 				maxDisplay = getMaxDisplay(4,3);
-			
-//			maxDisplay = new DisplayMode(1366,768);
-			
-			scale = ((float)maxDisplay.getHeight())/1080;
-			appgc.setDisplayMode(maxDisplay.getWidth(), maxDisplay.getHeight(), true);
+			if(maxDisplay.getWidth() == 0 && maxDisplay.getHeight() == 0) {
+				scale = 760f/1080;
+				appgc.setDisplayMode(1280,760,false);
+			} else {
+				scale = ((float)maxDisplay.getHeight())/1080;
+				appgc.setDisplayMode(maxDisplay.getWidth(), maxDisplay.getHeight(), true);
+			}
 			appgc.start();
 		} catch (SlickException ex) {
 			Logger.getLogger(doctorDGame.class.getName()).log(Level.SEVERE, null, ex);
