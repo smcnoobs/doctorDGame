@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<UI>
+	<Element type="Rectangle">
+		<X>0</X>
+		<Y>0</Y>
+		<WIDTH>400</WIDTH>
+		<HEIGHT>600</HEIGHT>
+		<ALIGN>1</ALIGN>
+		<COLOR>
+			<R>14</R>
+	        <G>29</G>
+	        <B>43</B>
+	    </COLOR>
+	</Element>
+	<Element type="RoundedRect">
+		<X>0</X>
+		<Y>-10</Y>
+		<WIDTH>400</WIDTH>
+		<HEIGHT>60</HEIGHT>
+		<RADIUS>10</RADIUS>
+		<ALIGN>1</ALIGN>
+		<COLOR>
+	        <R>65</R>
+	        <G>131</G>
+	        <B>215</B>
+		</COLOR>
+	</Element>
+	
+	<Element type="Text">
+		<TEXT>OPTIONS</TEXT>
+		<X>150</X>
+		<Y>15</Y>
+		<ALIGN>1</ALIGN>
+		<COLOR>
+	        <R>255</R>
+	        <G>255</G>
+	        <B>2255</B>
+	    </COLOR>
+	</Element>
+	
+	<Element type="RoundedRect">
+	    <X>10</X>
+	    <Y>160</Y>
+	    <WIDTH>320</WIDTH>
+	    <HEIGHT>50</HEIGHT>
+	    <RADIUS>10</RADIUS>
+	    <ALIGN>1</ALIGN>
+	    <COLOR>
+	        <R>58</R>
+	        <G>83</G>
+	        <B>155</B>
+	    </COLOR>
+	</Element>
+	
+	<Element type="Text">
+		<TEXT>FULLSCREEN</TEXT>
+		<X>20</X>
+		<Y>175</Y>
+		<ALIGN>1</ALIGN>
+		<COLOR>
+	        <R>255</R>
+	        <G>255</G>
+	        <B>255</B>
+	    </COLOR>
+	</Element>
+	
+	<Element type="RoundedRect" id="fullscreen">
+		<X>340</X>
+		<Y>160</Y>
+		<WIDTH>50</WIDTH>
+		<HEIGHT>50</HEIGHT>
+		<RADIUS>10</RADIUS>
+		<ALIGN>1</ALIGN>
+		<COLOR>
+			<R>218</R>
+			<G>223</G>
+			<B>225</B>
+		</COLOR>
+	</Element>
+	
+	<Element type="RoundedRect">
+	    <X>10</X>
+	    <Y>220</Y>
+	    <WIDTH>320</WIDTH>
+	    <HEIGHT>50</HEIGHT>
+	    <RADIUS>10</RADIUS>
+	    <ALIGN>1</ALIGN>
+	    <COLOR>
+	        <R>58</R>
+	        <G>83</G>
+	        <B>155</B>
+	    </COLOR>
+	</Element>
+	
+	<Element type="Text">
+		<TEXT>MUTED</TEXT>
+		<X>20</X>
+		<Y>235</Y>
+		<ALIGN>1</ALIGN>
+		<COLOR>
+	        <R>255</R>
+	        <G>255</G>
+	        <B>255</B>
+	    </COLOR>
+	</Element>
+	
+	<Element type="RoundedRect" id="muted">
+		<X>340</X>
+		<Y>220</Y>
+		<WIDTH>50</WIDTH>
+		<HEIGHT>50</HEIGHT>
+		<RADIUS>10</RADIUS>
+		<ALIGN>1</ALIGN>
+		<COLOR>
+			<R>218</R>
+			<G>223</G>
+			<B>225</B>
+		</COLOR>
+	</Element>
+	
+	<Element type="RoundedRect" id="resolution">
+	    <X>10</X>
+	    <Y>280</Y>
+	    <WIDTH>380</WIDTH>
+	    <HEIGHT>110</HEIGHT>
+	    <RADIUS>10</RADIUS>
+	    <ALIGN>1</ALIGN>
+	    <COLOR>
+	        <R>150</R>
+	        <G>40</G>
+	        <B>27</B>
+	    </COLOR>
+	</Element>
+	
+	<Element type="RoundedRect">
+	    <X>10</X>
+	    <Y>280</Y>
+	    <WIDTH>380</WIDTH>
+	    <HEIGHT>50</HEIGHT>
+	    <RADIUS>10</RADIUS>
+	    <ALIGN>1</ALIGN>
+	    <COLOR>
+	        <R>217</R>
+	        <G>30</G>
+	        <B>24</B>
+	    </COLOR>
+	</Element>
+	
+	<Element type="Text">
+		<TEXT>RESOLUTION</TEXT>
+		<X>120</X>
+		<Y>295</Y>
+		<ALIGN>1</ALIGN>
+		<COLOR>
+	        <R>255</R>
+	        <G>255</G>
+	        <B>255</B>
+	    </COLOR>
+	</Element>
+	
+	<Element type="RoundedRect" id="defaults">
+	    <X>10</X>
+	    <Y>400</Y>
+	    <WIDTH>380</WIDTH>
+	    <HEIGHT>50</HEIGHT>
+	    <RADIUS>10</RADIUS>
+	    <ALIGN>1</ALIGN>
+	    <COLOR>
+	        <R>58</R>
+	        <G>83</G>
+	        <B>155</B>
+	    </COLOR>
+	</Element>
+	
+	<Element type="Text">
+		<TEXT>RESTORE DEFAULTS</TEXT>
+		<X>80</X>
+		<Y>415</Y>
+		<ALIGN>1</ALIGN>
+		<COLOR>
+	        <R>255</R>
+	        <G>255</G>
+	        <B>255</B>
+	    </COLOR>
+	</Element>
+	
+	<Element type="RoundedRect" id="home">
+	    <X>10</X>
+	    <Y>540</Y>
+	    <WIDTH>380</WIDTH>
+	    <HEIGHT>50</HEIGHT>
+	    <RADIUS>10</RADIUS>
+	    <ALIGN>1</ALIGN>
+	    <COLOR>
+			<R>218</R>
+			<G>223</G>
+			<B>225</B>
+	    </COLOR>
+	</Element>
+	
+	<Element type="Text">
+		<TEXT>HOME</TEXT>
+		<X>170</X>
+		<Y>555</Y>
+		<ALIGN>1</ALIGN>
+		<COLOR>
+	        <R>0</R>
+	        <G>0</G>
+	        <B>0</B>
+	    </COLOR>
+	</Element>
+</UI>

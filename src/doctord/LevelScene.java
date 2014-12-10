@@ -157,7 +157,7 @@ public class LevelScene extends doctord.Scene {
 	@Override
 	public void render(Graphics g) {
 		if(background != null)
-			background.draw(distancePassed,0,background.getCurrentFrame().getWidth() * doctorDGame.getScale(),background.getCurrentFrame().getHeight() * doctorDGame.getScale(), new Color(255,255,255,200));
+			background.draw(distancePassed,0,background.getCurrentFrame().getWidth() * doctorDGame.getVScale(),background.getCurrentFrame().getHeight() * doctorDGame.getVScale(), new Color(255,255,255,200));
 
 		renderPillars(g);
 		renderItems(g);
@@ -165,7 +165,7 @@ public class LevelScene extends doctord.Scene {
 		
 		if(paused) {
 			g.setColor(new Color(0,0,0,200));
-			g.fillRect(0,0,1920 * doctorDGame.getScale(),1080 * doctorDGame.getScale());
+			g.fillRect(0,0,1920 * doctorDGame.getVScale(),1080 * doctorDGame.getVScale());
 			HUD.renderPauseScreen(g);
 			if(music != null)
 				music.setVolume(0.5f);

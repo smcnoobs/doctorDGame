@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<UI>
+    <Element type="Rectangle">
+        <X>0</X>
+        <Y>150</Y>
+        <WIDTH>400</WIDTH>
+        <HEIGHT>200</HEIGHT>
+        <ALIGN>1</ALIGN>
+        <COLOR>
+	        <R>34</R>
+	        <G>49</G>
+	        <B>63</B>
+	    </COLOR>
+    </Element>
+    
+	<Element type="RoundedRect" id="play">
+	    <X>10</X>
+	    <Y>360</Y>
+	    <WIDTH>380</WIDTH>
+	    <HEIGHT>50</HEIGHT>
+	    <RADIUS>10</RADIUS>
+	    <ALIGN>1</ALIGN>
+	    <COLOR>
+	        <R>217</R>
+	        <G>30</G>
+	        <B>24</B>
+	    </COLOR>
+	</Element>
+	
+	<Element type="Text">
+	    <TEXT>PLAY</TEXT>
+	    <X>170</X>
+	    <Y>375</Y>
+	    <ALIGN>1</ALIGN>
+	    <COLOR>
+	        <R>255</R>
+	        <G>255</G>
+	        <B>255</B>
+	    </COLOR>
+	</Element>
+	
+	<Element type="RoundedRect" id="editor">
+	    <X>10</X>
+	    <Y>420</Y>
+	    <WIDTH>380</WIDTH>
+	    <HEIGHT>50</HEIGHT>
+	    <RADIUS>10</RADIUS>
+	    <ALIGN>1</ALIGN>
+	    <COLOR>
+	        <R>248</R>
+	        <G>148</G>
+	        <B>6</B>
+	    </COLOR>
+	</Element>
+	
+	<Element type="Text">
+	    <TEXT>EDITOR</TEXT>
+	    <X>155</X>
+	    <Y>435</Y>
+	    <ALIGN>1</ALIGN>
+	        <COLOR>
+	        <R>255</R>
+	        <G>255</G>
+	        <B>255</B>
+	    </COLOR>
+	</Element>
+	
+	<Element type="RoundedRect" id="options">
+	    <X>10</X>
+	    <Y>480</Y>
+	    <WIDTH>380</WIDTH>
+	    <HEIGHT>50</HEIGHT>
+	    <RADIUS>10</RADIUS>
+	    <ALIGN>1</ALIGN>
+	    <COLOR>
+	        <R>65</R>
+	        <G>131</G>
+	        <B>215</B>
+	    </COLOR>
+	</Element>
+	
+	<Element type="Text">
+	    <TEXT>OPTIONS</TEXT>
+	    <X>145</X>
+	    <Y>495</Y>
+	    <ALIGN>1</ALIGN>
+	        <COLOR>
+	        <R>255</R>
+	        <G>255</G>
+	        <B>255</B>
+	    </COLOR>
+	</Element>
+	
+	<Element type="RoundedRect" id="credits">
+	    <X>10</X>
+	    <Y>540</Y>
+	    <WIDTH>380</WIDTH>
+	    <HEIGHT>50</HEIGHT>
+	    <RADIUS>10</RADIUS>
+	    <ALIGN>1</ALIGN>
+	    <COLOR>
+	        <R>38</R>
+	        <G>166</G>
+	        <B>91</B>
+	    </COLOR>
+	</Element>
+	
+	<Element type="Text">
+	    <TEXT>CREDITS</TEXT>
+	    <X>145</X>
+	    <Y>555</Y>
+	    <ALIGN>1</ALIGN>
+	        <COLOR>
+	        <R>255</R>
+	        <G>255</G>
+	        <B>255</B>
+	    </COLOR>
+	</Element>
+</UI>

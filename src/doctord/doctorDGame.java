@@ -1,7 +1,8 @@
 package doctord;
 import java.util.logging.Level;
-
 import java.util.logging.Logger;
+
+import levelEditor.GameLevelMaker;
 
 import org.lwjgl.LWJGLException;
 import org.lwjgl.opengl.Display;
@@ -32,21 +33,22 @@ public class doctorDGame extends BasicGame implements InputProviderListener {
 	private boolean transitioning = false;
 	private int shadowTimer = 0;
 	private static int currentScene = 0;
-	private static float scale = 1.0f;
+	private static float vscale = 1.0f, hscale = 1.0f;
+	private static DisplayMode display = new DisplayMode(0,0);
 	
 	// Private Control Functions
 	
-	private static DisplayMode getMaxDisplay(float width, float height) throws LWJGLException {
+	private static DisplayMode getdisplay(float width, float height) throws LWJGLException {
 		DisplayMode[] modes = Display.getAvailableDisplayModes();
-		DisplayMode maxDisplay = new DisplayMode(0,0);
+		DisplayMode display = new DisplayMode(0,0);
 		for (int i=0;i<modes.length;i++) {
 			DisplayMode current = modes[i];
 			if(current.getBitsPerPixel() == 32 && Math.abs(((float)current.getWidth()/(float)current.getHeight()-(width/height))) <= 0.1) {
-				if(maxDisplay.getWidth() < current.getWidth())
-					maxDisplay = current;
+				if(display.getWidth() < current.getWidth())
+					display = current;
 			}
 		}
-		return maxDisplay;
+		return display;
 	}
 	
 	private void loadScenes() {
@@ -67,7 +69,7 @@ public class doctorDGame extends BasicGame implements InputProviderListener {
 		};
 		
 		// Load the first Scene
-		scenes[0].load(scenePaths[0]);
+		scenes[currentScene].load(scenePaths[currentScene]);
 	}
 	
 	// Necessary Slick2D Functions
@@ -135,7 +137,7 @@ public class doctorDGame extends BasicGame implements InputProviderListener {
 		scenes[currentScene].render(g);
 		if(transitioning) {
 			g.setColor(new Color(0,0,0,shadowTimer));
-			g.fillRect(0,0,1920 * scale,1080 * scale);
+			g.fillRect(0,0,1920 * vscale,1080 * vscale);
 		}
 	}
 	
@@ -153,7 +155,6 @@ public class doctorDGame extends BasicGame implements InputProviderListener {
 			muted = (muted) ? false: true;
 		if(com == restartCommand && scenes[currentScene] instanceof LevelScene) {
 			if(Player.getHealth() <= 0) {
-//				((LevelScene)scenes[currentScene]).reloadLevel();
 				scenes[currentScene] = new LevelScene();
 				((LevelScene)scenes[currentScene]).loadLevel(scenePaths[currentScene]);
 				((LevelScene)scenes[currentScene]).pause();
@@ -172,23 +173,43 @@ public class doctorDGame extends BasicGame implements InputProviderListener {
 	public static void main(String[] args) {
 		try {
 			AppGameContainer appgc;
-			appgc = new AppGameContainer(new doctorDGame("Doctor D"));
-			DisplayMode maxDisplay = getMaxDisplay(16,9);
-			if(maxDisplay.getWidth() == 0 && maxDisplay.getHeight() == 0)
-				maxDisplay = getMaxDisplay(16,10);
-			if(maxDisplay.getWidth() == 0 && maxDisplay.getHeight() == 0)
-				maxDisplay = getMaxDisplay(4,3);
-			if(maxDisplay.getWidth() == 0 && maxDisplay.getHeight() == 0) {
-				scale = 760f/1080;
-				appgc.setDisplayMode(1280,760,false);
-			} else {
-				scale = ((float)maxDisplay.getHeight())/1080;
-				appgc.setDisplayMode(maxDisplay.getWidth(), maxDisplay.getHeight(), true);
-			}
+			config.SplashGame splash = new config.SplashGame("Splash Game");
+			appgc = new AppGameContainer(splash);
+			appgc.setDisplayMode((int)config.SplashGame.getWidth(),(int)config.SplashGame.getHeight(),false);
+			appgc.setForceExit(false);
 			appgc.start();
+			
+			splash.writeConfig();
+			
+			if(splash.startMain()) {
+				appgc = new AppGameContainer(new doctorDGame("Doctor D"));
+				if(display.getWidth() == 0 && display.getHeight() == 0)
+					display = getdisplay(16,9);
+				if(display.getWidth() == 0 && display.getHeight() == 0)
+					display = getdisplay(16,10);
+				if(display.getWidth() == 0 && display.getHeight() == 0)
+					display = getdisplay(4,3);
+				if(display.getWidth() == 0 && display.getHeight() == 0) {
+					display = new DisplayMode(640,360);
+					vscale = (float)display.getHeight()/1080;
+					hscale = (float)display.getWidth()/1920;
+					appgc.setDisplayMode(display.getWidth(),display.getHeight(),false);
+				} else {
+					vscale = ((float)display.getHeight())/1080;
+					hscale = ((float)display.getWidth())/1920;
+					appgc.setDisplayMode(display.getWidth(), display.getHeight(), true);
+				}
+				appgc.start();
+			} else if(splash.startEditor()) {
+				appgc = new AppGameContainer(new GameLevelMaker("Level Editor"));
+				appgc.setDisplayMode(1366, 768, false);
+				appgc.start();
+			}
 		} catch (SlickException ex) {
+			ex.printStackTrace();
 			Logger.getLogger(doctorDGame.class.getName()).log(Level.SEVERE, null, ex);
-		} catch (LWJGLException e) {
+		} 
+		catch (LWJGLException e) {
 			e.printStackTrace();
 		}
 	}
@@ -211,7 +232,15 @@ public class doctorDGame extends BasicGame implements InputProviderListener {
 		return scenes[currentScene];
 	}
 	
-	public static float getScale() {
-		return scale;
+	public static float getVScale() {
+		return vscale;
+	}
+	
+	public static float getHScale() {
+		return hscale;
+	}
+	
+	public static DisplayMode getDisplay() {
+		return display;
 	}
 }

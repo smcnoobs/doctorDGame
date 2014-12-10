@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<UI>
+	<Element type="Rectangle">
+		<X>0</X>
+		<Y>0</Y>
+		<WIDTH>400</WIDTH>
+		<HEIGHT>600</HEIGHT>
+		<ALIGN>1</ALIGN>
+		<COLOR>
+			<R>30</R>
+	        <G>130</G>
+	        <B>76</B>
+	    </COLOR>
+	</Element>
+	<Element type="RoundedRect">
+		<X>0</X>
+		<Y>-10</Y>
+		<WIDTH>400</WIDTH>
+		<HEIGHT>60</HEIGHT>
+		<RADIUS>10</RADIUS>
+		<ALIGN>1</ALIGN>
+		<COLOR>
+	        <R>38</R>
+	        <G>194</G>
+	        <B>129</B>
+		</COLOR>
+	</Element>
+	
+	<Element type="Text">
+		<TEXT>CREDITS</TEXT>
+		<X>145</X>
+		<Y>15</Y>
+		<ALIGN>1</ALIGN>
+		<COLOR>
+	        <R>255</R>
+	        <G>255</G>
+	        <B>2255</B>
+	    </COLOR>
+	</Element>
+	
+	<Element type="RoundedRect" id="home">
+	    <X>10</X>
+	    <Y>540</Y>
+	    <WIDTH>380</WIDTH>
+	    <HEIGHT>50</HEIGHT>
+	    <RADIUS>10</RADIUS>
+	    <ALIGN>1</ALIGN>
+	    <COLOR>
+			<R>218</R>
+			<G>223</G>
+			<B>225</B>
+	    </COLOR>
+	</Element>
+	
+	<Element type="Text">
+		<TEXT>HOME</TEXT>
+		<X>170</X>
+		<Y>555</Y>
+		<ALIGN>1</ALIGN>
+		<COLOR>
+	        <R>0</R>
+	        <G>0</G>
+	        <B>0</B>
+	    </COLOR>
+	</Element>
+</UI>

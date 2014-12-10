@@ -94,7 +94,7 @@ public class LevelLoader {
 							throw new Exception("Unable to Load Actable of type: " + ((Element) n).getAttribute("type"));
 					}
 				} else {
-					System.out.println("Skipped that shit yo.");
+					System.out.println("Node is not an Element Node");
 				}
 			}
 
