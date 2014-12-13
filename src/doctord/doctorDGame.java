@@ -1,7 +1,8 @@
 package doctord;
 import java.util.logging.Level;
-
 import java.util.logging.Logger;
+
+import levelEditor.GameLevelMaker;
 
 import org.lwjgl.LWJGLException;
 import org.lwjgl.opengl.Display;
@@ -178,6 +179,11 @@ public class doctorDGame extends BasicGame implements InputProviderListener {
 			appgc.setForceExit(false);
 			appgc.start();
 			
+<<<<<<< HEAD
+=======
+			splash.writeConfig();
+			
+>>>>>>> origin/master
 			if(splash.startMain()) {
 				appgc = new AppGameContainer(new doctorDGame("Doctor D"));
 				if(display.getWidth() == 0 && display.getHeight() == 0)
@@ -197,6 +203,13 @@ public class doctorDGame extends BasicGame implements InputProviderListener {
 					appgc.setDisplayMode(display.getWidth(), display.getHeight(), true);
 				}
 				appgc.start();
+<<<<<<< HEAD
+=======
+			} else if(splash.startEditor()) {
+				appgc = new AppGameContainer(new GameLevelMaker("Level Editor"));
+				appgc.setDisplayMode(1366, 768, false);
+				appgc.start();
+>>>>>>> origin/master
 			}
 		} catch (SlickException ex) {
 			ex.printStackTrace();

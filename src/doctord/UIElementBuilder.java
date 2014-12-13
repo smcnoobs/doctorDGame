@@ -27,6 +27,10 @@ public class UIElementBuilder {
 	}
 	
 	public static boolean loadElements(String filename) {
+<<<<<<< HEAD
+=======
+		elements = new ArrayList<UIElement>();
+>>>>>>> origin/master
 		boolean level_did_load = false;
 		try {
 			DocumentBuilderFactory fact = DocumentBuilderFactory.newInstance();

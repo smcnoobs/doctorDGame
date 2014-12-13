@@ -15,7 +15,11 @@
     
 	<Element type="RoundedRect" id="play">
 	    <X>10</X>
+<<<<<<< HEAD
 	    <Y>420</Y>
+=======
+	    <Y>360</Y>
+>>>>>>> origin/master
 	    <WIDTH>380</WIDTH>
 	    <HEIGHT>50</HEIGHT>
 	    <RADIUS>10</RADIUS>
@@ -30,6 +34,35 @@
 	<Element type="Text">
 	    <TEXT>PLAY</TEXT>
 	    <X>170</X>
+<<<<<<< HEAD
+=======
+	    <Y>375</Y>
+	    <ALIGN>1</ALIGN>
+	    <COLOR>
+	        <R>255</R>
+	        <G>255</G>
+	        <B>255</B>
+	    </COLOR>
+	</Element>
+	
+	<Element type="RoundedRect" id="editor">
+	    <X>10</X>
+	    <Y>420</Y>
+	    <WIDTH>380</WIDTH>
+	    <HEIGHT>50</HEIGHT>
+	    <RADIUS>10</RADIUS>
+	    <ALIGN>1</ALIGN>
+	    <COLOR>
+	        <R>248</R>
+	        <G>148</G>
+	        <B>6</B>
+	    </COLOR>
+	</Element>
+	
+	<Element type="Text">
+	    <TEXT>EDITOR</TEXT>
+	    <X>155</X>
+>>>>>>> origin/master
 	    <Y>435</Y>
 	    <ALIGN>1</ALIGN>
 	        <COLOR>
