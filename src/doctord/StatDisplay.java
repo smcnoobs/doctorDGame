@@ -17,8 +17,8 @@ public class StatDisplay {
 	private final String pauseMsg = "GAME PAUSED";
 	private final String playerMsg = "YOU DIED - PRESS R TO RESTART";
 	private Vector2f debugLocation = new Vector2f(500,500);
-	java.awt.Font UIFont1;
-    UnicodeFont uniFont;
+	private java.awt.Font UIFont1;
+    private UnicodeFont uniFont;
 	
 	public static final Color darkGrey = new Color(40, 40 , 40, 200),
 			darkerGrey = new Color(0, 0, 0, 100),
@@ -28,40 +28,22 @@ public class StatDisplay {
 			darkRed   = new Color(150,40,27),
 			dullYellow = new Color(244,208,63),
 			transparentBlack = new Color(0,0,0,200);
+	
+	private UIShapeElement[] elements = new UIShapeElement[] {
+			new UIShapeElement(new Rectangle(0,0,1920,54), darkGrey, 1),				// Top Bar 				darkGrey		0
+			new UIShapeElement(new Rectangle(0,1080-54,1920,54), darkGrey, 1),		// Bottom Bar			darkGrey		1
+			new UIShapeElement(new Rectangle(5,5,210,40), darkerGrey, 1),			// Fuel Background		darkerGrey		2
+			new UIShapeElement(new Rectangle(10,10,200,30), darkGreen, 1),			// Fuel Trim			darkGreen		3
+			new UIShapeElement(new Rectangle(10,10,200,30), fuelGreen, 1),			// Player Fuel			fuelGreen		4 *
 			
-	private Shape[] shapes = new Shape[] {
-			new Rectangle(0,0,1920,54),			// Top Bar 				darkGrey		0
-			new Rectangle(0,1080-54,1920,54),	// Bottom Bar			darkGrey		1
-			
-			new Rectangle(5,5,210,40),			// Fuel Background		darkerGrey		2
-			new Rectangle(10,10,200,30),		// Fuel Trim			darkGreen		3
-			new Rectangle(10,10,200,30),		// Player Fuel			fuelGreen		4 *
-			
-			new Rectangle(1705,5,210,40),		// Health Background	darkerGrey		5
-			new Rectangle(1710,10,200,30),		// Health Trim			darkRed			6
-			new Rectangle(1710,10,200,30),		// Player Health		healthRed		7 *
-			
-			new Rectangle(1500,5,200,40),		// Collected Coins		darkerGrey		8
+			new UIShapeElement(new Rectangle(215,5,210,40), darkerGrey, -1),			// Health Background	darkerGrey		5
+			new UIShapeElement(new Rectangle(210,10,200,30), darkRed, -1),			// Health Trim			darkRed			6
+			new UIShapeElement(new Rectangle(210,10,200,30), healthRed, -1),			// Player Health		healthRed		7 *
+			new UIShapeElement(new Rectangle(420,5,200,40), darkerGrey, -1),			// Collected Coins		darkerGrey		8
 	};
 	
-	private Color[] colors = new Color[] {
-			darkGrey,		// Top Bar
-			darkGrey,		// Bottom Bar
-			darkerGrey,		// Fuel Background
-			darkGreen,		// Fuel Trim
-			fuelGreen,		// Player Fuel
-			darkerGrey,		// Health Background
-			darkRed,		// Health Trim
-			healthRed,		// Player Health
-			darkerGrey,		// Collected Coins
-	};
-	
-	private Shape[] pausedShapes = new Shape[] {
-			new RoundedRectangle(960 - 100,540 - 250 ,500,40,10),		// Pause Screen		transparentBlack	0
-	};
-	
-	private Color[] pausedColors = new Color[] {
-			transparentBlack,		// Rounded Background
+	private UIShapeElement[] pausedElements = new UIShapeElement[] {
+			new UIShapeElement(new RoundedRectangle(500,540 - 30,500,40,10), transparentBlack, 0),
 	};
 	
 	@SuppressWarnings("unchecked")
@@ -75,7 +57,7 @@ public class StatDisplay {
 			e.printStackTrace();
 		}
 		
-	 	UIFont1 = UIFont1.deriveFont(java.awt.Font.PLAIN, 24.f * doctorDGame.getScale());
+	 	UIFont1 = UIFont1.deriveFont(java.awt.Font.PLAIN, 24.f * doctorDGame.getVScale());
         uniFont = new org.newdawn.slick.UnicodeFont(UIFont1);
         uniFont.addAsciiGlyphs();
         ColorEffect a = new ColorEffect();
@@ -92,37 +74,32 @@ public class StatDisplay {
 	public void update() {
 		fuel = Player.getFuel();
 		health = Player.getHealth();
-		
-		((Rectangle) shapes[4]).setWidth(fuel);				// Fuel Width
-		((Rectangle) shapes[7]).setWidth(health * 40);		// Health Width
+			
+		((Rectangle) elements[4].getShape()).setWidth(fuel);			// Fuel Width
+		((Rectangle) elements[7].getShape()).setWidth(health * 40);		// Health Width
 	}
 	
 	public void render(Graphics g) {
-		float scale = doctorDGame.getScale();
+		float vscale = doctorDGame.getVScale(), hscale = doctorDGame.getHScale();
+		float width = doctorDGame.getDisplay().getWidth();
 		g.setFont(uniFont);
-		for(int i = 0; i < shapes.length; i++) {
-			g.setColor(colors[i]);
-			if(shapes[i] instanceof Rectangle) {
-				Rectangle r = (Rectangle)shapes[i];
-				g.fillRect(r.getMinX() * scale,
-						r.getMinY() * scale,
-						r.getWidth() * scale,
-						r.getHeight() * scale);
-			} else {
-				fillShape(g,shapes[i]);
-			}
+		
+		for(UIShapeElement uiel : elements) {
+			uiel.setHScale(doctorDGame.getHScale());
+			uiel.setVScale(doctorDGame.getVScale());
+			uiel.render(g);
 		}
 		
 		g.setColor(darkGrey);
-		g.drawString("FUEL",15 * scale,15 * scale);
-		g.drawString("HEALTH",(1920 - 205)* scale,15 * scale);
+		g.drawString("FUEL",15 * hscale,15 * vscale);
+		g.drawString("HEALTH",width - (205* hscale),15 * vscale);
 		
 		g.setColor(dullYellow);
-		g.drawString("COINS: " + Coin.getCollected(), (1920 - 410) * scale, 15 * scale);
+		g.drawString("COINS: " + Coin.getCollected(), width - (410 * hscale), 15 * vscale);
 		
 		
 		g.setColor(Color.white);
-		g.drawString(LevelScene.getLevelName(),(960 - (uniFont.getWidth(LevelScene.getLevelName())/2)) * scale,(1080-54+15) * scale);
+		g.drawString(LevelScene.getLevelName(),((width/2) - (uniFont.getWidth(LevelScene.getLevelName())/2)),(1080-54+15) * vscale);
 		
 		if(debug) {
 			g.setColor(darkGrey);
@@ -143,38 +120,38 @@ public class StatDisplay {
 	
 	public void renderPauseScreen(Graphics g) {
 		g.setFont(uniFont);
-		float scale = doctorDGame.getScale();
-		for(int i = 0; i < pausedShapes.length; i++) {
-			g.setColor(pausedColors[i]);
-			if(pausedShapes[i] instanceof RoundedRectangle) {
-				RoundedRectangle r = (RoundedRectangle)pausedShapes[i];
-				g.fillRoundRect(r.getMinX() * scale,
-						r.getMinY() * scale,
-						r.getWidth() * scale,
-						r.getHeight() * scale,(int) r.getCornerRadius());
-			} else if(pausedShapes[i] instanceof Rectangle) {	
-				Rectangle r = (Rectangle)shapes[i];
-				g.fillRect(r.getMinX() * scale,
-						r.getMinY() * scale,
-						r.getWidth() * scale,
-						r.getHeight() * scale);
-			} else {
-				fillShape(g,shapes[i]);
-			}
-		}
+		float scale = doctorDGame.getVScale(),hscale = doctorDGame.getHScale();
+//		for(int i = 0; i < pausedShapes.length; i++) {
+//			g.setColor(pausedColors[i]);
+//			if(pausedShapes[i] instanceof RoundedRectangle) {
+//				RoundedRectangle r = (RoundedRectangle)pausedShapes[i];
+//				g.fillRoundRect(r.getMinX() * hscale,
+//						r.getMinY() * scale,
+//						r.getWidth() * hscale,
+//						r.getHeight() * scale,(int) r.getCornerRadius());
+//			} else if(pausedShapes[i] instanceof Rectangle) {	
+//				Rectangle r = (Rectangle)shapes[i];
+//				g.fillRect(r.getMinX() * hscale,
+//						r.getMinY() * scale,
+//						r.getWidth() * hscale,
+//						r.getHeight() * scale);
+//			} else {
+//				fillShape(g,shapes[i]);
+//			}
+//		}
 		
 		if(Player.getHealth() > 0) {
 			g.setColor(Color.white);
-			g.drawString(pauseMsg, (960 * scale) - (uniFont.getWidth(pauseMsg) / 2), (540 * scale) - uniFont.getHeight(pauseMsg));
+			g.drawString(pauseMsg, (960 * hscale) - (uniFont.getWidth(pauseMsg) / 2), (540 * scale) - uniFont.getHeight(pauseMsg));
 		} else {
 			g.setColor(Color.red);
-			g.drawString(playerMsg, (960 * scale) - (uniFont.getWidth(playerMsg) / 2), (540 * scale) - uniFont.getHeight(playerMsg));
+			g.drawString(playerMsg, (960 * hscale) - (uniFont.getWidth(playerMsg) / 2), (540 * scale) - uniFont.getHeight(playerMsg));
 		}
 	}
 	
 	private void fillShape(Graphics g, Shape s) {
-		g.translate(s.getLocation().getX() * doctorDGame.getScale(),s.getLocation().getY() * doctorDGame.getScale());
+		g.translate(s.getLocation().getX() * doctorDGame.getVScale(),s.getLocation().getY() * doctorDGame.getVScale());
 		g.fill(s);
-		g.translate(-(s.getLocation().getX() * doctorDGame.getScale()),-(s.getLocation().getY() * doctorDGame.getScale()));
+		g.translate(-(s.getLocation().getX() * doctorDGame.getVScale()),-(s.getLocation().getY() * doctorDGame.getVScale()));
 	}
 }

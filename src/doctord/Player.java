@@ -98,8 +98,8 @@ public class Player extends Actor {
 		}
 		else {
 			if(sprites != null && location != null) {
-				sprites.draw(location.getX() * doctorDGame.getScale(), location.getY() * doctorDGame.getScale(),
-						sprites.getCurrentFrame().getWidth()  * doctorDGame.getScale(), sprites.getCurrentFrame().getHeight()  * doctorDGame.getScale(), new Color(150,40,27,200));
+				sprites.draw(location.getX() * doctorDGame.getVScale(), location.getY() * doctorDGame.getVScale(),
+						sprites.getCurrentFrame().getWidth()  * doctorDGame.getVScale(), sprites.getCurrentFrame().getHeight()  * doctorDGame.getVScale(), new Color(150,40,27,200));
 			}
 		}
 	}
